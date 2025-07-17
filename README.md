@@ -20,8 +20,7 @@ El objetivo de esta primera fase (MVP) es validar la funcionalidad básica de la
 
 ## Tecnologías y Herramientas
 
-### Frontend
-- React.js (o Next.js en fases futuras)
+- HTML5 y JavaScript puro
 - Tailwind CSS – Framework de utilidad para estilos rápidos y consistentes.
 - Figma – Para el prototipado y validación visual antes del desarrollo.
 
