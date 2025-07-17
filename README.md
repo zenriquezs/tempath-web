@@ -168,4 +168,4 @@ Este proyecto está bajo licencia MIT. Puedes usarlo, modificarlo y distribuirlo
 
 Correo: zenrizu@gmail.com  
 LinkedIn: https://www.linkedin.com/in/enrique-zu%C3%B1iga-zu%C3%B1iga-6118b82b0/  
-Portafolio: https://zenriquezs.github.io/portfolioenriquezs.github.io/
+Portafolio: https://zenriquezs.github.io/EnriqueZS/
