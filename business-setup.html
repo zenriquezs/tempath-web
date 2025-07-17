@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tempath - Configura tu negocio</title>
+  <link rel="shortcut icon" href="assets/img/Tempath_icon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/media.css" />
+  <link rel="stylesheet" href="assets/css/setup.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body class="setup-page">
+  <!-- Header -->
+  <header id="header" class="header header-business">
+    <div class="container container-lg">
+      <div class="header-nav">
+        <img src="assets/img/Tempath.png" alt="icono imagen" class="logo" data-aos="fade-right" data-aos-duration="1000">
+        <nav id="nav" class="nav">
+          <ul class="nav-list" data-aos="fade-down" data-aos-duration="1000">
+            <li class="nav-item">
+              <a href="auth/login.html" class="btnNav btn-logout">Cerrar sesión</a>
+            </li>
+          </ul>
+          <button id="nav-btn" class="nav-btn">
+            <img id="nav-btn-img" src="assets/img/icons/open.svg" alt="Navigation button" />
+          </button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenido principal del formulario -->
+  <main class="setup-container">
+    <form id="businessSetupForm" class="setup-form">
+      <h1 data-aos="fade-up">CONFIGURA TU PÁGINA WEB</h1>
+      <p class="subtitle" data-aos="fade-up" data-aos-delay="100">Completa la siguiente información para generar tu sitio web automáticamente</p>
+
+      <!-- Sección 1: Información básica -->
+      <div class="form-section" data-aos="fade-up" data-aos-delay="200">
+        <h2>Información Básica</h2>
+        
+        <div class="form-group">
+          <label for="businessName">Nombre del negocio*</label>
+          <input type="text" id="businessName" name="businessName" required 
+                 placeholder="Ejemplo: 'Construcciones López', 'Estética Luisa'">
+          <p class="field-description">El nombre que aparecerá en tu página web</p>
+        </div>
+
+        <div class="form-group">
+          <label for="businessDescription">¿A qué se dedica tu negocio?*</label>
+          <textarea id="businessDescription" name="businessDescription" required
+                    placeholder="Describe en pocas palabras lo que haces. Ejemplo: 'Reparación de electrodomésticos', 'Venta de pasteles personalizados'"></textarea>
+          <p class="field-description">Esta descripción aparecerá en la portada de tu sitio</p>
+        </div>
+
+        <div class="form-group">
+          <label for="contactPhone">Teléfono o WhatsApp*</label>
+          <input type="tel" id="contactPhone" name="contactPhone" required
+                 placeholder="Ejemplo: +52 55 1234 5678">
+          <p class="field-description">Incluye tu número para que los clientes puedan contactarte fácilmente</p>
+        </div>
+      </div>
+
+      <!-- Sección 2: Redes sociales -->
+      <div class="form-section" data-aos="fade-up" data-aos-delay="250">
+        <h2>Redes Sociales</h2>
+        <p class="section-description">Agrega las redes sociales que deseas mostrar en tu página</p>
+
+        <div class="social-options">
+          <button type="button" class="social-option" data-social="instagram" data-aos="fade-up" data-aos-delay="300">
+            <img src="assets/img/social_icons/instagram.svg" alt="Instagram">
+            Instagram
+          </button>
+          <button type="button" class="social-option" data-social="facebook" data-aos="fade-up" data-aos-delay="350">
+            <img src="assets/img/social_icons/facebook.svg" alt="Facebook">
+            Facebook
+          </button>
+          <button type="button" class="social-option" data-social="linkedin" data-aos="fade-up" data-aos-delay="400">
+            <img src="assets/img/social_icons/linkedin.svg" alt="LinkedIn">
+            LinkedIn
+          </button>
+          <button type="button" class="social-option" data-social="tiktok" data-aos="fade-up" data-aos-delay="450">
+            <img src="assets/img/social_icons/tiktok.svg" alt="TikTok">
+            TikTok
+          </button>
+        </div>
+
+        <div id="socialFieldsContainer" class="social-fields-container">
+          <!-- Los campos de redes sociales se agregarán dinámicamente aquí -->
+        </div>
+      </div>
+
+      <!-- Sección 3: Ubicación -->
+      <div class="form-section" data-aos="fade-up" data-aos-delay="300">
+        <h2>Ubicación</h2>
+        <p class="section-description">Ayuda a tus clientes a encontrarte fácilmente</p>
+
+        <div class="form-group">
+          <label for="businessAddress">Dirección física</label>
+          <input type="text" id="businessAddress" name="businessAddress" 
+                 placeholder="Ejemplo: Av. Principal #123, Col. Centro">
+          <p class="field-description">Calle y número, colonia, ciudad</p>
+        </div>
+
+        <div class="form-group">
+          <label for="googleMaps">Link de Google Maps</label>
+          <input type="url" id="googleMaps" name="googleMaps" 
+                 placeholder="Pega el link de tu ubicación en Google Maps">
+          <p class="field-description">Los clientes podrán ver tu ubicación exacta</p>
+        </div>
+
+        <div class="form-group">
+          <label for="businessHours">Horario de atención</label>
+          <input type="text" id="businessHours" name="businessHours" 
+                 placeholder="Ejemplo: Lunes a Viernes 9:00 am - 6:00 pm">
+          <p class="field-description">Indica tus horarios de servicio</p>
+        </div>
+      </div>
+
+      <!-- Sección 4: Personalización adicional -->
+      <div class="form-section" data-aos="fade-up" data-aos-delay="350">
+        <h2>Personalización</h2>
+        <p class="section-description">Añade detalles que hagan única tu página</p>
+
+        <div class="form-group">
+          <label for="businessColors">Colores principales</label>
+          <div class="color-options">
+            <input type="color" id="primaryColor" name="primaryColor" value="#0c1618">
+            <label for="primaryColor">Color primario</label>
+            
+            <input type="color" id="secondaryColor" name="secondaryColor" value="#6f1d1b">
+            <label for="secondaryColor">Color secundario</label>
+          </div>
+          <p class="field-description">Selecciona los colores que representen tu marca</p>
+        </div>
+
+        <div class="form-group">
+          <label for="businessLogo">Sube tu logo (opcional)</label>
+          <input type="file" id="businessLogo" name="businessLogo" accept="image/*">
+          <p class="field-description">Formatos aceptados: JPG, PNG, SVG (Máx. 2MB)</p>
+        </div>
+      </div>
+
+      <div class="form-actions" data-aos="fade-up" data-aos-delay="400">
+        <button type="submit" class="btn btn-submit">Generar mi página web</button>
+      </div>
+    </form>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-row">
+        <div class="social-links-row footer-social">
+          <a href="#!">
+            <img src="assets/img/social_icons/github.svg" alt="Link to GitHub account" />
+          </a>
+
+          <a href="#!">
+            <img src="assets/img/social_icons/linkedin.svg" alt="Link to linkedin profile" />
+          </a>
+
+          <a href="#!">
+            <img src="assets/img/social_icons/xing.svg" alt="Link to Xing profile" />
+          </a>
+
+          <a href="#!">
+            <img src="assets/img/social_icons/facebook.svg" alt="Link to facebook profile" /></a>
+
+          <a href="#!">
+            <img src="assets/img/social_icons/instagram.svg" alt="Link to instagram profile" /></a>
+        </div>
+
+        <div class="footer-copyright">
+          <p>&copy; Copyright teteocan technology 2025</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="goToTop" class="goToTop">
+    <a href="#header">
+      <img src="assets/img/icons/arrow_up.svg" alt="Back to top" /></a>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
+    integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="module" src="assets/js/main.js"></script>
+  <script type="module" src="assets/js/setup.js"></script>
+</body>
+</html>
