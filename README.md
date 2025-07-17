@@ -1,6 +1,6 @@
 # Tempath
 
-Tempath es una herramienta digital enfocada en facilitar a pequeños negocios (consultorios médicos, estéticas, constructoras, papelerías, entre otros) la creación de su propio sitio web sin necesidad de conocimientos en programación o diseño. A través de un formulario guiado y opciones prediseñadas, el usuario puede generar y publicar su página web de forma rápida, sencilla y funcional.
+Tempath es una herramienta digital enfocada en facilitar a pequeños negocios en la creación de su propio sitio web sin necesidad de conocimientos en programación o diseño. A través de un formulario guiado y opciones prediseñadas, el usuario puede generar y publicar su página web de forma rápida, sencilla y funcional.
 
 
 ![Tempath Preview](./assets/img/Tempath.jpeg)
@@ -168,4 +168,4 @@ Este proyecto está bajo licencia MIT. Puedes usarlo, modificarlo y distribuirlo
 
 Correo: zenrizu@gmail.com  
 LinkedIn: https://www.linkedin.com/in/enrique-zu%C3%B1iga-zu%C3%B1iga-6118b82b0/  
-Portafolio: https://zenriquezs.github.io/portfolioenriquezs.github.io/
+Portafolio: https://zenriquezs.github.io/EnriqueZS/
