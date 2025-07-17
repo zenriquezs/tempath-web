@@ -3,7 +3,7 @@
 Tempath es una herramienta digital enfocada en facilitar a pequeños negocios (consultorios médicos, estéticas, constructoras, papelerías, entre otros) la creación de su propio sitio web sin necesidad de conocimientos en programación o diseño. A través de un formulario guiado y opciones prediseñadas, el usuario puede generar y publicar su página web de forma rápida, sencilla y funcional.
 
 
-![Tempath Preview](tempath-web/assets/img/Tempath.jpeg)
+![Tempath Preview](./assets/img/Tempath.jpeg)
 ---
 
 ## Objetivo del Proyecto
