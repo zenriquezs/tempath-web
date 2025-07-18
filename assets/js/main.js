@@ -1,19 +1,25 @@
 "use strict";
+
 import form from "./form.js";
 import skillbar from "./skillbar.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Llama a form solo si existe el formulario en la página
+  if (document.querySelector(".contactForm")) {
+    form();
+  }
+
   AOS.init({
     once: true,
   });
-  form();
+
   skillbar();
 
   const nav = document.querySelector("#nav");
   const navBtn = document.querySelector("#nav-btn");
   const navBtnImg = document.querySelector("#nav-btn-img");
 
-  //Hamburger menu
+  // Hamburger menu
   navBtn.onclick = () => {
     if (nav.classList.toggle("open")) {
       navBtnImg.src = "assets/img/icons/close.svg";
@@ -25,6 +31,10 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", function () {
     const header = document.querySelector("#header");
     const hero = document.querySelector("#home");
+    const goToTop = document.querySelector("#go-to-top"); // Asegúrate que existe este elemento
+
+    if (!hero || !header || !goToTop) return; // Validación para evitar errores
+
     let triggerHeight = hero.offsetHeight - 170;
 
     if (window.scrollY > triggerHeight) {
@@ -49,9 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (top >= offset && top < offset + height) {
         navLinks.forEach((links) => {
           links.classList.remove("active");
-          document
-            .querySelector("header nav a[href*=" + id + "]")
-            .classList.add("active");
+          const linkToActivate = document.querySelector(`header nav a[href*=${id}]`);
+          if (linkToActivate) linkToActivate.classList.add("active");
         });
       }
     });
