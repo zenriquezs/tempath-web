@@ -1,0 +1,445 @@
+/* Templates Selection Styles */
+.templates-page {
+  background-color: var(--primary-bg-color);
+  padding-bottom: 2rem;
+}
+
+.header-templates {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--gray-color-3);
+}
+
+.templates-container {
+  margin-top: 120px;
+  padding: 2rem 0;
+}
+
+.templates-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.templates-header h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--primary-accent);
+  margin-bottom: 1rem;
+}
+
+.templates-header .subtitle {
+  font-size: 1.1rem;
+  color: var(--gray-text-color);
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.templates-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 3rem;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.template-card {
+  background: var(--white-color);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  cursor: pointer;
+  min-width: 0; /* Permite que las tarjetas se reduzcan si es necesario */
+}
+
+.template-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  border-color: var(--secondary-accent);
+}
+
+.template-preview {
+  height: 350px;
+  
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.template-header {
+  padding: 1.5rem;
+  text-align: center;
+  position: relative;
+}
+
+.template-header.modern {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.template-header.classic {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+}
+
+.template-header.creative {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
+}
+
+.template-logo {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.template-business-name {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  min-height: 1.8rem;
+}
+
+.template-business-desc {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  line-height: 1.4;
+  min-height: 2.8rem;
+}
+
+.template-contact-quick {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.template-content {
+  padding: 1.5rem;
+  background: var(--white-color);
+  height: calc(100% - 140px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.template-section {
+  margin-bottom: 1rem;
+}
+
+.template-section h4 {
+  color: var(--primary-accent);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.template-section p {
+  font-size: 0.85rem;
+  color: var(--gray-text-color);
+  margin-bottom: 0.3rem;
+  line-height: 1.4;
+}
+
+/* Plantilla Moderna */
+.template-content.modern {
+  background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+}
+
+/* Plantilla Clásica */
+.template-info-grid {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--gray-text-color);
+}
+
+.info-icon {
+  font-size: 1rem;
+}
+
+/* Plantilla Creativa */
+.creative-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.contact-bubble, .location-bubble, .hours-bubble {
+  background: linear-gradient(45deg, #ff6b6b, #feca57);
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  color: white;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.location-bubble {
+  background: linear-gradient(45deg, #48cae4, #0077b6);
+  align-self: flex-end;
+}
+
+.hours-bubble {
+  background: linear-gradient(45deg, #06ffa5, #00d4aa);
+  align-self: center;
+}
+
+/* Redes sociales */
+.social-icons-preview {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.social-icon-preview {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  color: white;
+  text-decoration: none;
+}
+
+.social-icon-preview.instagram {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+}
+
+.social-icon-preview.facebook {
+  background: #1877f2;
+}
+
+.social-icon-preview.linkedin {
+  background: #0077b5;
+}
+
+.social-icon-preview.tiktok {
+  background: linear-gradient(45deg, #ff0050, #00f2ea);
+}
+
+/* Botones de plantilla */
+.template-cta {
+  text-align: center;
+  margin-top: auto;
+}
+
+.template-btn-modern, .template-btn-classic, .template-btn-creative {
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 25px;
+  font-weight: 500;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.template-btn-modern {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+}
+
+.template-btn-classic {
+  background: linear-gradient(45deg, #f093fb, #f5576c);
+  color: white;
+}
+
+.template-btn-creative {
+  background: linear-gradient(45deg, #4facfe, #00f2fe);
+  color: white;
+}
+
+.template-info {
+  padding: 1.5rem;
+  text-align: center;
+  border-top: 1px solid var(--gray-color-3);
+}
+
+.template-info h3 {
+  color: var(--primary-accent);
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.template-info p {
+  color: var(--gray-text-color);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.template-preview-btn {
+  width: 100%;
+  margin: 0;
+  transition: all 0.3s ease;
+}
+
+.template-preview-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Modal para vista completa */
+.template-modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background-color: var(--white-color);
+  margin: 2% auto;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 1000px;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--gray-color-3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--primary-bg-color);
+}
+
+.modal-header h2 {
+  color: var(--primary-accent);
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--gray-text-color);
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+  background: var(--gray-color-3);
+  color: var(--primary-accent);
+}
+
+.modal-body {
+  padding: 2rem;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.full-template-preview {
+  min-height: 500px;
+  border: 2px solid var(--gray-color-3);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.modal-footer {
+  padding: 1.5rem;
+  border-top: 1px solid var(--gray-color-3);
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  background: var(--primary-bg-color);
+}
+
+.templates-actions {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.help-text {
+  color: var(--gray-text-color);
+  font-size: 1rem;
+}
+
+.text-link {
+  color: var(--secondary-accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.text-link:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .templates-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .templates-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .templates-header h1 {
+    font-size: 2rem;
+  }
+  
+  .template-preview {
+    height: 350px;
+  }
+  
+  .modal-content {
+    width: 95%;
+    margin: 5% auto;
+  }
+  
+  .modal-footer {
+    flex-direction: column;
+  }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.template-modal.show {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}

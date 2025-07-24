@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tempath - Configura tu negocio</title>
+  <link rel="shortcut icon" href="assets/img/Tempath_icon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/media.css" />
+  <link rel="stylesheet" href="assets/css/setup.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body class="setup-page">
+  <!-- Header -->
+  <header id="header" class="header header-business">
+    <div class="container container-lg">
+      <div class="header-nav">
+        <a href="index.html">
+          <img src="assets/img/Tempath-index.png" alt="Ir al inicio" class="logo"data-aos="fade-down" data-aos-duration="1000">
+        </a>    
+        <nav id="nav" class="nav">
+          <ul class="nav-list" data-aos="fade-down" data-aos-duration="1000">
+            <li class="nav-item">
+              <a href="auth/login.html" class="btnNav btn-logout">Cerrar sesión</a>
+            </li>
+          </ul>
+          <button id="nav-btn" class="nav-btn">
+            <img id="nav-btn-img" src="assets/img/icons/open.svg" alt="Navigation button" />
+          </button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenido principal del formulario -->
+  <main class="setup-container">
+    <form id="businessSetupForm" class="setup-form">
+      <h1 data-aos="fade-up">CONFIGURA TU PÁGINA WEB</h1>
+      <p class="subtitle" data-aos="fade-up" data-aos-delay="100">Completa la siguiente información para generar tu sitio web automáticamente</p>
+
+      <!-- Steps indicator -->
+      <div class="steps-container" data-aos="fade-up" data-aos-delay="150">
+        <div class="steps">
+          <div class="step active" data-step="1">
+            <span>1</span>
+            <div class="step-title">Información Básica</div>
+          </div>
+          <div class="step" data-step="2">
+            <span>2</span>
+            <div class="step-title">Personalización</div>
+          </div>
+          <div class="step" data-step="3">
+            <span>3</span>
+            <div class="step-title">Confirmación</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 1: Información básica, redes sociales y ubicación -->
+      <div class="form-step active" data-step="1">
+        <!-- Sección 1: Información básica -->
+        <div class="form-section" data-aos="fade-up" data-aos-delay="200">
+          <h2>Información Básica</h2>
+          
+          <div class="form-group">
+            <label for="businessName">Nombre del negocio*</label>
+            <input type="text" id="businessName" name="businessName" required 
+                   placeholder="Ejemplo: 'Construcciones López', 'Estética Luisa'">
+            <p class="field-description">El nombre que aparecerá en tu página web</p>
+          </div>
+
+          <div class="form-group">
+            <label for="businessDescription">¿A qué se dedica tu negocio?*</label>
+            <textarea id="businessDescription" name="businessDescription" required
+                      placeholder="Describe en pocas palabras lo que haces. Ejemplo: 'Reparación de electrodomésticos', 'Venta de pasteles personalizados'"></textarea>
+            <p class="field-description">Esta descripción aparecerá en la portada de tu sitio</p>
+          </div>
+
+          <div class="form-group">
+            <label for="contactPhone">Teléfono o WhatsApp*</label>
+            <input type="tel" id="contactPhone" name="contactPhone" required
+                   placeholder="Ejemplo: +52 55 1234 5678">
+            <p class="field-description">Incluye tu número para que los clientes puedan contactarte fácilmente</p>
+          </div>
+        </div>
+
+        <!-- Sección 2: Redes sociales -->
+        <div class="form-section" data-aos="fade-up" data-aos-delay="250">
+          <h2>Redes Sociales</h2>
+          <p class="section-description">Agrega las redes sociales que deseas mostrar en tu página</p>
+
+          <div class="social-options">
+            <button type="button" class="social-option" data-social="instagram" data-aos="fade-up" data-aos-delay="300">
+              <img src="assets/img/social_icons/instagram.svg" alt="Instagram">
+              Instagram
+            </button>
+            <button type="button" class="social-option" data-social="facebook" data-aos="fade-up" data-aos-delay="350">
+              <img src="assets/img/social_icons/facebook.svg" alt="Facebook">
+              Facebook
+            </button>
+            <button type="button" class="social-option" data-social="linkedin" data-aos="fade-up" data-aos-delay="400">
+              <img src="assets/img/social_icons/linkedin.svg" alt="LinkedIn">
+              LinkedIn
+            </button>
+            <button type="button" class="social-option" data-social="tiktok" data-aos="fade-up" data-aos-delay="450">
+              <img src="assets/img/social_icons/tiktok.svg" alt="TikTok">
+              TikTok
+            </button>
+          </div>
+
+          <div id="socialFieldsContainer" class="social-fields-container">
+            <!-- Los campos de redes sociales se agregarán dinámicamente aquí -->
+          </div>
+        </div>
+
+        <!-- Sección 3: Ubicación -->
+        <div class="form-section" data-aos="fade-up" data-aos-delay="300">
+          <h2>Ubicación</h2>
+          <p class="section-description">Ayuda a tus clientes a encontrarte fácilmente</p>
+
+          <div class="form-group">
+            <label for="businessAddress">Dirección física</label>
+            <input type="text" id="businessAddress" name="businessAddress" 
+                   placeholder="Ejemplo: Av. Principal #123, Col. Centro">
+            <p class="field-description">Calle y número, colonia, ciudad</p>
+          </div>
+
+          <div class="form-group">
+            <label for="googleMaps">Link de Google Maps</label>
+            <input type="url" id="googleMaps" name="googleMaps" 
+                   placeholder="Pega el link de tu ubicación en Google Maps">
+            <p class="field-description">Los clientes podrán ver tu ubicación exacta</p>
+          </div>
+
+          <div class="form-group">
+            <label for="businessHours">Horario de atención</label>
+            <input type="text" id="businessHours" name="businessHours" 
+                   placeholder="Ejemplo: Lunes a Viernes 9:00 am - 6:00 pm">
+            <p class="field-description">Indica tus horarios de servicio</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: Personalización -->
+      <div class="form-step" data-step="2">
+        <!-- Sección 4: Personalización adicional -->
+        <div class="form-section" data-aos="fade-up" data-aos-delay="200">
+          <h2>Personalización</h2>
+          <p class="section-description">Añade detalles que hagan única tu página</p>
+
+          <div class="form-group">
+            <label for="primaryColor">Colores principales</label> 
+            <div class="color-options">
+              <input type="color" id="primaryColor" name="primaryColor" value="#0c1618">
+              <label for="primaryColor">Color primario</label>
+
+              <input type="color" id="secondaryColor" name="secondaryColor" value="#6f1d1b">
+              <label for="secondaryColor">Color secundario</label>
+            </div>
+            <p class="field-description">Selecciona los colores que representen tu marca</p>
+          </div>
+
+          <div class="form-group">
+            <label>Logo del negocio</label>
+            <div class="image-upload-container">
+              <div class="dropzone" id="logoDropzone">
+                <div class="icon">📁</div>
+                <p>Arrastra tu logo aquí o haz clic para seleccionar</p>
+                <p class="file-info">Formatos aceptados: JPG, PNG, SVG (Máx. 25MB)</p>
+                <input type="file" id="businessLogo" name="businessLogo" accept="image/*" style="display: none;">
+              </div>
+              <div id="logoPreview" class="uploaded-images"></div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Imágenes del negocio (Máx. 6 imágenes)</label>
+            <div class="image-upload-container">
+              <div class="dropzone" id="imagesDropzone">
+                <div class="icon">📁</div>
+                <p>Arrastra tus imágenes aquí o haz clic para seleccionar</p>
+                <p class="file-info">Formatos aceptados: JPG, PNG (Máx. 25MB por imagen)</p>
+                <p class="max-files">Puedes subir hasta 6 imágenes</p>
+                <input type="file" id="businessImages" name="businessImages" accept="image/*" multiple style="display: none;">
+              </div>
+              <div id="imagesPreview" class="uploaded-images"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3: Confirmación -->
+      <div class="form-step" data-step="3">
+        <div class="form-section confirmation-step" data-aos="fade-up" data-aos-delay="200">
+          <h2>¡Estás listo para construir tu sitio web!</h2>
+          <p class="section-description">Revisa que toda la información sea correcta antes de continuar.</p>
+          <div class="confirmation-content" data-aos="fade-up" data-aos-delay="300">
+            <p>Tu sitio web se generará con la información que has proporcionado. Después de crear tu sitio, podrás editarlo en cualquier momento desde tu panel de control.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation buttons -->
+      <div class="form-actions step-navigation" data-aos="fade-up" data-aos-delay="400">
+        <button type="button" class="btn btn-prev">Regresar</button>
+        <button type="button" class="btn btn-next">Siguiente</button>
+        <button type="submit" class="btn btn-submit">Construir sitio web</button>
+      </div>
+    </form>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <div class="footer-logo">
+            <img src="assets/img/Tempath-index.png" alt="Tempath" class="footer-logo-img">
+          </div>
+          <p class="footer-description">
+            Tempath es la herramienta más fácil para crear sitios web profesionales sin conocimientos técnicos.
+          </p>
+          <div class="footer-social">
+            <a href="#!" class="social-link" aria-label="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="#!" class="social-link" aria-label="LinkedIn">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="#!" class="social-link" aria-label="Facebook">
+              <i class="fab fa-facebook"></i>
+            </a>
+            <a href="#!" class="social-link" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h4>Producto</h4>
+          <ul class="footer-links">
+            <li><a href="#features">Características</a></li>
+            <li><a href="#projects">Servicios</a></li>
+            <li><a href="#!">Precios</a></li>
+            <li><a href="#!">Plantillas</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Soporte</h4>
+          <ul class="footer-links">
+            <li><a href="#!">Centro de Ayuda</a></li>
+            <li><a href="#contact">Contacto</a></li>
+            <li><a href="#!">Documentación</a></li>
+            <li><a href="#!">Tutoriales</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Empresa</h4>
+          <ul class="footer-links">
+            <li><a href="#about">Sobre nosotros</a></li>
+            <li><a href="#!">Blog</a></li>
+            <li><a href="#!">Carreras</a></li>
+            <li><a href="#!">Prensa</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          <p>&copy; 2025 Teteocan Technology. Todos los derechos reservados.</p>
+        </div>
+        <div class="footer-legal">
+          <a href="#!">Términos de Servicio</a>
+          <a href="#!">Política de Privacidad</a>
+          <a href="#!">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Botón flotante de WhatsApp -->
+  <a href="https://wa.me/7721424369?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20Tempath" class="whatsapp-float"
+    target="_blank" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 24 24">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488" />
+    </svg>
+  </a>
+
+
+  <div id="goToTop" class="goToTop">
+    <a href="#header">
+      <img src="assets/img/icons/arrow_up.svg" alt="Back to top" /></a>
+  </div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
+    integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="module" src="assets/js/main.js"></script>
+  <script type="module" src="assets/js/setup.js"></script>
+  <script type="module" src="auth/js/business-registration.js"></script>
+</body>
+</html>

@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tempath - ecommerce web</title>
+  <link rel="shortcut icon" href="assets/img/Tempath_icon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/media.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+  <header id="header" class="header">
+    <div class="container container-lg">
+      <div class="header-nav">
+        <a href="index.html" class="logo-link">
+          <img src="assets/img/Tempath-index.png" alt="Tempath - Ir al inicio" class="logo" data-aos="fade-down"
+            data-aos-duration="1000">
+        </a>
+        <nav id="nav" class="nav">
+          <ul class="nav-list" data-aos="fade-down" data-aos-duration="1000">
+            <li class="nav-item">
+              <a href="#home" class="nav-link active">   Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a href="#about" class="nav-link"> ¿Qué es Tempath?</a>
+            </li>
+            <li class="nav-item">
+              <a href="#features" class="nav-link">Características</a>
+            </li>
+            <li class="nav-item">
+              <a href="#projects" class="nav-link">Servicios</a>
+            </li>
+            
+            <li class="nav-item">
+              <a href="#contact" class="nav-link">  Contacto</a>
+            </li>
+            <li class="nav-item nav-buttons">
+              <a href="auth/login.html" class="btnNav"> Iniciar sesión</a>
+              <a href="auth/signup.html" class="btnNav btnNav-primary">Registrarse</a>
+            </li>
+          </ul>
+          <button id="nav-btn" class="nav-btn" aria-label="Menú de navegación">
+            <i id="nav-btn-icon" class="fas fa-bars"></i>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Home -->
+  <section id="home" class="hero">
+    <div class="hero-background">
+      <div class="hero-particles"></div>
+    </div>
+    <div class="container container-lg">
+      <div class="hero-row" data-aos="fade-zoom-in" data-aos-easing="ease-in-out" data-aos-delay="500"
+        data-aos-duration="1000">
+        <div class="hero-content">
+          <div class="hero-badge" data-aos="fade-up" data-aos-delay="200">
+            <i class="fas fa-rocket"></i>
+            <span>¡Nuevas! Plantillas</span>
+          </div>
+          <span class="hero-greeting" data-aos="fade-up" data-aos-delay="300">¡Bienvenido a</span>
+          <h1 class="hero-heading" data-aos="fade-up" data-aos-delay="400">
+            <span class="hero-heading-main">Tempath</span>
+            <span class="hero-heading-gradient">Pro</span>
+          </h1>
+          <p class="hero-heading-subtitle" data-aos="fade-up" data-aos-delay="500">
+            La herramienta web más avanzada para <strong>pequeños negocios</strong>
+            <br>Crea tu sitio profesional en <span class="highlight">menos de 10 minutos</span>
+          </p>
+
+          <div class="hero-stats" data-aos="fade-up" data-aos-delay="600">
+            <div class="stat-item">
+              <span class="stat-number">500+</span>
+              <span class="stat-label">Negocios creados</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">98%</span>
+              <span class="stat-label">Satisfacción</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">24/7</span>
+              <span class="stat-label">Soporte</span>
+            </div>
+          </div>
+
+          <div class="hero-buttons" data-aos="fade-up" data-aos-delay="700">
+            <a href="auth/signup.html" class="btn btn-primary">
+              <i class="fas fa-rocket"></i>
+              Empezar gratis ahora
+            </a>
+            <a href="#about" class="btn btn-white">
+              <i class="fas fa-play"></i>
+              Ver demo
+            </a>
+          </div>
+
+          
+        </div>
+
+        <div class="hero-img" data-aos="fade-left" data-aos-delay="600">
+          <div class="hero-img-container">
+            <model-viewer src="assets/img/360/Desk.glb" alt="Vista 3D escritorio interactivo" auto-rotate
+              camera-controls interaction-prompt="when-focused" ar
+              style="width: 100%; height: 600px; background: transparent;">
+            </model-viewer>
+            <div class="hero-img-overlay">
+              <div class="floating-card card-1">
+                <i class="fas fa-chart-line"></i>
+                <span>+150% Ventas</span>
+              </div>
+              <div class="floating-card card-2">
+                <i class="fas fa-users"></i>
+                <span>500+ Clientes</span>
+              </div>
+              <div class="floating-card card-3">
+                <i class="fas fa-clock"></i>
+                <span>10 min setup</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nueva sección de características -->
+  <section id="features" class="features">
+    <div class="container">
+      <div class="features-header" data-aos="fade-up">
+        <h2 class="title">¿Por qué elegir Tempath?</h2>
+        <p class="features-subtitle">Características que hacen la diferencia</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="feature-icon">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <h3>Súper Rápido</h3>
+          <p>Crea tu sitio web en menos de 10 minutos con nuestras plantillas optimizadas.</p>
+        </div>
+
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="feature-icon">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <h3>100% Responsivo</h3>
+          <p>Tu sitio se verá perfecto en cualquier dispositivo: móvil, tablet o desktop.</p>
+        </div>
+
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3>Seguro y Confiable</h3>
+          <p>Hosting seguro con SSL incluido y respaldos automáticos diarios.</p>
+        </div>
+
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="feature-icon">
+            <i class="fas fa-headset"></i>
+          </div>
+          <h3>Soporte 24/7</h3>
+          <p>Nuestro equipo está disponible para ayudarte cuando lo necesites.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section  -->
+  <section id="about" class="about">
+    <div class="container">
+      <div class="about-title" data-aos="fade-up">
+        <h2 class="title">Sobre Tempath</h2>
+        <p class="about-subtitle">La revolución en creación de sitios web</p>
+      </div>
+
+      <div class="about-row">
+        <div class="about-content" data-aos="fade-up" data-aos-duration="1000">
+          <div class="about-text">
+            <p class="about-descr">
+              <strong>Tempath</strong> es una herramienta digital revolucionaria creada para emprendedores y pequeños
+              negocios que desean tener su sitio web sin necesidad de conocimientos técnicos.
+            </p>
+            <p class="about-descr">
+              Nuestro enfoque es hacer que la creación de una página sea <em>rápida, visual y sin complicaciones</em>.
+              Con Tempath, cualquier consultorio, estética, papelería o negocio local puede contar con una presencia en
+              línea profesional en minutos.
+            </p>
+          </div>
+
+          <div class="about-benefits">
+            <div class="benefit-item">
+              <i class="fas fa-check-circle"></i>
+              <span>Sin conocimientos técnicos requeridos</span>
+            </div>
+            <div class="benefit-item">
+              <i class="fas fa-check-circle"></i>
+              <span>Plantillas profesionales incluidas</span>
+            </div>
+            <div class="benefit-item">
+              <i class="fas fa-check-circle"></i>
+              <span>Integración con redes sociales</span>
+            </div>
+            <div class="benefit-item">
+              <i class="fas fa-check-circle"></i>
+              <span>SEO optimizado automáticamente</span>
+            </div>
+          </div>
+
+          <div class="about-download-btn">
+            <a href="#!" class="btn btn-white">
+              <i class="fas fa-download"></i>
+              Descargar Presentación
+            </a>
+          </div>
+        </div>
+
+        <div class="about-skills" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+          <div class="skill">
+            <div class="skill-title">Diseño web fácil</div>
+            <div class="skill-percent">100%</div>
+            <div class="skill-bar__progress">
+              <div class="skill-bar__fill" data-progress="100"></div>
+            </div>
+          </div>
+          <div class="skill">
+            <div class="skill-title">Plantillas modernas y adaptables</div>
+            <div class="skill-percent">95%</div>
+            <div class="skill-bar__progress">
+              <div class="skill-bar__fill" data-progress="95"></div>
+            </div>
+          </div>
+          <div class="skill">
+            <div class="skill-title">Edición sin código (HTML/CSS)</div>
+            <div class="skill-percent">98%</div>
+            <div class="skill-bar__progress">
+              <div class="skill-bar__fill" data-progress="98"></div>
+            </div>
+          </div>
+          <div class="skill">
+            <div class="skill-title">Integración con redes sociales</div>
+            <div class="skill-percent">92%</div>
+            <div class="skill-bar__progress">
+              <div class="skill-bar__fill" data-progress="92"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Services Cards Mejoradas -->
+      <div class="services-row">
+        <div class="service-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="50">
+          <div class="service-icon">
+            <img class="service-card-img" src="assets/img/services/01.svg" alt="Diseño UI/UX" />
+          </div>
+          <h3 class="service-card-title">Diseño Intuitivo (UI/UX)</h3>
+          <p>
+            Creamos interfaces amigables y modernas para que cualquier persona pueda construir una web profesional sin
+            conocimientos técnicos.
+          </p>
+          <div class="service-features">
+            <span class="feature-tag">Drag & Drop</span>
+            <span class="feature-tag">Responsive</span>
+          </div>
+        </div>
+
+        <div class="service-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+          <div class="service-icon">
+            <img class="service-card-img" src="assets/img/services/02.svg" alt="Desarrollo Frontend" />
+          </div>
+          <h3 class="service-card-title">Desarrollo Frontend Simplificado</h3>
+          <p>
+            Tempath permite desarrollar páginas dinámicas, accesibles y responsivas con solo unos clics. No necesitas
+            código.
+          </p>
+          <div class="service-features">
+            <span class="feature-tag">Sin Código</span>
+            <span class="feature-tag">Rápido</span>
+          </div>
+        </div>
+
+        <div class="service-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="350">
+          <div class="service-icon">
+            <img class="service-card-img" src="assets/img/services/03.svg" alt="Gestión de Contenido" />
+          </div>
+          <h3 class="service-card-title">Gestión de Contenido</h3>
+          <p>
+            Edita textos, secciones y datos fácilmente para que tu sitio siempre esté actualizado y conectado con tus
+            clientes.
+          </p>
+          <div class="service-features">
+            <span class="feature-tag">CMS Integrado</span>
+            <span class="feature-tag">Fácil Edición</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section  -->
+  <section id="projects" class="projects">
+    <div class="container container-lg">
+      <div class="projects-title" data-aos="fade-up">
+        <h2 class="title">Nuestros Servicios</h2>
+        <p class="projects-subtitle">Todo lo que necesitas para tu presencia digital</p>
+      </div>
+
+      <div class="projects-row">
+        <div class="project-box" data-aos="fade-zoom-in" data-aos-easing="ease-in-out" data-aos-duration="1000">
+          <div class="project-image">
+            <img class="project-img" src="assets/img/works/01.jpg" alt="Plantillas prediseñadas" />
+            <div class="project-overlay">
+              <div class="project-icon">
+                <i class="fas fa-palette"></i>
+              </div>
+            </div>
+          </div>
+          <div class="project-content">
+            <h5 class="project-title">Plantillas Prediseñadas</h5>
+            <p class="project-description">Diseños listos para usar, optimizados para diferentes tipos de negocio</p>
+            <div class="project-tags">
+              <span class="tag">Responsive</span>
+              <span class="tag">Moderno</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-box" data-aos="fade-zoom-in" data-aos-easing="ease-in-out" data-aos-delay="200"
+          data-aos-duration="1000">
+          <div class="project-image">
+            <img class="project-img" src="assets/img/works/02.jpg" alt="Editor sin código" />
+            <div class="project-overlay">
+              <div class="project-icon">
+                <i class="fas fa-code"></i>
+              </div>
+            </div>
+          </div>
+          <div class="project-content">
+            <h5 class="project-title">Editor Sin Código</h5>
+            <p class="project-description">Arrastra y edita fácilmente todos los elementos de tu sitio</p>
+            <div class="project-tags">
+              <span class="tag">Drag & Drop</span>
+              <span class="tag">Intuitivo</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-box" data-aos="fade-zoom-in" data-aos-easing="ease-in-out" data-aos-delay="400"
+          data-aos-duration="1000">
+          <div class="project-image">
+            <img class="project-img" src="assets/img/works/03.jpg" alt="Formularios de contacto" />
+            <div class="project-overlay">
+              <div class="project-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+            </div>
+          </div>
+          <div class="project-content">
+            <h5 class="project-title">Formularios Integrados</h5>
+            <p class="project-description">Recibe mensajes de tus clientes directamente en tu email</p>
+            <div class="project-tags">
+              <span class="tag">Automático</span>
+              <span class="tag">Seguro</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-box" data-aos="fade-zoom-in" data-aos-easing="ease-in-out" data-aos-delay="600"
+          data-aos-duration="1000">
+          <div class="project-image">
+            <img class="project-img" src="assets/img/works/04.jpg" alt="Integración con redes" />
+            <div class="project-overlay">
+              <div class="project-icon">
+                <i class="fas fa-share-alt"></i>
+              </div>
+            </div>
+          </div>
+          <div class="project-content">
+            <h5 class="project-title">Redes Sociales</h5>
+            <p class="project-description">Conecta tu sitio con Instagram, Facebook y más plataformas</p>
+            <div class="project-tags">
+              <span class="tag">Social Media</span>
+              <span class="tag">Integrado</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-box" data-aos="fade-zoom-in" data-aos-easing="ease-in-out" data-aos-delay="800"
+          data-aos-duration="1000">
+          <div class="project-image">
+            <img class="project-img" src="assets/img/works/05.jpg" alt="Diseño responsivo" />
+            <div class="project-overlay">
+              <div class="project-icon">
+                <i class="fas fa-mobile-alt"></i>
+              </div>
+            </div>
+          </div>
+          <div class="project-content">
+            <h5 class="project-title">Diseño Responsivo</h5>
+            <p class="project-description">Tu sitio se adapta perfectamente a celulares y tablets</p>
+            <div class="project-tags">
+              <span class="tag">Mobile First</span>
+              <span class="tag">Adaptable</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-box" data-aos="fade-zoom-in" data-aos-easing="ease-in-out" data-aos-delay="1000"
+          data-aos-duration="1000">
+          <div class="project-image">
+            <img class="project-img" src="assets/img/works/06.jpg" alt="Publicación rápida" />
+            <div class="project-overlay">
+              <div class="project-icon">
+                <i class="fas fa-rocket"></i>
+              </div>
+            </div>
+          </div>
+          <div class="project-content">
+            <h5 class="project-title">Publicación Rápida</h5>
+            <p class="project-description">Tu sitio en línea en minutos con hosting incluido</p>
+            <div class="project-tags">
+              <span class="tag">Hosting Gratis</span>
+              <span class="tag">SSL Incluido</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nueva sección de testimonios -->
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <div class="testimonials-header" data-aos="fade-up">
+        <h2 class="title">Lo que dicen nuestros clientes</h2>
+        <p class="testimonials-subtitle">Historias reales de éxito</p>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="testimonial-content">
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p>"Increíble! En menos de 15 minutos tenía mi sitio web listo. Mis ventas aumentaron un 40% el primer mes."
+            </p>
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <i class="fas fa-user-circle"></i>
+            </div>
+            <div class="author-info">
+              <h4>María González</h4>
+              <span>Estética Bella Vista</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="testimonial-content">
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p>"Perfecto para mi consultorio. Los pacientes ahora pueden agendar citas online. Muy fácil de usar."</p>
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <i class="fas fa-user-circle"></i>
+            </div>
+            <div class="author-info">
+              <h4>Dr. Carlos Ruiz</h4>
+              <span>Consultorio Dental</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="testimonial-content">
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p>"El soporte es excelente. Siempre responden rápido y me ayudan con cualquier duda que tengo."</p>
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <i class="fas fa-user-circle"></i>
+            </div>
+            <div class="author-info">
+              <h4>Ana Martínez</h4>
+              <span>Papelería El Rincón</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section  -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="contact-title" data-aos="fade-up">
+        <h2 class="title">Contáctanos</h2>
+        <p class="contact-subtitle">¿Listo para comenzar? Estamos aquí para ayudarte</p>
+      </div>
+
+      <div class="contact-content" data-aos="fade-up" data-aos-delay="100">
+        <p>
+          ¿Tienes dudas o quieres saber más sobre cómo lanzar tu página web?
+          <br />
+          Escríbenos y recibe atención personalizada de nuestro equipo de expertos.
+        </p>
+      </div>
+
+      <div class="contact-wrapper">
+        <div class="contact-info" data-aos="fade-right" data-aos-duration="1000">
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="contact-details">
+              <h4>Email</h4>
+              <p>zenrizu@gmail.com</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-phone"></i>
+            </div>
+            <div class="contact-details">
+              <h4>Teléfono</h4>
+              <p>+52 772 142 43699</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div class="contact-details">
+              <h4>Horario</h4>
+              <p>Lun - Vie: 9:00 AM - 6:00 PM</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-headset"></i>
+            </div>
+            <div class="contact-details">
+              <h4>Soporte</h4>
+              <p>24/7 Chat en vivo</p>
+            </div>
+          </div>
+        </div>
+
+        <form class="contactForm" data-aos="fade-left" data-aos-duration="1000">
+          <div class="form-group">
+            <div class="input-group">
+              <i class="fas fa-user"></i>
+              <input type="text" name="name" placeholder="Tu nombre completo" required />
+            </div>
+            <div class="input-group">
+              <i class="fas fa-envelope"></i>
+              <input type="email" name="email" placeholder="Correo electrónico" required />
+            </div>
+          </div>
+
+          <div class="input-group">
+            <i class="fas fa-building"></i>
+            <input type="text" name="business" placeholder="Nombre de tu negocio (opcional)" />
+          </div>
+
+          <div class="input-group">
+            <i class="fas fa-comment"></i>
+            <textarea name="message" rows="6" placeholder="Cuéntanos sobre tu proyecto..." required></textarea>
+          </div>
+
+          <div class="contact-button">
+            <button class="btn btn-primary" name="submit" type="submit">
+              <i class="fas fa-paper-plane"></i>
+              Enviar mensaje
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="response"></div>
+    </div>
+  </section>
+
+  <!-- Footer  -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <div class="footer-logo">
+            <img src="assets/img/Tempath-index.png" alt="Tempath" class="footer-logo-img">
+          </div>
+          <p class="footer-description">
+            Tempath es la herramienta más fácil para crear sitios web profesionales sin conocimientos técnicos.
+          </p>
+          <div class="footer-social">
+            <a href="#!" class="social-link" aria-label="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="#!" class="social-link" aria-label="LinkedIn">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="#!" class="social-link" aria-label="Facebook">
+              <i class="fab fa-facebook"></i>
+            </a>
+            <a href="#!" class="social-link" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h4>Producto</h4>
+          <ul class="footer-links">
+            <li><a href="#features">Características</a></li>
+            <li><a href="#projects">Servicios</a></li>
+            <li><a href="#!">Precios</a></li>
+            <li><a href="#!">Plantillas</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Soporte</h4>
+          <ul class="footer-links">
+            <li><a href="#!">Centro de Ayuda</a></li>
+            <li><a href="#contact">Contacto</a></li>
+            <li><a href="#!">Documentación</a></li>
+            <li><a href="#!">Tutoriales</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Empresa</h4>
+          <ul class="footer-links">
+            <li><a href="#about">Sobre nosotros</a></li>
+            <li><a href="#!">Blog</a></li>
+            <li><a href="#!">Carreras</a></li>
+            <li><a href="#!">Prensa</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          <p>&copy; 2025 Teteocan Technology. Todos los derechos reservados.</p>
+        </div>
+        <div class="footer-legal">
+          <a href="#!">Términos de Servicio</a>
+          <a href="#!">Política de Privacidad</a>
+          <a href="#!">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Botón flotante de WhatsApp -->
+  <a href="https://wa.me/7721424369?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20Tempath" class="whatsapp-float"
+    target="_blank" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 24 24">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488" />
+    </svg>
+  </a>
+
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
+    integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="module" src="assets/js/main.js"></script>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+</body>
+
+</html>
