@@ -1,6 +1,11 @@
 const form = () => {
-  const contactForm = document.querySelector(".contactForm"),
-    responseMessage = document.querySelector(".response");
+  const contactForm = document.querySelector(".contactForm");
+  const responseMessage = document.querySelector(".response");
+
+  if (!contactForm || !responseMessage) {
+    console.warn("No se encontró formulario .contactForm o .response");
+    return;
+  }
 
   contactForm.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -16,23 +21,26 @@ const form = () => {
           body: formData,
         });
         if (!response.ok) {
-          responseMessage.textContent = result;
+          responseMessage.textContent = "Error en la respuesta del servidor";
+          return;
         }
 
         const result = await response.text();
         responseMessage.textContent = result;
       } catch (error) {
         console.error(error.message);
+        responseMessage.textContent = "Error enviando el formulario.";
       }
     }
 
-    getData()
-      .then(
-        setTimeout(() => {
-          responseMessage.classList.remove("open");
-        }, 3000)
-      )
-      .finally(form.reset());
+    await getData();
+
+    setTimeout(() => {
+      responseMessage.classList.remove("open");
+    }, 3000);
+
+    form.reset();
   });
 };
+
 export default form;

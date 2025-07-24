@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,11 +10,13 @@
   <link rel="stylesheet" href="../assets/css/auth.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body class="auth-page">
   <main class="auth-container">
     <div class="auth-brand">
-      <img src="../assets/img/Tempath.png" alt="Tempath Logo" class="auth-logo">
-      <h1>Tempath</h1>
+      <a href="../index.html">
+        <img src="../assets/img/Tempath-index.png" alt="Ir al inicio" class="auth-logo">
+      </a>
     </div>
 
     <div class="auth-card">
@@ -35,7 +38,8 @@
           <div class="password-input">
             <input type="password" id="password" name="password" required>
             <button type="button" class="password-toggle">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                 <circle cx="12" cy="12" r="3"></circle>
               </svg>
@@ -68,6 +72,8 @@
       document.querySelector('input[name="redirect"]').value = redirectTo;
     }
   </script>
+  <script type="module" src="js/login.js"></script>
   <script src="../assets/js/auth.js"></script>
 </body>
+
 </html>
