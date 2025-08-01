@@ -55,6 +55,32 @@ document.addEventListener('DOMContentLoaded', function() {
       header.style.boxShadow = 'none';
     }
   });
+
+  // Header con cambio de color al hacer scroll
+  window.addEventListener('scroll', function() {
+      const header = document.querySelector('.header-transparent');
+      if (header) {
+          if (window.scrollY > 100) {
+              header.style.backgroundColor = 'var(--primary-color)';
+              header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+          } else {
+              header.style.backgroundColor = 'transparent';
+              header.style.boxShadow = 'none';
+          }
+      }
+  });
+
+  // Inicializar AOS para animaciones
+  document.addEventListener('DOMContentLoaded', function() {
+      AOS.init({
+          duration: 800,
+          once: true,
+          easing: 'ease-in-out'
+      });
+      
+      // Año actual en el footer
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+  });
   
   // Aqu]i se puede agregar la logica para cargar los datos del formulario
   // Esto es un ejemplo de cómo podrías hacerlo:
