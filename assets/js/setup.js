@@ -3,17 +3,17 @@ import { ref, get, push, set } from "https://www.gstatic.com/firebasejs/12.0.0/f
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Variables globales
+  
   const form = document.getElementById("businessSetupForm");
   const socialOptions = document.querySelectorAll(".social-option");
   const socialFieldsContainer = document.getElementById("socialFieldsContainer");
   const logoutBtn = document.querySelector(".btn-logout");
-  const addedSocials = new Set(); // Para evitar duplicados
+  const addedSocials = new Set();  
   
-  // AGREGAR ESTA LÍNEA - Variable para almacenar archivos de galería
+   
   let galleryFiles = [];
   
-  // Variables para el multi-step form
+  
   const steps = document.querySelectorAll(".form-step");
   const stepIndicators = document.querySelectorAll(".steps .step");
   const prevBtn = document.querySelector(".btn-prev");
@@ -21,27 +21,27 @@ document.addEventListener("DOMContentLoaded", function () {
   const submitBtn = document.querySelector(".btn-submit");
   let currentStep = 0;
   
-  // Verificar si es modo edición
+ 
   const urlParams = new URLSearchParams(window.location.search);
   const isEditMode = urlParams.get('edit') === 'true';
   
-  // Verificar autenticación y cargar datos si es modo edición
+   
   onAuthStateChanged(auth, async (user) => {
     if (user && isEditMode) {
       await loadExistingData(user.uid);
     }
   });
 
-  // Inicializar AOS (Animate On Scroll)
+ 
   AOS.init({
     once: true,
     duration: 800,
   });
 
-  // Inicializar el formulario multi-step
+ 
   initMultiStepForm();
 
-  // Manejo de redes sociales
+   
   socialOptions.forEach((option) => {
     option.addEventListener("click", function () {
       const socialType = this.dataset.social;
@@ -54,9 +54,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Función para inicializar los dropzones
+ 
   function initDropzones() {
-    // Dropzone para el logo
+ 
     const logoDropzone = document.getElementById('logoDropzone');
     const logoInput = document.querySelector('#logoDropzone input[type="file"]');
     const logoPreview = document.getElementById('logoPreview');
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    // Dropzone para imágenes del negocio
+ 
     const imagesDropzone = document.getElementById('imagesDropzone');
     const imagesInput = document.querySelector('#imagesDropzone input[type="file"]');
     const imagesPreview = document.getElementById('imagesPreview');
@@ -117,26 +117,25 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Función para manejar la subida del logo (corregida)
+ 
   function handleLogoUpload(file) {
-    // Validar tamaño (25MB)
+ 
     if (file.size > 25 * 1024 * 1024) {
       showError('El logo no puede pesar más de 25MB');
       return;
     }
   
-    // Validar tipo de archivo
+ 
     const validTypes = ['image/jpeg', 'image/png', 'image/svg+xml'];
     if (!validTypes.includes(file.type)) {
       showError('Formato de archivo no válido para el logo. Use JPG, PNG o SVG');
       return;
     }
   
-    // Limpiar preview anterior antes de mostrar el nuevo
     const logoPreview = document.getElementById('logoPreview');
     logoPreview.innerHTML = '';
   
-    // Mostrar previsualización
+
     const reader = new FileReader();
     reader.onload = (e) => {
       logoPreview.innerHTML = `
@@ -149,18 +148,16 @@ document.addEventListener("DOMContentLoaded", function () {
     reader.readAsDataURL(file);
   }
 
-  // Función para manejar la subida de imágenes (corregida)
+
   function handleImagesUpload(files) {
     const imagesPreview = document.getElementById('imagesPreview');
     const currentImages = imagesPreview.querySelectorAll('.uploaded-image').length;
-    
-    // Validar cantidad máxima (6 imágenes)
+ 
     if (currentImages + files.length > 6) {
       showError('Solo puedes subir un máximo de 6 imágenes');
       return;
     }
-  
-    // Procesar cada archivo
+
     files.forEach(file => {
       // Validar tamaño (25MB)
       if (file.size > 25 * 1024 * 1024) {
@@ -168,17 +165,16 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
   
-      // Validar tipo de archivo
       const validTypes = ['image/jpeg', 'image/png'];
       if (!validTypes.includes(file.type)) {
         showError(`Formato no válido para ${file.name}. Use JPG o PNG`);
         return;
       }
   
-      // Agregar archivo al array global
+  
       galleryFiles.push(file);
   
-      // Mostrar previsualización
+ 
       const reader = new FileReader();
       reader.onload = (e) => {
         const imageId = Date.now() + Math.random();
@@ -195,11 +191,11 @@ document.addEventListener("DOMContentLoaded", function () {
       reader.readAsDataURL(file);
     });
   
-    // Actualizar el input file con todos los archivos
+
     updateFileInput();
   }
   
-  // Nueva función para actualizar el input file
+
   function updateFileInput() {
     const imagesInput = document.getElementById('businessImages');
     if (imagesInput) {
@@ -219,17 +215,17 @@ document.addEventListener("DOMContentLoaded", function () {
     if (imageToRemove) {
       imageToRemove.remove();
       
-      // Remover del array global
+      
       galleryFiles = galleryFiles.filter(file => file.name !== fileName);
       
-      // Actualizar el input file
+
       updateFileInput();
     }
   }
 
-  // Modificar la función initDropzones para manejar el input change
+ 
   function initDropzones() {
-    // Dropzone para el logo
+ 
     const logoDropzone = document.getElementById('logoDropzone');
     const logoInput = document.querySelector('#logoDropzone input[type="file"]');
     const logoPreview = document.getElementById('logoPreview');
@@ -259,7 +255,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    // Dropzone para las imágenes de galería
+ 
     const imagesDropzone = document.getElementById('imagesDropzone');
     const imagesInput = document.getElementById('businessImages');
 
@@ -282,10 +278,10 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
     
-    // Manejar cuando se seleccionan archivos desde el input
+   
     imagesInput.addEventListener('change', () => {
       if (imagesInput.files.length) {
-        // Limpiar archivos previos y agregar los nuevos
+        
         galleryFiles = [];
         const imagesPreview = document.getElementById('imagesPreview');
         imagesPreview.innerHTML = '';
@@ -295,7 +291,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Función para eliminar el logo (corregida)
+
   window.removeLogo = function() {
     const logoPreview = document.getElementById('logoPreview');
     logoPreview.innerHTML = '';
@@ -305,30 +301,20 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Función para eliminar una imagen de galería (corregida y renombrada)
+
   window.removeGalleryImage = function(id, fileName) {
     const imageToRemove = document.querySelector(`.uploaded-image[data-id="${id}"]`);
     if (imageToRemove) {
       imageToRemove.remove();
       
-      // Remover del array global
+   
       galleryFiles = galleryFiles.filter(file => file.name !== fileName);
       
-      // Actualizar el input file
+ 
       updateFileInput();
     }
   }
 
-  // Eliminar la función removeImage duplicada (líneas 295-300)
-  // ELIMINAR ESTAS LÍNEAS:
-  // window.removeImage = function(id) {
-  //   const imageToRemove = document.querySelector(`.uploaded-image[data-id="${id}"]`);
-  //   if (imageToRemove) {
-  //     imageToRemove.remove();
-  //   }
-  // }
-
-  // Función para mostrar errores
   function showError(message) {
     const errorDiv = document.createElement('div');
     errorDiv.className = 'error-message';
@@ -340,28 +326,28 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 5000);
   }
 
-  // Logout
+
   logoutBtn.addEventListener("click", function (e) {
     e.preventDefault();
     localStorage.removeItem("isLoggedIn");
     window.location.href = "auth/login.html";
   });
 
-  // Funciones para el multi-step form
+
   function initMultiStepForm() {
     showStep(currentStep);
     initDropzones();
 
-    // Event listeners para botones de navegación
+   
     nextBtn.addEventListener("click", nextStep);
     prevBtn.addEventListener("click", prevStep);
 
-    // Event listener para el envío del formulario
+   
     form.addEventListener("submit", handleFormSubmit);
   }
 
   function showStep(stepIndex) {
-    // Ocultar todos los pasos
+    
     steps.forEach((step, index) => {
       step.classList.remove("active");
       if (index === stepIndex) {
@@ -762,7 +748,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     };
 
-    // Recoger redes sociales
+
     document.querySelectorAll(".social-field").forEach((field) => {
       const socialType = field.dataset.social;
       const url = field.querySelector("input").value;

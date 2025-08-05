@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Toggle password visibility
     const togglePasswordButtons = document.querySelectorAll('.password-toggle');
     
     togglePasswordButtons.forEach(button => {
@@ -20,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Password strength checker
+
     const passwordInput = document.getElementById('password');
     if (passwordInput) {
         passwordInput.addEventListener('input', function() {
@@ -36,16 +35,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
         let strength = 0;
         let strengthLabel = 'Muy débil';
-        let strengthColor = '#ef4444'; // rojo
+        let strengthColor = '#ef4444'; 
 
-        // Criterios de seguridad
+
         if (password.length >= 8) strength++;
         if (password.match(/[a-z]/)) strength++;
         if (password.match(/[A-Z]/)) strength++;
         if (password.match(/[0-9]/)) strength++;
         if (password.match(/[^a-zA-Z0-9]/)) strength++;
 
-        // Determinar nivel de seguridad
+       
         switch (strength) {
             case 0:
             case 1:
@@ -70,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 break;
         }
 
-        // Actualizar barras de seguridad
+  
         strengthBars.forEach((bar, index) => {
             if (index < strength) {
                 bar.style.backgroundColor = strengthColor;
@@ -79,12 +78,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Actualizar texto
+
         strengthText.textContent = `Seguridad: ${strengthLabel}`;
         strengthText.style.color = strengthColor;
     }
 
-    // Forgot Password Form
+
     const forgotPasswordForm = document.getElementById('forgotPasswordForm');
     if (forgotPasswordForm) {
         forgotPasswordForm.addEventListener('submit', function(e) {

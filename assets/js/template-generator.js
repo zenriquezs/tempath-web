@@ -1,7 +1,6 @@
 import { auth, db } from "../../auth/js/firebaseConfig.js";
 import { ref, get } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
 
-// Función para obtener datos del usuario
 export async function getUserBusinessData(userId) {
   try {
     const userRef = ref(db, `Informacion-Usuarios/${userId}`);
@@ -18,11 +17,10 @@ export async function getUserBusinessData(userId) {
   return null;
 }
 
-// Función para cargar plantilla HTML
 export async function loadTemplate(templateType) {
   try {
-    // ✅ RUTA CORREGIDA: desde assets/js/ necesitas subir dos niveles
-    const response = await fetch(`../../templates/${templateType}.html`);
+
+    const response = await fetch(`./templates/${templateType}.html`);
     if (!response.ok) {
       throw new Error(`Error cargando plantilla: ${response.status}`);
     }
@@ -33,15 +31,19 @@ export async function loadTemplate(templateType) {
   }
 }
 
-// Función para procesar plantilla con datos
 export function processTemplate(templateHtml, businessData) {
   let processedHtml = templateHtml;
   
-  // ✅ CORREGIR RUTAS DE CSS
   processedHtml = processedHtml.replace(
     /href="css\/(.*?\.css)"/g, 
-    'href="../../templates/css/$1"'
+    'href="./templates/css/$1"'
   );
+  
+  console.log('🎨 Colores en processTemplate:', {
+    primaryColor: businessData.primaryColor,
+    secondaryColor: businessData.secondaryColor,
+    businessData: businessData
+  });
   
   // Reemplazar variables simples
   const simpleReplacements = {
@@ -55,13 +57,18 @@ export function processTemplate(templateHtml, businessData) {
     '{{secondaryColor}}': businessData.secondaryColor || '#1e40af'
   };
   
+  // ✅ DEBUG: Verificar qué valores se están usando
+  console.log('🔄 Reemplazos que se aplicarán:', {
+    primaryColor: simpleReplacements['{{primaryColor}}'],
+    secondaryColor: simpleReplacements['{{secondaryColor}}']
+  });
+  
   Object.entries(simpleReplacements).forEach(([placeholder, value]) => {
     processedHtml = processedHtml.replace(new RegExp(placeholder.replace(/[{}]/g, '\\$&'), 'g'), value);
   });
   
   // Procesar logo
-  if (businessData.logoUrl) {
-    // ✅ REGEX CORREGIDA: escapar correctamente las llaves
+  if (businessData.logoUrl) {  
     processedHtml = processedHtml.replace(/\{\{#if logoUrl\}\}[\s\S]*?\{\{\/if\}\}/g, (match) => {
       return match.replace('{{#if logoUrl}}', '').replace('{{/if}}', '')
                   .replace('{{logoUrl}}', businessData.logoUrl)
@@ -71,12 +78,9 @@ export function processTemplate(templateHtml, businessData) {
     processedHtml = processedHtml.replace(/\{\{#if logoUrl\}\}[\s\S]*?\{\{\/if\}\}/g, '');
   }
   
-  // Procesar galería de imágenes
   if (businessData.galleryUrls && businessData.galleryUrls.length > 0) {
     processedHtml = processedHtml.replace(/\{\{#if galleryUrls\}\}[\s\S]*?\{\{\/if\}\}/g, (match) => {
       let gallerySection = match.replace('{{#if galleryUrls}}', '').replace('{{/if}}', '');
-      
-      // ✅ VALIDACIÓN AGREGADA: verificar si existe el template
       const galleryMatch = gallerySection.match(/\{\{#each galleryUrls\}\}[\s\S]*?\{\{\/each\}\}/);
       if (!galleryMatch) return gallerySection;
       

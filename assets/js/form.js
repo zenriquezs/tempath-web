@@ -15,7 +15,7 @@ const form = () => {
     const form = e.target;
     const formData = new FormData(form);
     
-    // Obtener los datos del formulario
+   
     const contactData = {
       name: formData.get('name'),
       email: formData.get('email'),
@@ -28,26 +28,26 @@ const form = () => {
     responseMessage.textContent = "Enviando mensaje...";
 
     try {
-      // Guardar en Firebase
+  
       const contactsRef = ref(db, 'contactos');
       await push(contactsRef, contactData);
       
       responseMessage.textContent = "¡Mensaje enviado exitosamente! Te contactaremos pronto.";
-      responseMessage.style.color = "#28a745"; // Verde para éxito
+      responseMessage.style.color = "#28a745"; 
       
-      // Limpiar el formulario
+
       form.reset();
       
     } catch (error) {
       console.error('Error al enviar mensaje:', error);
       responseMessage.textContent = "Error al enviar el mensaje. Por favor, inténtalo de nuevo.";
-      responseMessage.style.color = "#dc3545"; // Rojo para error
+      responseMessage.style.color = "#dc3545";
     }
 
-    // Ocultar mensaje después de 5 segundos
+    
     setTimeout(() => {
       responseMessage.classList.remove("open");
-      responseMessage.style.color = ""; // Resetear color
+      responseMessage.style.color = ""; 
     }, 5000);
   });
 };

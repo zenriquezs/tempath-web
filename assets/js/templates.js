@@ -3,7 +3,7 @@ import { ref, get } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-dat
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Inicializar AOS
+ 
   AOS.init({
     once: true,
     duration: 800,
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let businessData = null;
   let currentTemplate = null;
 
-  // Verificar autenticación y cargar datos
+   
   onAuthStateChanged(auth, async (user) => {
     if (user) {
       await loadBusinessData(user.uid);
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Cargar datos del negocio desde Firebase
+  
   async function loadBusinessData(userId) {
     try {
       const userDataRef = ref(db, `Informacion-Usuarios/${userId}`);
@@ -32,10 +32,10 @@ document.addEventListener("DOMContentLoaded", () => {
       
       if (snapshot.exists()) {
         const data = snapshot.val();
-        // Obtener la entrada más reciente sin usar orderByChild
+        
         const keys = Object.keys(data);
         if (keys.length > 0) {
-          // Si hay múltiples entradas, tomar la última basada en createdAt
+          
           let latestKey = keys[0];
           let latestTime = data[keys[0]].createdAt || 0;
           
@@ -59,26 +59,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Poblar las plantillas con los datos del negocio
+ 
   function populateTemplates() {
     if (!businessData) return;
 
-    // Actualizar nombres del negocio
+ 
     document.querySelectorAll('.template-business-name').forEach(element => {
       element.textContent = businessData.businessName || 'Tu Negocio';
     });
 
-    // Actualizar descripciones
+  
     document.querySelectorAll('.template-business-desc').forEach(element => {
       element.textContent = businessData.businessDescription || 'Descripción de tu negocio';
     });
 
-    // Actualizar teléfonos
+ 
     document.querySelectorAll('.template-phone, .template-phone-quick').forEach(element => {
       element.textContent = ` ${businessData.contactPhone || 'Tu teléfono'}`;
     });
 
-    // Actualizar direcciones
+ 
     document.querySelectorAll('.template-address').forEach(element => {
       if (businessData.businessAddress) {
         element.textContent = ` ${businessData.businessAddress}`;
@@ -88,8 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
         element.style.opacity = '0.5';
       }
     });
-
-    // Actualizar horarios
+ 
     document.querySelectorAll('.template-hours').forEach(element => {
       if (businessData.businessHours) {
         element.textContent = ` ${businessData.businessHours}`;
@@ -100,19 +99,19 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Generar iconos de redes sociales
+   
     generateSocialIcons();
 
-    // Actualizar colores si están disponibles
+    
     if (businessData.primaryColor || businessData.secondaryColor) {
       updateTemplateColors();
     }
   }
 
-  // Generar iconos de redes sociales
+  
   function generateSocialIcons() {
     const socialNetworks = ['instagram', 'facebook', 'linkedin', 'tiktok'];
-    const availableNetworks = socialNetworks.slice(0, 3); // Mostrar máximo 3
+    const availableNetworks = socialNetworks.slice(0, 3);  
 
     document.querySelectorAll('.social-icons-preview').forEach(container => {
       container.innerHTML = '';
@@ -136,20 +135,20 @@ document.addEventListener("DOMContentLoaded", () => {
     return icons[network] || '';
   }
 
-  // Actualizar colores de las plantillas
+  
   function updateTemplateColors() {
     const primaryColor = businessData.primaryColor || '#0c1618';
     const secondaryColor = businessData.secondaryColor || '#6f1d1b';
 
-    // Aplicar colores personalizados
+ 
     document.querySelectorAll('.template-section h4').forEach(element => {
       element.style.color = primaryColor;
     });
   }
 
-  // Configurar event listeners
+ 
   function setupEventListeners() {
-    // Click en plantillas para vista completa
+     
     document.querySelectorAll('.template-preview, .template-preview-btn').forEach(element => {
       element.addEventListener('click', function(e) {
         e.preventDefault();
@@ -158,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    // Modal controls
+ 
     const modal = document.getElementById('templateModal');
     const closeBtn = document.querySelector('.modal-close');
     const backBtn = document.querySelector('.modal-back');
@@ -173,14 +172,13 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Cerrar modal al hacer click fuera
+ 
     modal.addEventListener('click', function(e) {
       if (e.target === modal) {
         closeModal();
       }
     });
-
-    // Logout functionality
+ 
     const logoutBtn = document.querySelector('.btn-logout');
     if (logoutBtn) {
       logoutBtn.addEventListener('click', function(e) {
@@ -193,7 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Mostrar vista completa de la plantilla
+ 
   function showFullPreview(templateType) {
     currentTemplate = templateType;
     const modal = document.getElementById('templateModal');
@@ -205,14 +203,14 @@ document.addEventListener("DOMContentLoaded", () => {
     selectBtn.textContent = `Seleccionar plantilla ${templateType}`;
     selectBtn.dataset.template = templateType;
 
-    // Generar vista completa según el tipo de plantilla
+ 
     fullPreview.innerHTML = generateFullTemplate(templateType);
 
     modal.classList.add('show');
     modal.style.display = 'block';
   }
 
-  // Generar plantilla completa
+ 
   function generateFullTemplate(templateType) {
     const templates = {
       moderna: generateModernTemplate(),
@@ -382,7 +380,7 @@ document.addEventListener("DOMContentLoaded", () => {
     `).join('');
   }
 
-  // Cerrar modal
+ 
   function closeModal() {
     const modal = document.getElementById('templateModal');
     modal.classList.remove('show');
@@ -390,12 +388,12 @@ document.addEventListener("DOMContentLoaded", () => {
     currentTemplate = null;
   }
 
-  // Función para seleccionar plantilla
+ 
   function selectTemplate(templateType) {
     const confirmation = confirm(`¿Estás seguro de que quieres seleccionar la plantilla ${templateType}?\n\nEsto generará tu sitio web con esta plantilla.`);
     
     if (confirmation) {
-      // Guardar la selección
+ 
       localStorage.setItem('selectedTemplate', templateType);
       localStorage.setItem('businessData', JSON.stringify(businessData));
       
@@ -403,10 +401,7 @@ document.addEventListener("DOMContentLoaded", () => {
       
       closeModal();
       
-      // Aquí redirigirías a la página final generada
-      // window.location.href = `generated-site.html?template=${templateType}`;
-      
-      // Por ahora, redirigir al inicio
+   
       window.location.href = "index.html";
     }
   }

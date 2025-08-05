@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (user) {
       currentUserId = user.uid;
       await loadBusinessDataForPreviews();
-      await loadRealTemplatePreviews(); // ✅ NUEVA FUNCIÓN
+      await loadRealTemplatePreviews();
       setupPreviewButtons();
     } else {
       alert("Debes iniciar sesión para ver las plantillas.");
@@ -19,8 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Cargar datos del negocio para las previsualizaciones
-  // Cargar datos del negocio para las previsualizaciones
   async function loadBusinessDataForPreviews() {
     try {
       businessData = await getUserBusinessData(currentUserId);
@@ -37,8 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // ✅ NUEVA FUNCIÓN: Cargar plantillas HTML reales como previsualizaciones
-  // ✅ FUNCIÓN MEJORADA: Cargar plantillas HTML reales como previsualizaciones
+  
   async function loadRealTemplatePreviews() {
     if (!businessData) return;
   
@@ -80,18 +77,16 @@ document.addEventListener("DOMContentLoaded", () => {
             iframe.onload = async function() {
               const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
               
-              // Escribir el HTML generado
+            
               iframeDoc.open();
               iframeDoc.write(generatedHtml);
               iframeDoc.close();
               
-              // ✅ CARGAR CSS ESPECÍFICO DE LA PLANTILLA
               const cssLink = iframeDoc.createElement('link');
               cssLink.rel = 'stylesheet';
-              cssLink.href = `../../templates/css/${templateName}.css`;
+              cssLink.href = `./templates/css/${templateName}.css`;
               iframeDoc.head.appendChild(cssLink);
               
-              // ✅ ESTILOS MEJORADOS PARA PREVISUALIZACIÓN COMPLETA
               const previewStyle = iframeDoc.createElement('style');
               previewStyle.textContent = `
                 body { 
@@ -544,7 +539,7 @@ document.addEventListener("DOMContentLoaded", () => {
           // ✅ CARGAR CSS ESPECÍFICO DE LA PLANTILLA
           const cssLink = iframeDoc.createElement('link');
           cssLink.rel = 'stylesheet';
-          cssLink.href = `../../templates/css/${actualTemplateName}.css`;
+          cssLink.href = `./templates/css/${actualTemplateName}.css`;
           iframeDoc.head.appendChild(cssLink);
           
           // ✅ ESTILOS PARA CORREGIR EL NAVBAR EN VISTA COMPLETA
@@ -612,18 +607,114 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.style.display = 'none';
   }
 
-  // Seleccionar plantilla
+  // Seleccionar plantilla con modal personalizado
   function selectTemplate(templateType) {
-    const confirmation = confirm(`¿Estás seguro de que quieres seleccionar la plantilla ${templateType}?\n\nEsto generará tu sitio web con esta plantilla.`);
+    // Crear modal de confirmación personalizado
+    const confirmModal = document.createElement('div');
+    confirmModal.className = 'confirm-modal';
+    confirmModal.innerHTML = `
+      <div class="confirm-modal-content">
+        <div class="confirm-modal-header">
+          <div class="confirm-icon"></div>
+          <h3>¡Excelente elección!</h3>
+        </div>
+        <div class="confirm-modal-body">
+          <p>¿Estás seguro de que quieres seleccionar la plantilla <strong>${templateType}</strong>?</p>
+          <p class="confirm-subtitle">Esto generará tu sitio web personalizado con esta plantilla.</p>
+        </div>
+        <div class="confirm-modal-footer">
+          <button class="btn btn-cancel" onclick="closeConfirmModal()">Cancelar</button>
+          <button class="btn btn-confirm" onclick="confirmSelection('${templateType}')">Sí, seleccionar</button>
+        </div>
+      </div>
+    `;
     
-    if (confirmation) {
-      localStorage.setItem('selectedTemplate', templateType);
-      localStorage.setItem('businessData', JSON.stringify(businessData));
+    document.body.appendChild(confirmModal);
+    
+    // Mostrar modal con animación
+    setTimeout(() => {
+      confirmModal.classList.add('show');
+    }, 10);
+    
+    // Funciones globales para el modal
+    window.closeConfirmModal = function() {
+      confirmModal.classList.remove('show');
+      setTimeout(() => {
+        document.body.removeChild(confirmModal);
+      }, 300);
+    };
+    
+    window.confirmSelection = function(templateType) {
+      closeConfirmModal();
+      proceedWithSelection(templateType);
+    };
+  }
+
+  // Proceder con la selección y mostrar loading
+  function proceedWithSelection(templateType) {
+    localStorage.setItem('selectedTemplate', templateType);
+    localStorage.setItem('businessData', JSON.stringify(businessData));
+    
+    closeModal();
+    
+    // Mostrar animación de carga
+    showLoadingAnimation(templateType);
+    
+    // Redirigir después de la animación
+    setTimeout(() => {
+      const params = new URLSearchParams({
+        template: templateType,
+        user: currentUserId || 'demo'
+      });
       
-      alert(`¡Excelente! Has seleccionado la plantilla ${templateType}.\n\nTu sitio web se está generando...`);
-      
-      closeModal();
-      window.location.href = "index.html";
-    }
+      window.location.href = `template-editor.html?${params.toString()}`;
+    }, 2500);
+  }
+  
+  function showLoadingAnimation(templateType) {
+    const loadingModal = document.createElement('div');
+    loadingModal.className = 'loading-modal';
+    loadingModal.innerHTML = `
+      <div class="loading-content">
+        <div class="loading-icon">
+          <div class="loading-spinner"></div>
+          <div class="loading-checkmark">✓</div>
+        </div>
+        <h3 class="loading-title">Generando tu sitio web...</h3>
+        <p class="loading-subtitle">Plantilla: ${templateType}</p>
+        <div class="loading-progress">
+          <div class="loading-bar"></div>
+        </div>
+        <div class="loading-steps">
+          <div class="step active"> Procesando datos</div>
+          <div class="step"> Aplicando diseño</div>
+          <div class="step"> Optimizando</div>
+          <div class="step"> Finalizando</div>
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(loadingModal);
+    
+    // Mostrar modal
+    setTimeout(() => {
+      loadingModal.classList.add('show');
+    }, 10);
+    
+    // Animar pasos
+    const steps = loadingModal.querySelectorAll('.step');
+    steps.forEach((step, index) => {
+      setTimeout(() => {
+        step.classList.add('active');
+      }, (index + 1) * 600);
+    });
+    
+    // Mostrar checkmark al final
+    setTimeout(() => {
+      loadingModal.querySelector('.loading-spinner').style.display = 'none';
+      loadingModal.querySelector('.loading-checkmark').style.display = 'block';
+      loadingModal.querySelector('.loading-title').textContent = '¡Listo!';
+      loadingModal.querySelector('.loading-subtitle').textContent = 'Redirigiendo al editor...';
+    }, 2000);
   }
 });

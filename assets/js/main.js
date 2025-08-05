@@ -1,10 +1,9 @@
 "use strict";
-
 import form from "./form.js";
 import skillbar from "./skillbar.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Llama a form solo si existe el formulario en la página
+ 
   if (document.querySelector(".contactForm")) {
     form();
   }
@@ -19,13 +18,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const navBtn = document.querySelector("#nav-btn");
   const navBtnIcon = document.querySelector("#nav-btn-icon");
 
-  // Hamburger menu functionality
+ 
   if (navBtn && nav) {
     navBtn.addEventListener('click', () => {
       nav.classList.toggle('open');
       document.body.classList.toggle('menu-open');
       
-      // Update icon based on menu state
+
       if (navBtnIcon) {
         if (nav.classList.contains('open')) {
           navBtnIcon.className = 'fas fa-times';
@@ -36,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Scroll functionality
+
   window.addEventListener("scroll", function () {
     const header = document.querySelector("#header");
     const hero = document.querySelector("#home");
@@ -55,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Active navigation links
+
   let sections = document.querySelectorAll("section");
   let navLinks = document.querySelectorAll("header nav a");
 
@@ -76,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Close menu when clicking on nav links
+
   const navLinksArray = document.querySelectorAll('.nav-link');
   navLinksArray.forEach(link => {
     link.addEventListener('click', () => {
