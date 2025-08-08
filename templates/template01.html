@@ -3,11 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nombre del Negocio - Página Principal</title>
+  <title>{{businessName}} - Página Principal</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: {{primaryColor}};
+      --secondary-color: {{secondaryColor}};
+      --accent-color: #{{accentColor}};
+      --text-color: #{{textColor}};
+      --background-color: #{{backgroundColor}};
+    }
+  </style>
 </head>
 <body>
   <!-- Header -->
@@ -15,8 +24,10 @@
     <div class="container">
       <div class="header-content">
         <div class="logo-container">
-          <img src="assets/logo.png" alt="Logo del negocio" class="logo" id="business-logo">
-          <h1 id="business-name">Nombre del Negocio</h1>
+          {{#if logoUrl}}
+          <img src="{{logoUrl}}" alt="{{businessName}} Logo" class="logo" id="business-logo">
+          {{/if}}
+          <h1 id="business-name">{{businessName}}</h1>
         </div>
         
         <nav class="main-nav">
@@ -40,12 +51,16 @@
     <div class="container">
       <div class="hero-content">
         <div class="hero-text" data-aos="fade-right">
-          <h2 id="business-slogan">Tu eslogan profesional aquí</h2>
-          <p class="business-description" id="business-description">Descripción breve del negocio que aparece en el formulario.</p>
+          <h2 id="business-slogan">{{businessSlogan}}</h2>
+          <p class="business-description" id="business-description">{{businessDescription}}</p>
           <a href="#contacto" class="btn btn-primary">Contáctanos</a>
         </div>
         <div class="hero-image" data-aos="fade-left">
-          <img src="assets/hero-image.jpg" alt="Imagen principal del negocio">
+          {{#if heroImageUrl}}
+          <img src="{{heroImageUrl}}" alt="{{businessName}}">
+          {{else}}
+          <img src="assets/hero-image.jpg" alt="{{businessName}}">
+          {{/if}}
         </div>
       </div>
     </div>
@@ -55,47 +70,42 @@
   <section class="services" id="servicios">
     <div class="container">
       <h2 class="section-title" data-aos="fade-up">Nuestros Servicios</h2>
-      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Lo que ofrecemos para nuestros clientes</p>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">{{servicesDescription}}</p>
       
       <div class="services-grid">
-        <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+        {{#each services}}
+        <div class="service-card" data-aos="fade-up" data-aos-delay="{{multiply @index 100}}">
           <div class="service-icon">
-            <i class="fas fa-star"></i>
+            <i class="{{this.icon}}"></i>
           </div>
-          <h3>Servicio 1</h3>
-          <p>Descripción del servicio principal que ofrece tu negocio.</p>
+          <h3>{{this.name}}</h3>
+          <p>{{this.description}}</p>
         </div>
-        
-        <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-          <div class="service-icon">
-            <i class="fas fa-check-circle"></i>
-          </div>
-          <h3>Servicio 2</h3>
-          <p>Descripción del segundo servicio que ofrece tu negocio.</p>
-        </div>
-        
-        <div class="service-card" data-aos="fade-up" data-aos-delay="400">
-          <div class="service-icon">
-            <i class="fas fa-award"></i>
-          </div>
-          <h3>Servicio 3</h3>
-          <p>Descripción del tercer servicio que ofrece tu negocio.</p>
-        </div>
+        {{/each}}
       </div>
     </div>
   </section>
 
   <!-- Galería Section -->
+  {{#if galleryUrls}}
   <section class="gallery" id="galeria">
     <div class="container">
       <h2 class="section-title" data-aos="fade-up">Nuestro Trabajo</h2>
       <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Mira algunos de nuestros proyectos</p>
       
       <div class="gallery-grid" id="business-gallery">
-        <!-- Las 6 imágenes del negocio se insertarán aquí dinámicamente -->
+        {{#each galleryUrls}}
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="{{multiply @index 100}}">
+          <img src="{{this}}" alt="Proyecto {{add @index 1}}">
+          <div class="gallery-overlay">
+            <h4>Proyecto {{add @index 1}}</h4>
+          </div>
+        </div>
+        {{/each}}
       </div>
     </div>
   </section>
+  {{/if}}
 
   <!-- Ubicación Section -->
   <section class="location" id="ubicacion">
@@ -105,30 +115,37 @@
           <h2 class="section-title">Encuéntranos</h2>
           <div class="info-item">
             <i class="fas fa-map-marker-alt"></i>
-            <p id="business-address">Dirección del negocio</p>
+            <p id="business-address">{{businessAddress}}</p>
           </div>
           <div class="info-item">
             <i class="fas fa-phone"></i>
-            <p id="business-phone">Teléfono del negocio</p>
+            <p id="business-phone">{{contactPhone}}</p>
           </div>
           <div class="info-item">
             <i class="fas fa-clock"></i>
-            <p id="business-hours">Horario del negocio</p>
+            <p id="business-hours">{{businessHours}}</p>
           </div>
           
+          {{#if socialMedia}}
           <div class="social-links">
-            <a href="#" class="social-link" id="facebook-link"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social-link" id="instagram-link"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-link" id="linkedin-link"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" class="social-link" id="tiktok-link"><i class="fab fa-tiktok"></i></a>
+            {{#each socialMedia}}
+            <a href="{{this}}" class="social-link" id="{{@key}}-link" target="_blank">
+              <i class="fab fa-{{@key}}"></i>
+            </a>
+            {{/each}}
           </div>
+          {{/if}}
         </div>
         
         <div class="location-map" data-aos="fade-left">
           <div id="business-map">
-            <!-- Mapa de Google se insertará aquí -->
+            {{#if googleMaps}}
+            <iframe src="{{googleMaps}}" 
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            {{else}}
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.888238257591!2d-99.1698384845336!3d19.42702074620238!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff35f5bd1563%3A0x6c366f0e2de02ff7!2sEl%20%C3%81ngel%20de%20la%20Independencia!5e0!3m2!1ses!2smx!4v1620000000000!5m2!1ses!2smx" 
                     width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            {{/if}}
           </div>
         </div>
       </div>
@@ -162,15 +179,15 @@
           <h3>Información de contacto</h3>
           <div class="info-item">
             <i class="fas fa-envelope"></i>
-            <p>correo@negocio.com</p>
+            <p>{{contactEmail}}</p>
           </div>
           <div class="info-item">
             <i class="fas fa-phone"></i>
-            <p id="contact-phone">Teléfono del negocio</p>
+            <p id="contact-phone">{{contactPhone}}</p>
           </div>
           <div class="info-item">
             <i class="fas fa-map-marker-alt"></i>
-            <p id="contact-address">Dirección del negocio</p>
+            <p id="contact-address">{{businessAddress}}</p>
           </div>
         </div>
       </div>
@@ -182,9 +199,11 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-brand">
-          <img src="assets/logo.png" alt="Logo del negocio" class="footer-logo">
-          <h3 id="footer-business-name">Nombre del Negocio</h3>
-          <p id="footer-business-description">Breve descripción del negocio</p>
+          {{#if logoUrl}}
+          <img src="{{logoUrl}}" alt="{{businessName}} Logo" class="footer-logo">
+          {{/if}}
+          <h3 id="footer-business-name">{{businessName}}</h3>
+          <p id="footer-business-description">{{businessDescription}}</p>
         </div>
         
         <div class="footer-links">
@@ -200,30 +219,94 @@
         
         <div class="footer-contact">
           <h4>Contacto</h4>
-          <p id="footer-address">Dirección del negocio</p>
-          <p id="footer-phone">Teléfono del negocio</p>
-          <p id="footer-hours">Horario del negocio</p>
+          <p id="footer-address">{{businessAddress}}</p>
+          <p id="footer-phone">{{contactPhone}}</p>
+          <p id="footer-hours">{{businessHours}}</p>
         </div>
         
+        {{#if socialMedia}}
         <div class="footer-social">
           <h4>Síguenos</h4>
           <div class="social-icons">
-            <a href="#" id="footer-facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" id="footer-instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" id="footer-linkedin"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" id="footer-tiktok"><i class="fab fa-tiktok"></i></a>
+            {{#each socialMedia}}
+            <a href="{{this}}" id="footer-{{@key}}" target="_blank"><i class="fab fa-{{@key}}"></i></a>
+            {{/each}}
           </div>
         </div>
+        {{/if}}
       </div>
       
       <div class="footer-bottom">
-        <p>&copy; <span id="current-year"></span> Nombre del Negocio. Todos los derechos reservados.</p>
+        <p>&copy; <span id="current-year"></span> {{businessName}}. Todos los derechos reservados.</p>
+        <p>Sitio creado con <strong>Tempath</strong></p>
       </div>
     </div>
   </footer>
 
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <script src="js/main_templates.js"></script>
+  <script>
+    // AOS Init
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true
+    });
+
+    // Current year
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navList = document.querySelector('.nav-list');
+    
+    navToggle.addEventListener('click', () => {
+      navList.classList.toggle('active');
+      navToggle.classList.toggle('active');
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+          
+          // Close mobile menu if open
+          if (navList.classList.contains('active')) {
+            navList.classList.remove('active');
+            navToggle.classList.remove('active');
+          }
+        }
+      });
+    });
+
+    // Form submission
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.');
+        this.reset();
+      });
+    }
+
+    // Sticky header
+    window.addEventListener('scroll', function() {
+      const header = document.querySelector('.header');
+      if (window.scrollY > 100) {
+        header.classList.add('sticky');
+      } else {
+        header.classList.remove('sticky');
+      }
+    });
+  </script>
 </body>
 </html>

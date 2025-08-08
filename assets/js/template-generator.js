@@ -19,8 +19,18 @@ export async function getUserBusinessData(userId) {
 
 export async function loadTemplate(templateType) {
   try {
+    // Mapeo de nombres de plantillas a archivos
+    const templateMap = {
+      'moderna': 'modern',
+      'clasica': 'classic',
+      'creativa': 'creative',
+      'profesional': 'template01',
+      'minimalista': 'template02',
+      'vibrante': 'template03'
+    };
 
-    const response = await fetch(`./templates/${templateType}.html`);
+    const templateFileName = templateMap[templateType] || templateType;
+    const response = await fetch(`./templates/${templateFileName}.html`);
     if (!response.ok) {
       throw new Error(`Error cargando plantilla: ${response.status}`);
     }
