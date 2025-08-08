@@ -1,4 +1,25 @@
-/* Business Setup Styles - Extendiendo los estilos del index */
+/* Business Setup Styles - Imagica.ai inspired */
+.setup-page {
+  background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
+  padding-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.setup-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 25% 75%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 25%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
+  z-index: -1;
+}
+
+/* Business Setup Styles - Basado en main.css */
 .setup-page {
   background-color: var(--primary-bg-color);
   padding-bottom: 2rem;
@@ -9,7 +30,9 @@
   top: 0;
   width: 100%;
   background-color: rgba(255, 255, 255, 0.98);
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
 }
 
@@ -47,6 +70,78 @@
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
+}
+
+/* Steps indicator */
+.steps-container {
+  margin-bottom: 3rem;
+}
+
+.steps {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.steps::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--gray-color-2);
+  z-index: 1;
+  transform: translateY(-50%);
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.step span {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--gray-color-2);
+  color: var(--white-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.step .step-title {
+  font-size: 0.9rem;
+  color: var(--gray-text-color);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.step.active span {
+  background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+}
+
+.step.active .step-title {
+  color: var(--primary-accent);
+  font-weight: 500;
+}
+
+/* Form steps */
+.form-step {
+  display: none;
+}
+
+.form-step.active {
+  display: block;
 }
 
 /* Secciones del formulario - estilo similar a las tarjetas del index */
@@ -151,11 +246,6 @@
   font-weight: 400;
 }
 
-/* Subida de archivos */
-.form-group input[type="file"] {
-  padding: 0.5rem;
-}
-
 /* Redes sociales */
 .social-options {
   display: flex;
@@ -232,201 +322,6 @@
 
 .remove-social:hover {
   transform: scale(1.2);
-}
-
-/* Botón de enviar */
-.form-actions {
-  text-align: center;
-  margin-top: 3rem;
-}
-
-.btn-submit {
-  padding: 1.2rem 3rem;
-  font-size: 1rem;
-  letter-spacing: 0.2em;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.btn-submit:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(111, 29, 27, 0.2);
-}
-
-/* Botón de logout */
-.btn-logout {
-  background-color: var(--secondary-accent);
-  border-color: var(--secondary-accent);
-  margin-left: 0;
-}
-
-.btn-logout:hover {
-  background-color: #8b4a48;
-  border-color: #8b4a48;
-}
-
-/* Steps indicator */
-.steps-container {
-  margin-bottom: 3rem;
-}
-
-.steps {
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  margin-bottom: 2rem;
-}
-
-.steps::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background-color: var(--gray-color-2);
-  z-index: 1;
-  transform: translateY(-50%);
-}
-
-.step {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  z-index: 2;
-}
-
-.step span {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: var(--gray-color-2);
-  color: var(--white-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  transition: all 0.3s ease;
-}
-
-.step .step-title {
-  font-size: 0.9rem;
-  color: var(--gray-text-color);
-  text-align: center;
-  transition: all 0.3s ease;
-}
-
-.step.active span {
-  background-color: var(--secondary-accent);
-}
-
-.step.active .step-title {
-  color: var(--primary-accent);
-  font-weight: 500;
-}
-
-/* Form steps */
-.form-step {
-  display: none;
-}
-
-.form-step.active {
-  display: block;
-}
-
-/* Step navigation */
-.step-navigation {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 3rem;
-}
-
-.step-navigation .btn-prev,
-.step-navigation .btn-next,
-.step-navigation .btn-submit {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  min-width: 150px;
-}
-
-.btn-prev {
-  background-color: var(--gray-color-2);
-  color: var(--primary-accent);
-  border: 1px solid var(--gray-color-2);
-}
-
-.btn-prev:hover {
-  background-color: var(--gray-color);
-  border-color: var(--gray-color);
-}
-
-.btn-next {
-  background-color: var(--secondary-accent);
-  color: var(--white-color);
-  border: 1px solid var(--secondary-accent);
-}
-
-.btn-next:hover {
-  background-color: #8b4a48;
-  border-color: #8b4a48;
-}
-
-.btn-submit {
-  background-color: var(--primary-accent);
-  color: var(--white-color);
-  border: 1px solid var(--primary-accent);
-  display: none;
-}
-
-.btn-submit:hover {
-  background-color: #1a2e33;
-  border-color: #1a2e33;
-}
-
-/* Confirmation step */
-.confirmation-step {
-  text-align: center;
-}
-
-.confirmation-content {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 1rem;
-}
-
-/* Invalid fields */
-input.invalid,
-textarea.invalid {
-  border-color: #ff6b6b !important;
-  background-color: #fff5f5;
-}
-
-/* Agrega esto al final de tu archivo setup.css */
-
-/* Ajustes para los botones de navegación */
-.step-navigation {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 3rem;
-}
-
-.step-navigation .btn-prev,
-.step-navigation .btn-next,
-.step-navigation .btn-submit {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  min-width: 150px;
-}
-
-/* Paso 1 - Botón siguiente a la derecha */
-.form-step[data-step="1"] .step-navigation {
-  justify-content: flex-end;
 }
 
 /* Estilos para el área de subida de imágenes */
@@ -539,6 +434,93 @@ textarea.invalid {
   }
 }
 
+/* Step navigation */
+.step-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+}
+
+.step-navigation .btn-prev,
+.step-navigation .btn-next,
+.step-navigation .btn-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-width: 150px;
+}
+
+.btn-prev {
+  background-color: var(--gray-color-2);
+  color: var(--primary-accent);
+  border: 1px solid var(--gray-color-2);
+}
+
+.btn-prev:hover {
+  background-color: var(--gray-color);
+  border-color: var(--gray-color);
+}
+
+.btn-next {
+  background: var(--gradient-primary);
+  color: var(--white-color);
+  border: 2px solid transparent;
+}
+
+.btn-next:hover {
+  background: var(--gradient-secondary);
+  border-color: transparent;
+}
+
+.btn-submit {
+  background: var(--gradient-primary);
+  color: var(--white-color);
+  border: 2px solid transparent;
+  display: none;
+  padding: 1.2rem 3rem;
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+  background: var(--gradient-secondary);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.2);
+}
+
+/* Confirmation step */
+.confirmation-step {
+  text-align: center;
+}
+
+.confirmation-content {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Invalid fields */
+input.invalid,
+textarea.invalid {
+  border-color: #ff6b6b !important;
+  background-color: #fff5f5;
+}
+
+/* Botón de logout */
+.btn-logout {
+  background-color: var(--secondary-accent);
+  border-color: var(--secondary-accent);
+  margin-left: 0;
+}
+
+.btn-logout:hover {
+  background-color: #8b4a48;
+  border-color: #8b4a48;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .setup-container {
@@ -608,12 +590,15 @@ textarea.invalid {
     display: none;
   }
   
+  .step-navigation {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
   .btn-prev,
   .btn-next,
   .btn-submit {
-    background-color: var(--secondary-accent);
-    border-color: var(--secondary-accent);
-    margin-left: 0;
+    width: 100%;
   }
 }
 

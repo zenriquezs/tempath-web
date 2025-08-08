@@ -1,3 +1,6 @@
+import { db } from '../../auth/js/firebaseConfig.js';
+import { ref, push, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
+
 const form = () => {
   const contactForm = document.querySelector(".contactForm");
   const responseMessage = document.querySelector(".response");
@@ -11,35 +14,41 @@ const form = () => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
+    
+   
+    const contactData = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      message: formData.get('message'),
+      timestamp: serverTimestamp(),
+      createdAt: new Date().toISOString()
+    };
+
     responseMessage.classList.add("open");
-    responseMessage.textContent = "Please wait...";
+    responseMessage.textContent = "Enviando mensaje...";
 
-    async function getData() {
-      try {
-        const response = await fetch("mail.php", {
-          method: "POST",
-          body: formData,
-        });
-        if (!response.ok) {
-          responseMessage.textContent = "Error en la respuesta del servidor";
-          return;
-        }
+    try {
+  
+      const contactsRef = ref(db, 'contactos');
+      await push(contactsRef, contactData);
+      
+      responseMessage.textContent = "¡Mensaje enviado exitosamente! Te contactaremos pronto.";
+      responseMessage.style.color = "#28a745"; 
+      
 
-        const result = await response.text();
-        responseMessage.textContent = result;
-      } catch (error) {
-        console.error(error.message);
-        responseMessage.textContent = "Error enviando el formulario.";
-      }
+      form.reset();
+      
+    } catch (error) {
+      console.error('Error al enviar mensaje:', error);
+      responseMessage.textContent = "Error al enviar el mensaje. Por favor, inténtalo de nuevo.";
+      responseMessage.style.color = "#dc3545";
     }
 
-    await getData();
-
+    
     setTimeout(() => {
       responseMessage.classList.remove("open");
-    }, 3000);
-
-    form.reset();
+      responseMessage.style.color = ""; 
+    }, 5000);
   });
 };
 

@@ -3,12 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nombre del Negocio - Soluciones Profesionales</title>
+    <title>{{businessName}} - Soluciones Profesionales</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animations.css">
+    <style>
+      :root {
+        --primary-color: {{primaryColor}};
+        --secondary-color: {{secondaryColor}};
+        --accent-color: #{{accentColor}};
+        --text-color: #{{textColor}};
+        --background-color: #{{backgroundColor}};
+      }
+    </style>
 </head>
 <body>
     <!-- Header No Fijo -->
@@ -16,7 +25,10 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo-container">
-                    <span id="business-name">NombreNegocio</span>
+                    {{#if logoUrl}}
+                    <img src="{{logoUrl}}" alt="{{businessName}} Logo" class="logo">
+                    {{/if}}
+                    <span id="business-name">{{businessName}}</span>
                 </div>
                 
                 <nav class="main-nav">
@@ -36,15 +48,19 @@
     </header>
 
     <!-- Hero Section Full Viewport Centrado -->
-    <section id="home" class="hero hero-fullscreen hero-centered" style="background-color: var(--secondary-color); color: var(--white-color);">
+    <section id="home" class="hero hero-fullscreen hero-centered">
         <div class="hero-background">
-            <img src="https://images.unsplash.com/photo-1552581234-26160f608093?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" alt="Fondo hero">
+            {{#if heroImageUrl}}
+            <img src="{{heroImageUrl}}" alt="{{businessName}}">
+            {{else}}
+            <img src="assets/hero-image.jpg" alt="{{businessName}}">
+            {{/if}}
         </div>
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text" data-aos="zoom-in" data-aos-delay="100">
-                    <h1 id="business-slogan">Soluciones profesionales para tu negocio</h1>
-                    <p class="business-description">Somos una empresa dedicada a ofrecer soluciones innovadoras y de alta calidad para ayudar a tu negocio a crecer y alcanzar sus objetivos.</p>
+                    <h1 id="business-slogan">{{businessSlogan}}</h1>
+                    <p class="business-description">{{businessDescription}}</p>
                     <div class="hero-buttons">
                         <a href="#contact" class="btn btn-primary">Contáctanos</a>
                     </div>
@@ -54,69 +70,51 @@
     </section>
 
     <!-- Nuestro Trabajo Section -->
-    <section id="work" class="section-padding large-padding" style="background-color: var(--light-color);">
+    {{#if galleryUrls}}
+    <section id="work" class="section-padding large-padding">
         <div class="container">
             <h2 class="section-title" data-aos="fade-down">Nuestro Trabajo</h2>
             <p class="section-subtitle" data-aos="fade-down" data-aos-delay="100">Descubre algunos de nuestros proyectos más recientes</p>
             
             <div class="work-showcase" data-aos="fade-up" data-aos-delay="200">
-                <div class="work-item active">
-                    <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" alt="Proyecto 1">
+                {{#each galleryUrls}}
+                <div class="work-item {{#if @first}}active{{/if}}">
+                    <img src="{{this}}" alt="Proyecto {{add @index 1}}">
                     <div class="work-caption">
-                        <h3>Proyecto Destacado</h3>
-                        <p>Descripción detallada de nuestro proyecto más reciente y exitoso.</p>
+                        <h3>Proyecto {{add @index 1}}</h3>
+                        <p>Descripción del proyecto</p>
                     </div>
                 </div>
+                {{/each}}
             </div>
         </div>
     </section>
+    {{/if}}
 
     <!-- Servicios Section con Efecto Carrusel -->
-    <section id="services" class="section-padding large-padding" style="background-color: var(--white-color);">
+    <section id="services" class="section-padding large-padding">
         <div class="container">
             <h2 class="section-title" data-aos="fade-down">Nuestros Servicios</h2>
-            <p class="section-subtitle" data-aos="fade-down" data-aos-delay="100">Ofrecemos soluciones profesionales adaptadas a tus necesidades</p>
+            <p class="section-subtitle" data-aos="fade-down" data-aos-delay="100">{{servicesDescription}}</p>
             
             <div class="services-carousel-container">
                 <div class="services-carousel">
-                    <div class="service-card featured" data-aos="fade-right" data-aos-delay="200">
+                    {{#each services}}
+                    <div class="service-card {{#if @first}}featured{{/if}}" data-aos="fade-right" data-aos-delay="{{multiply @index 100}}">
                         <div class="service-icon">
-                            <i class="fas fa-laptop-code"></i>
+                            <i class="{{this.icon}}"></i>
                         </div>
-                        <h3>Desarrollo Web</h3>
-                        <p>Creación de sitios web profesionales, responsivos y optimizados para motores de búsqueda.</p>
+                        <h3>{{this.name}}</h3>
+                        <p>{{this.description}}</p>
                     </div>
-                    
-                    <div class="service-card" data-aos="fade-right" data-aos-delay="300">
-                        <div class="service-icon">
-                            <i class="fas fa-mobile-alt"></i>
-                        </div>
-                        <h3>Diseño Responsivo</h3>
-                        <p>Diseños adaptables a todos los dispositivos para una experiencia de usuario óptima.</p>
-                    </div>
-                    
-                    <div class="service-card" data-aos="fade-right" data-aos-delay="400">
-                        <div class="service-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <h3>Marketing Digital</h3>
-                        <p>Estrategias efectivas para aumentar tu presencia online y atraer más clientes.</p>
-                    </div>
-                    
-                    <div class="service-card" data-aos="fade-right" data-aos-delay="500">
-                        <div class="service-icon">
-                            <i class="fas fa-paint-brush"></i>
-                        </div>
-                        <h3>Diseño Gráfico</h3>
-                        <p>Creación de identidad visual, logotipos y material gráfico profesional.</p>
-                    </div>
+                    {{/each}}
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contacto Section -->
-    <section id="contact" class="section-padding large-padding" style="background-color: var(--light-color);">
+    <section id="contact" class="section-padding large-padding">
         <div class="container">
             <h2 class="section-title" data-aos="fade-down">Contáctanos</h2>
             <p class="section-subtitle" data-aos="fade-down" data-aos-delay="100">Estamos listos para ayudarte. Envíanos un mensaje y te responderemos pronto.</p>
@@ -145,37 +143,38 @@
                     
                     <div class="info-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <p>Av. Principal 1234, Ciudad, País</p>
+                        <p>{{businessAddress}}</p>
                     </div>
                     
                     <div class="info-item">
                         <i class="fas fa-phone"></i>
-                        <p>+1 234 567 890</p>
+                        <p>{{contactPhone}}</p>
                     </div>
                     
                     <div class="info-item">
                         <i class="fas fa-envelope"></i>
-                        <p>info@nombredenegocio.com</p>
+                        <p>{{contactEmail}}</p>
                     </div>
                     
                     <div class="info-item">
                         <i class="fas fa-clock"></i>
-                        <p>Lunes a Viernes: 9:00 - 18:00<br>Sábados: 9:00 - 13:00</p>
+                        <p>{{businessHours}}</p>
                     </div>
                     
+                    {{#if socialMedia}}
                     <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        {{#each socialMedia}}
+                        <a href="{{this}}" class="social-link" target="_blank"><i class="fab fa-{{@key}}"></i></a>
+                        {{/each}}
                     </div>
+                    {{/if}}
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Ubicación y Mapa -->
-    <section class="location section-padding large-padding" style="background-color: var(--white-color);">
+    <section class="location section-padding large-padding">
         <div class="container">
             <h2 class="section-title" data-aos="fade-down">Ubicación</h2>
             <p class="section-subtitle" data-aos="fade-down" data-aos-delay="100">Visítanos en nuestras oficinas</p>
@@ -184,27 +183,31 @@
                 <div class="location-info" data-aos="fade-right" data-aos-delay="200">
                     <div class="info-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <p>Av. Principal 1234, Ciudad, País</p>
+                        <p>{{businessAddress}}</p>
                     </div>
                     
                     <div class="info-item">
                         <i class="fas fa-phone"></i>
-                        <p>+1 234 567 890</p>
+                        <p>{{contactPhone}}</p>
                     </div>
                     
                     <div class="info-item">
                         <i class="fas fa-envelope"></i>
-                        <p>info@nombredenegocio.com</p>
+                        <p>{{contactEmail}}</p>
                     </div>
                     
                     <div class="info-item">
                         <i class="fas fa-clock"></i>
-                        <p>Lunes a Viernes: 9:00 - 18:00<br>Sábados: 9:00 - 13:00</p>
+                        <p>{{businessHours}}</p>
                     </div>
                 </div>
                 
                 <div class="location-map" data-aos="fade-left" data-aos-delay="300">
+                    {{#if googleMaps}}
+                    <iframe src="{{googleMaps}}" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    {{else}}
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215573291234!2d-73.9878449241641!3d40.74844047138911!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1629997977659!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    {{/if}}
                 </div>
             </div>
         </div>
@@ -216,50 +219,41 @@
             <div class="container">
                 <div class="footer-content">
                     <div class="footer-brand">
-                        <a href="#" title="Logo del Negocio" aria-label="Logo del negocio que enlaza a la página principal">
-                            <span id="business-name-footer">NombreNegocio</span>
+                        <a href="#" title="{{businessName}}" aria-label="{{businessName}}">
+                            {{#if logoUrl}}
+                            <img src="{{logoUrl}}" alt="{{businessName}} Logo" class="footer-logo">
+                            {{/if}}
+                            <span id="business-name-footer">{{businessName}}</span>
                         </a>
                     </div>
                     
+                    {{#if socialMedia}}
                     <div class="footer-social">
                         <span class="footer-social-title">Síguenos en redes sociales para más contenido</span>
                         <ul class="footer-social-links">
+                            {{#each socialMedia}}
                             <li>
-                                <a href="#" aria-label="Facebook" title="Facebook" target="_blank">
-                                    <i class="fab fa-facebook-f"></i>
+                                <a href="{{this}}" aria-label="{{@key}}" title="{{@key}}" target="_blank">
+                                    <i class="fab fa-{{@key}}"></i>
                                 </a>
                             </li>
-                            <li>
-                                <a href="#" aria-label="Instagram" title="Instagram" target="_blank">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" aria-label="Twitter" title="Twitter" target="_blank">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" aria-label="YouTube" title="YouTube" target="_blank">
-                                    <i class="fab fa-youtube"></i>
-                                </a>
-                            </li>
+                            {{/each}}
                         </ul>
                     </div>
+                    {{/if}}
                     
                     <div class="footer-links">
                         <ul>
-                            <li><a href="#" title="Contacto" class="footer-link">Contacto</a></li>
+                            <li><a href="#contact" title="Contacto" class="footer-link">Contacto</a></li>
                             <li><a href="#" title="Términos y Condiciones" class="footer-link">Términos y Condiciones</a></li>
                             <li><a href="#" title="Política de Privacidad" class="footer-link">Política de Privacidad</a></li>
-                            <li><a href="#" title="Cookies" class="footer-link">Cookies</a></li>
-                            <li><a href="#" title="Mapa del Sitio" class="footer-link">Mapa del Sitio</a></li>
                         </ul>
                     </div>
                     
                     <div class="footer-legal">
-                        <p>© <span id="current-year"></span> NombreNegocio. Todos los derechos reservados.</p>
-                        <p>NombreNegocio® es una marca registrada.</p>
+                        <p>© <span id="current-year"></span> {{businessName}}. Todos los derechos reservados.</p>
+                        <p>{{businessName}}® es una marca registrada.</p>
+                        <p>Sitio creado con <strong>Tempath</strong></p>
                     </div>
                 </div>
             </div>
@@ -273,8 +267,61 @@
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="js/main_templates.js"></script>
     <script>
+        // AOS Init
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Mobile menu toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const navList = document.querySelector('.nav-list');
+        
+        navToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navList.classList.remove('active');
+                navToggle.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.');
+                this.reset();
+            });
+        }
+
         // Botón "Volver arriba"
         const backToTopBtn = document.querySelector('.back-to-top-btn');
         
@@ -290,6 +337,37 @@
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
+
+        // Carrusel de servicios
+        const serviceCards = document.querySelectorAll('.service-card');
+        if (serviceCards.length > 0) {
+            let currentIndex = 0;
+            
+            function rotateServices() {
+                serviceCards.forEach((card, index) => {
+                    card.classList.remove('featured');
+                    if (index === currentIndex) {
+                        card.classList.add('featured');
+                    }
+                });
+                
+                currentIndex = (currentIndex + 1) % serviceCards.length;
+            }
+            
+            // Rotar cada 5 segundos
+            setInterval(rotateServices, 5000);
+        }
+
+        // Galería interactiva
+        const workItems = document.querySelectorAll('.work-item');
+        if (workItems.length > 0) {
+            workItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    workItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        }
     </script>
 </body>
 </html>

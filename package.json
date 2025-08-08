@@ -1,0 +1,35 @@
+{
+  "name": "tempath-web",
+  "version": "1.0.0",
+  "description": "Tempath es una herramienta digital enfocada en facilitar a pequeños negocios en la creación de su propio sitio web sin necesidad de conocimientos en programación o diseño. A través de un formulario guiado y opciones prediseñadas, el usuario puede generar y publicar su página web de forma rápida, sencilla y funcional.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rimraf public/*.html public/assets public/auth public/templates",
+    "copy-files": "cpx \"*.html\" public && cpx \"assets/**/*\" public/assets && cpx \"auth/**/*\" public/auth && cpx \"templates/**/*\" public/templates",
+    "build": "npm run clean && npm run copy-files",
+    "start": "npm run build && firebase serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zenriquezs/tempath.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/zenriquezs/tempath/issues"
+  },
+  "homepage": "https://github.com/zenriquezs/tempath#readme",
+  "dependencies": {
+    "cloudinary": "^2.7.0",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "cpx": "^1.5.0",
+    "rimraf": "^5.0.10" 
+  }
+}
