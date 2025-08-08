@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Toggle password visibility
     const togglePasswordButtons = document.querySelectorAll('.password-toggle');
     
     togglePasswordButtons.forEach(button => {
@@ -21,7 +20,70 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 
-    // Forgot Password Form
+    const passwordInput = document.getElementById('password');
+    if (passwordInput) {
+        passwordInput.addEventListener('input', function() {
+            checkPasswordStrength(this.value);
+        });
+    }
+
+    function checkPasswordStrength(password) {
+        const strengthBars = document.querySelectorAll('.strength-bar');
+        const strengthText = document.querySelector('.strength-text');
+        
+        if (!strengthBars.length || !strengthText) return;
+
+        let strength = 0;
+        let strengthLabel = 'Muy débil';
+        let strengthColor = '#ef4444'; 
+
+
+        if (password.length >= 8) strength++;
+        if (password.match(/[a-z]/)) strength++;
+        if (password.match(/[A-Z]/)) strength++;
+        if (password.match(/[0-9]/)) strength++;
+        if (password.match(/[^a-zA-Z0-9]/)) strength++;
+
+       
+        switch (strength) {
+            case 0:
+            case 1:
+                strengthLabel = 'Muy débil';
+                strengthColor = '#ef4444';
+                break;
+            case 2:
+                strengthLabel = 'Débil';
+                strengthColor = '#f97316';
+                break;
+            case 3:
+                strengthLabel = 'Regular';
+                strengthColor = '#eab308';
+                break;
+            case 4:
+                strengthLabel = 'Buena';
+                strengthColor = '#22c55e';
+                break;
+            case 5:
+                strengthLabel = 'Muy segura';
+                strengthColor = '#16a34a';
+                break;
+        }
+
+  
+        strengthBars.forEach((bar, index) => {
+            if (index < strength) {
+                bar.style.backgroundColor = strengthColor;
+            } else {
+                bar.style.backgroundColor = '#e5e7eb';
+            }
+        });
+
+
+        strengthText.textContent = `Seguridad: ${strengthLabel}`;
+        strengthText.style.color = strengthColor;
+    }
+
+
     const forgotPasswordForm = document.getElementById('forgotPasswordForm');
     if (forgotPasswordForm) {
         forgotPasswordForm.addEventListener('submit', function(e) {

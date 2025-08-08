@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor de Plantillas - Tempath</title>
+    <link rel="shortcut icon" href="assets/img/Tempath_icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/template-editor.css">
+    <link rel="stylesheet" href="assets/css/whatsapp-float.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <header class="editor-header">
+        <div class="header-left">
+            <button id="back-btn" class="btn-back">
+                <i class="fas fa-arrow-left"></i>
+                <span>Volver</span>
+            </button>
+            <div class="site-info">
+                <h1 class="site-title">Editor de Plantillas</h1>
+                <span class="template-badge">Plantilla Moderna</span>
+            </div>
+        </div>
+
+        <div class="header-center">
+            <div class="device-selector">
+                <button class="device-btn active" data-device="desktop" title="Vista Escritorio">
+                    <i class="fas fa-desktop"></i>
+                    <span class="device-label">Escritorio</span>
+                </button>
+                <button class="device-btn" data-device="tablet" title="Vista Tablet">
+                    <i class="fas fa-tablet-alt"></i>
+                    <span class="device-label">Tablet</span>
+                </button>
+                <button class="device-btn" data-device="mobile" title="Vista Móvil">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span class="device-label">Móvil</span>
+                </button>
+            </div>
+
+            <div class="zoom-control">
+                <i class="fas fa-search-minus zoom-icon"></i>
+                <input type="range" id="zoom-slider" min="25" max="200" value="100" class="zoom-slider">
+                <span id="zoom-value" class="zoom-value">100%</span>
+                <i class="fas fa-search-plus zoom-icon"></i>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <button id="preview-btn" class="btn-preview">
+                <i class="fas fa-eye"></i>
+                <span>Vista Previa</span>
+            </button>
+            <button id="share-btn" class="btn-share">
+                <i class="fas fa-share-alt"></i>
+                <span>Compartir</span>
+            </button>
+            <button id="save-btn" class="btn-save">
+                <i class="fas fa-save"></i>
+                <span>Salir</span>
+            </button>
+        </div>
+    </header>
+
+
+    <main class="editor-main">
+        <!-- Preview Area -->
+        <div class="preview-area">
+            <div id="preview-container" class="preview-container desktop">
+                <iframe id="preview-frame" class="preview-frame" title="Previsualización del sitio web"></iframe>
+            </div>
+        </div>
+
+        <!-- Control Panel -->
+        <aside class="control-panel">
+            <!-- Site Information -->
+            <section id="site-info" class="panel-section">
+                <h3 class="section-title">
+                    <i class="fas fa-info-circle"></i>
+                    Información del Sitio
+                </h3>
+                <div class="form-group">
+                    <label for="site-name">Nombre del Negocio</label>
+                    <input type="text" id="site-name" placeholder="Nombre de tu negocio">
+                </div>
+                <div class="form-group">
+                    <label for="site-description">Descripción</label>
+                    <textarea id="site-description" placeholder="Describe tu negocio"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="site-phone">Teléfono</label>
+                    <input type="tel" id="site-phone" placeholder="Número de teléfono">
+                </div>
+                
+                <div class="form-group">
+                    <label for="site-address">Dirección</label>
+                    <input type="text" id="site-address" placeholder="Dirección del negocio">
+                </div>
+                <div class="form-group">
+                    <label for="business-hours">Horarios de Atención</label>
+                    <textarea id="business-hours" placeholder="Lun-Vie: 9:00-18:00\nSáb: 9:00-14:00"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="google-maps">Enlace de Google Maps</label>
+                    <input type="url" id="google-maps" placeholder="https://maps.google.com/...">
+                </div>
+            </section>
+
+            <!-- Logo Section -->
+            <section id="logo-section" class="panel-section">
+                <h3 class="section-title">
+                    <i class="fas fa-image"></i>
+                    Logo
+                </h3>
+                <div class="form-group">
+                    <label for="logo-url">URL del Logo</label>
+                    <input type="url" id="logo-url" placeholder="https://ejemplo.com/logo.png">
+                    <small class="form-help">Sube tu logo a un servicio como Imgur o usa una URL directa</small>
+                </div>
+                <div class="logo-preview" id="logo-preview" style="display: none;">
+                    <img id="logo-preview-img" alt="Vista previa del logo" style="max-width: 100%; height: auto; border-radius: 8px;">
+                </div>
+            </section>
+
+            <!-- Social Media Section -->
+            <section id="social-media" class="panel-section">
+                <h3 class="section-title">
+                    <i class="fas fa-share-alt"></i>
+                    Redes Sociales
+                </h3>
+                <div class="form-group">
+                    <label for="facebook-url">Facebook</label>
+                    <input type="url" id="facebook-url" placeholder="https://facebook.com/tu-pagina">
+                </div>
+                <div class="form-group">
+                    <label for="instagram-url">Instagram</label>
+                    <input type="url" id="instagram-url" placeholder="https://instagram.com/tu-cuenta">
+                </div>
+                <div class="form-group">
+                    <label for="tiktok-url">TikTok</label>
+                    <input type="url" id="tiktok-url" placeholder="https://tiktok.com/@tu-cuenta">
+                </div>
+                <div class="form-group">
+                    <label for="linkedin-url">LinkedIn</label>
+                    <input type="url" id="linkedin-url" placeholder="https://linkedin.com/company/tu-empresa">
+                </div>
+            </section>
+
+            <!-- Gallery Section -->
+            <section id="gallery-section" class="panel-section">
+                <h3 class="section-title">
+                    <i class="fas fa-images"></i>
+                    Galería de Imágenes
+                </h3>
+                <div class="form-group">
+                    <label>URLs de Imágenes (una por línea)</label>
+                    <textarea id="gallery-urls" placeholder="https://ejemplo.com/imagen1.jpg\nhttps://ejemplo.com/imagen2.jpg\nhttps://ejemplo.com/imagen3.jpg" rows="6"></textarea>
+                    <small class="form-help">Agrega las URLs de tus imágenes, una por línea</small>
+                </div>
+                <div class="gallery-preview" id="gallery-preview"></div>
+            </section>
+
+            <section id="colors" class="panel-section">
+                <h3 class="section-title">
+                    <i class="fas fa-palette"></i>
+                    Colores
+                </h3>
+                <div class="color-controls">
+                    <div class="color-group">
+                        <label for="primary-color">Color Primario</label>
+                        <div class="color-input-wrapper">
+                            <input type="color" id="primary-color" value="#2563eb">
+                            <span class="color-value">#2563eb</span>
+                        </div>
+                    </div>
+                    <div class="color-group">
+                        <label for="secondary-color">Color Secundario</label>
+                        <div class="color-input-wrapper">
+                            <input type="color" id="secondary-color" value="#1e40af">
+                            <span class="color-value">#1e40af</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button id="update-site-btn" class="update-btn">
+                        <i class="fas fa-save"></i> Actualizar Información
+                    </button>
+                </div>
+            </section>
+
+            <section id="publishing" class="panel-section">
+                <h3 class="section-title">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    Publicar Sitio
+                </h3>
+                <div class="publish-options">
+                    <button class="publish-btn" data-platform="netlify">
+                        <i class="fas fa-globe"></i>
+                        Netlify
+                    </button>
+                    <button class="publish-btn" data-platform="vercel">
+                        <i class="fas fa-rocket"></i>
+                        Vercel
+                    </button>
+                    <button class="publish-btn" data-platform="github">
+                        <i class="fab fa-github"></i>
+                        GitHub Pages
+                    </button>
+                    <button class="publish-btn" data-platform="firebase">
+                        <i class="fas fa-fire"></i>
+                        Firebase
+                    </button>
+                </div>
+            </section>
+        </aside>
+    </main>
+    <a href="https://wa.me/7721424369?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20Tempath"
+        class="whatsapp-float" target="_blank" aria-label="Contactar por WhatsApp">
+        <svg viewBox="0 0 24 24">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488" />
+        </svg>
+    </a>
+
+    <script type="module" src="assets/js/template-editor.js"></script>
+</body>
+
+</html>
