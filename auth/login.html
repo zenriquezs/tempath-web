@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tempath - Iniciar Sesión</title>
+  <link rel="shortcut icon" href="../assets/img/Tempath_icon.png" type="image/x-icon">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/auth.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="auth-page">
+  <main class="auth-container">
+    <div class="auth-brand">
+      <a href="../index.html">
+        <img src="../assets/img/Tempath-index.png" alt="Ir al inicio" class="auth-logo">
+      </a>
+    </div>
+
+    <div class="auth-card">
+      <h2>Iniciar Sesión</h2>
+      <p class="auth-subtitle">Inicia sesión y comienza a gestionar tu negocio</p>
+
+      <form id="loginForm" class="auth-form">
+        <input type="hidden" name="redirect" value="">
+        <div class="form-group">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+          <div class="password-header">
+            <label for="password">Contraseña</label>
+            <a href="forgot-password.html" class="text-link">¿Olvidaste tu contraseña?</a>
+          </div>
+          <div class="password-input">
+            <input type="password" id="password" name="password" required>
+            <button type="button" class="password-toggle">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-options">
+          <label class="checkbox-container">
+            <input type="checkbox" name="remember">
+            <span class="checkmark"></span>
+            Recordarme
+          </label>
+        </div>
+
+        <button type="submit" class="btn auth-btn">Iniciar Sesión</button>
+      </form>
+
+      <div class="auth-footer">
+        <p>¿No tienes una cuenta? <a href="signup.html" class="text-link">Regístrate</a></p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Capturar parámetro de redirección
+    const urlParams = new URLSearchParams(window.location.search);
+    const redirectTo = urlParams.get('redirect');
+    if (redirectTo) {
+      document.querySelector('input[name="redirect"]').value = redirectTo;
+    }
+  </script>
+  <script type="module" src="js/login.js"></script>
+  <script src="../assets/js/auth.js"></script>
+</body>
+
+</html>

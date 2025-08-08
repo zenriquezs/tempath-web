@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nombre del Negocio - Soluciones Profesionales</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <!-- Header No Fijo -->
+    <header class="header header-static">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container">
+                    <span id="business-name">NombreNegocio</span>
+                </div>
+                
+                <nav class="main-nav">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="#home" class="nav-link active">Inicio</a></li>
+                        <li class="nav-item"><a href="#work" class="nav-link">Nuestro Trabajo</a></li>
+                        <li class="nav-item"><a href="#services" class="nav-link">Servicios</a></li>
+                        <li class="nav-item"><a href="#contact" class="nav-link">Contacto</a></li>
+                    </ul>
+                    
+                    <button class="nav-toggle">
+                        <span class="hamburger"></span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section Full Viewport Centrado -->
+    <section id="home" class="hero hero-fullscreen hero-centered" style="background-color: var(--secondary-color); color: var(--white-color);">
+        <div class="hero-background">
+            <img src="https://images.unsplash.com/photo-1552581234-26160f608093?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" alt="Fondo hero">
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text" data-aos="zoom-in" data-aos-delay="100">
+                    <h1 id="business-slogan">Soluciones profesionales para tu negocio</h1>
+                    <p class="business-description">Somos una empresa dedicada a ofrecer soluciones innovadoras y de alta calidad para ayudar a tu negocio a crecer y alcanzar sus objetivos.</p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-primary">Contáctanos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nuestro Trabajo Section -->
+    <section id="work" class="section-padding large-padding" style="background-color: var(--light-color);">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-down">Nuestro Trabajo</h2>
+            <p class="section-subtitle" data-aos="fade-down" data-aos-delay="100">Descubre algunos de nuestros proyectos más recientes</p>
+            
+            <div class="work-showcase" data-aos="fade-up" data-aos-delay="200">
+                <div class="work-item active">
+                    <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" alt="Proyecto 1">
+                    <div class="work-caption">
+                        <h3>Proyecto Destacado</h3>
+                        <p>Descripción detallada de nuestro proyecto más reciente y exitoso.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios Section con Efecto Carrusel -->
+    <section id="services" class="section-padding large-padding" style="background-color: var(--white-color);">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-down">Nuestros Servicios</h2>
+            <p class="section-subtitle" data-aos="fade-down" data-aos-delay="100">Ofrecemos soluciones profesionales adaptadas a tus necesidades</p>
+            
+            <div class="services-carousel-container">
+                <div class="services-carousel">
+                    <div class="service-card featured" data-aos="fade-right" data-aos-delay="200">
+                        <div class="service-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3>Desarrollo Web</h3>
+                        <p>Creación de sitios web profesionales, responsivos y optimizados para motores de búsqueda.</p>
+                    </div>
+                    
+                    <div class="service-card" data-aos="fade-right" data-aos-delay="300">
+                        <div class="service-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Diseño Responsivo</h3>
+                        <p>Diseños adaptables a todos los dispositivos para una experiencia de usuario óptima.</p>
+                    </div>
+                    
+                    <div class="service-card" data-aos="fade-right" data-aos-delay="400">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Marketing Digital</h3>
+                        <p>Estrategias efectivas para aumentar tu presencia online y atraer más clientes.</p>
+                    </div>
+                    
+                    <div class="service-card" data-aos="fade-right" data-aos-delay="500">
+                        <div class="service-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h3>Diseño Gráfico</h3>
+                        <p>Creación de identidad visual, logotipos y material gráfico profesional.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto Section -->
+    <section id="contact" class="section-padding large-padding" style="background-color: var(--light-color);">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-down">Contáctanos</h2>
+            <p class="section-subtitle" data-aos="fade-down" data-aos-delay="100">Estamos listos para ayudarte. Envíanos un mensaje y te responderemos pronto.</p>
+            
+            <div class="contact-content">
+                <div class="contact-form" data-aos="fade-right" data-aos-delay="200">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Nombre completo" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Correo electrónico" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="¿Cómo podemos ayudarte?" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                    </form>
+                </div>
+                
+                <div class="contact-info" data-aos="fade-left" data-aos-delay="300">
+                    <h3>Información de Contacto</h3>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Av. Principal 1234, Ciudad, País</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <p>+1 234 567 890</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>info@nombredenegocio.com</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <p>Lunes a Viernes: 9:00 - 18:00<br>Sábados: 9:00 - 13:00</p>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ubicación y Mapa -->
+    <section class="location section-padding large-padding" style="background-color: var(--white-color);">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-down">Ubicación</h2>
+            <p class="section-subtitle" data-aos="fade-down" data-aos-delay="100">Visítanos en nuestras oficinas</p>
+            
+            <div class="location-content">
+                <div class="location-info" data-aos="fade-right" data-aos-delay="200">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Av. Principal 1234, Ciudad, País</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <p>+1 234 567 890</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>info@nombredenegocio.com</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <p>Lunes a Viernes: 9:00 - 18:00<br>Sábados: 9:00 - 13:00</p>
+                    </div>
+                </div>
+                
+                <div class="location-map" data-aos="fade-left" data-aos-delay="300">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215573291234!2d-73.9878449241641!3d40.74844047138911!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1629997977659!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer estilo Nescafé -->
+    <footer class="footer-nescafe" role="contentinfo">
+        <div class="footer-main">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <a href="#" title="Logo del Negocio" aria-label="Logo del negocio que enlaza a la página principal">
+                            <span id="business-name-footer">NombreNegocio</span>
+                        </a>
+                    </div>
+                    
+                    <div class="footer-social">
+                        <span class="footer-social-title">Síguenos en redes sociales para más contenido</span>
+                        <ul class="footer-social-links">
+                            <li>
+                                <a href="#" aria-label="Facebook" title="Facebook" target="_blank">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" aria-label="Instagram" title="Instagram" target="_blank">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" aria-label="Twitter" title="Twitter" target="_blank">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" aria-label="YouTube" title="YouTube" target="_blank">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <ul>
+                            <li><a href="#" title="Contacto" class="footer-link">Contacto</a></li>
+                            <li><a href="#" title="Términos y Condiciones" class="footer-link">Términos y Condiciones</a></li>
+                            <li><a href="#" title="Política de Privacidad" class="footer-link">Política de Privacidad</a></li>
+                            <li><a href="#" title="Cookies" class="footer-link">Cookies</a></li>
+                            <li><a href="#" title="Mapa del Sitio" class="footer-link">Mapa del Sitio</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-legal">
+                        <p>© <span id="current-year"></span> NombreNegocio. Todos los derechos reservados.</p>
+                        <p>NombreNegocio® es una marca registrada.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón Flotante "Volver Arriba" -->
+    <a href="#" class="back-to-top-btn" aria-label="Volver arriba">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/main_templates.js"></script>
+    <script>
+        // Botón "Volver arriba"
+        const backToTopBtn = document.querySelector('.back-to-top-btn');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
