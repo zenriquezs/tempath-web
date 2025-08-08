@@ -3,322 +3,317 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus | Soluciones Digitales</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/animations.css">
+    <title>{{businessName}} | Profesional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/template02.css">
+    <style>
+        :root {
+            --primary-color: {{primaryColor}};
+            --secondary-color: {{secondaryColor}};
+            --text-color: #333333;
+            --light-gray: #f8f8f8;
+            --medium-gray: #e0e0e0;
+            --dark-gray: #777777;
+            --white: #ffffff;
+        }
+    </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header Minimalista -->
     <header class="header">
         <div class="container">
             <div class="header-content">
                 <div class="logo-container">
-                    <img src="assets/logo.svg" alt="Nexus Logo" class="logo">
-                    <span id="business-name">Nexus</span>
+                    {{#if logoUrl}}
+                    <img src="{{logoUrl}}" alt="{{businessName}}" class="logo">
+                    {{else}}
+                    <span class="text-logo">{{businessName}}</span>
+                    {{/if}}
                 </div>
                 
                 <nav class="main-nav">
                     <ul class="nav-list">
-                        <li class="nav-item"><a href="#home" class="nav-link active">Inicio</a></li>
+                        <li class="nav-item"><a href="#home" class="nav-link">Inicio</a></li>
                         <li class="nav-item"><a href="#services" class="nav-link">Servicios</a></li>
-                        <li class="nav-item"><a href="#gallery" class="nav-link">Galería</a></li>
-                        <li class="nav-item"><a href="#location" class="nav-link">Ubicación</a></li>
+                        <li class="nav-item"><a href="#about" class="nav-link">Nosotros</a></li>
                         <li class="nav-item"><a href="#contact" class="nav-link">Contacto</a></li>
                     </ul>
-                    
-                    <button class="nav-toggle">
-                        <span class="hamburger"></span>
-                    </button>
                 </nav>
+                
+                <button class="menu-toggle">
+                    <span class="menu-line"></span>
+                    <span class="menu-line"></span>
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero" data-aos="fade-in">
+    <!-- Hero Section Minimalista -->
+    <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
-                <div class="hero-text" data-aos="fade-right" data-aos-delay="100">
-                    <h1 id="business-slogan">Soluciones digitales para un mundo conectado</h1>
-                    <p class="business-description">
-                        En Nexus creamos experiencias digitales transformadoras que conectan marcas con su audiencia. 
-                        Combinamos diseño innovador con tecnología de vanguardia para ofrecer resultados excepcionales.
-                    </p>
-                    <a href="#contact" class="btn btn-primary">Contáctanos</a>
+                <div class="hero-text">
+                    <h1 class="hero-title">{{businessName}}</h1>
+                    <p class="hero-subtitle">{{businessSlogan}}</p>
+                    <p class="hero-description">{{businessDescription}}</p>
+                    <div class="hero-actions">
+                        <a href="#contact" class="btn btn-primary">Contáctanos</a>
+                        <a href="#services" class="btn btn-secondary">Nuestros Servicios</a>
+                    </div>
                 </div>
-                
-                <div class="hero-image" data-aos="fade-left" data-aos-delay="200">
-                    <img src="assets/hero-image.jpg" alt="Equipo de Nexus trabajando">
+                {{#if heroImageUrl}}
+                <div class="hero-image">
+                    <img src="{{heroImageUrl}}" alt="{{businessName}}">
                 </div>
+                {{/if}}
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- Servicios Elegantes -->
     <section id="services" class="services">
         <div class="container">
-            <div data-aos="fade-down">
+            <div class="section-header">
                 <h2 class="section-title">Nuestros Servicios</h2>
-                <p class="section-subtitle">
-                    Ofrecemos soluciones integrales diseñadas para impulsar tu presencia digital y hacer crecer tu negocio.
-                </p>
+                <p class="section-subtitle">{{servicesDescription}}</p>
             </div>
             
             <div class="services-grid">
-                <!-- Service 1 -->
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="100">
+                {{#each services}}
+                <div class="service-card">
                     <div class="service-icon">
-                        <i class="fas fa-code"></i>
+                        <i class="{{this.icon}}"></i>
                     </div>
-                    <h3>Desarrollo Web</h3>
-                    <p>Sitios web personalizados, rápidos y optimizados para SEO que convierten visitantes en clientes.</p>
+                    <h3 class="service-title">{{this.name}}</h3>
+                    <p class="service-description">{{this.description}}</p>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Nosotros -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">Sobre Nosotros</h2>
+                    <p>{{aboutUs}}</p>
+                    
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <span class="stat-number">{{yearsExperience}}+</span>
+                            <span class="stat-label">Años de Experiencia</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">{{happyClients}}+</span>
+                            <span class="stat-label">Clientes Satisfechos</span>
+                        </div>
+                    </div>
                 </div>
                 
-                <!-- Service 2 -->
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="service-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>Aplicaciones Móviles</h3>
-                    <p>Aplicaciones nativas e híbridas diseñadas para ofrecer la mejor experiencia de usuario.</p>
-                </div>
-                
-                <!-- Service 3 -->
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Marketing Digital</h3>
-                    <p>Estrategias personalizadas para aumentar tu visibilidad y atraer clientes potenciales.</p>
-                </div>
-                
-                <!-- Service 4 -->
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="400">
-                    <div class="service-icon">
-                        <i class="fas fa-paint-brush"></i>
-                    </div>
-                    <h3>Diseño UX/UI</h3>
-                    <p>Interfaces intuitivas y atractivas que mejoran la experiencia del usuario y la conversión.</p>
-                </div>
-                
-                <!-- Service 5 -->
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="500">
-                    <div class="service-icon">
-                        <i class="fas fa-cloud"></i>
-                    </div>
-                    <h3>Cloud Solutions</h3>
-                    <p>Infraestructura escalable y segura para garantizar el máximo rendimiento de tus aplicaciones.</p>
-                </div>
-                
-                <!-- Service 6 -->
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="600">
-                    <div class="service-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3>Automatización</h3>
-                    <p>Soluciones inteligentes que optimizan tus procesos y reducen costos operativos.</p>
+                <div class="about-image">
+                    {{#if aboutImageUrl}}
+                    <img src="{{aboutImageUrl}}" alt="Sobre {{businessName}}">
+                    {{else}}
+                    <div class="placeholder-image"></div>
+                    {{/if}}
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery">
+    <!-- Galería Minimalista -->
+    {{#if galleryUrls}}
+    <section class="gallery">
         <div class="container">
-            <div data-aos="fade-down">
+            <div class="section-header">
                 <h2 class="section-title">Nuestro Trabajo</h2>
-                <p class="section-subtitle">
-                    Algunos de nuestros proyectos más recientes que muestran nuestra capacidad y creatividad.
-                </p>
+                <p class="section-subtitle">Algunos de nuestros proyectos destacados</p>
             </div>
             
             <div class="gallery-grid">
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
-                    <img src="assets/project1.jpg" alt="Proyecto E-commerce">
+                {{#each galleryUrls}}
+                <div class="gallery-item">
+                    <img src="{{this}}" alt="Proyecto {{add @index 1}}" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span>Ver Detalles</span>
+                    </div>
                 </div>
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
-                    <img src="assets/project2.jpg" alt="Aplicación móvil">
-                </div>
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="300">
-                    <img src="assets/project3.jpg" alt="Diseño de interfaz">
-                </div>
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="400">
-                    <img src="assets/project4.jpg" alt="Dashboard analítico">
-                </div>
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="500">
-                    <img src="assets/project5.jpg" alt="Branding corporativo">
-                </div>
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="600">
-                    <img src="assets/project6.jpg" alt="Sitio web institucional">
-                </div>
+                {{/each}}
             </div>
         </div>
     </section>
+    {{/if}}
 
-    <!-- Location Section -->
-    <section id="location" class="location">
-        <div class="container">
-            <div data-aos="fade-down">
-                <h2 class="section-title">Nuestra Ubicación</h2>
-                <p class="section-subtitle">
-                    Visítanos en nuestras oficinas o contáctanos para una reunión virtual.
-                </p>
-            </div>
-            
-            <div class="location-content">
-                <div class="location-info" data-aos="fade-right">
-                    <div class="info-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <p>Av. Reforma 123, Col. Juárez, CDMX, 06600</p>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-phone-alt"></i>
-                        <p>+52 55 1234 5678</p>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-envelope"></i>
-                        <p>hola@nexus.com</p>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-clock"></i>
-                        <p>Lunes a Viernes: 9:00 AM - 6:00 PM</p>
-                    </div>
-                    
-                    <div class="social-links">
-                        <a href="#" class="social-link" aria-label="Facebook">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="Twitter">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="location-map" data-aos="fade-left" data-aos-delay="200">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.88861477103!2d-99.1678267243386!3d19.42702054081442!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff35f5bd1563%3A0x6c366f0e2de02ff7!2sEl%20%C3%81ngel%20de%20la%20Independencia!5e0!3m2!1ses-419!2smx!4v1710000000000!5m2!1ses-419!2smx" 
-                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
+    <!-- Contacto Elegante -->
     <section id="contact" class="contact">
         <div class="container">
-            <div data-aos="fade-down">
-                <h2 class="section-title">Contáctanos</h2>
-                <p class="section-subtitle">
-                    ¿Listo para comenzar tu próximo proyecto? Envíanos un mensaje y nos pondremos en contacto contigo.
-                </p>
-            </div>
-            
             <div class="contact-content">
-                <div class="contact-form" data-aos="fade-right">
-                    <form id="contactForm">
+                <div class="contact-info">
+                    <h2 class="section-title">Contacto</h2>
+                    <p>Estamos disponibles para responder tus preguntas y ayudarte con lo que necesites.</p>
+                    
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Dirección</h4>
+                                <p>{{businessAddress}}</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Teléfono</h4>
+                                <p>{{contactPhone}}</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>{{contactEmail}}</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h4>Horario</h4>
+                                <p>{{businessHours}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {{#if socialMedia}}
+                    <div class="social-links">
+                        <h4>Síguenos</h4>
+                        <div class="social-icons">
+                            {{#each socialMedia}}
+                            <a href="{{this}}" target="_blank" aria-label="{{@key}}">
+                                <i class="fab fa-{{@key}}"></i>
+                            </a>
+                            {{/each}}
+                        </div>
+                    </div>
+                    {{/if}}
+                </div>
+                
+                <div class="contact-form-container">
+                    <form id="contactForm" class="contact-form">
                         <div class="form-group">
-                            <input type="text" placeholder="Nombre completo" required>
+                            <input type="text" id="name" name="name" placeholder="Nombre Completo" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" placeholder="Correo electrónico" required>
+                            <input type="email" id="email" name="email" placeholder="Correo Electrónico" required>
                         </div>
                         <div class="form-group">
-                            <input type="tel" placeholder="Teléfono">
+                            <input type="tel" id="phone" name="phone" placeholder="Teléfono (Opcional)">
                         </div>
                         <div class="form-group">
-                            <textarea placeholder="Cuéntanos sobre tu proyecto" required></textarea>
+                            <textarea id="message" name="message" placeholder="Tu Mensaje" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
                     </form>
                 </div>
-                
-                <div class="contact-info" data-aos="fade-left" data-aos-delay="200">
-                    <h3>Información de contacto</h3>
-                    <p>
-                        <i class="fas fa-phone-alt"></i> +52 55 1234 5678<br>
-                        <i class="fas fa-envelope"></i> hola@nexus.com
-                    </p>
-                    
-                    <h3 style="margin-top: 30px;">Horario de atención</h3>
-                    <p>
-                        <i class="fas fa-clock"></i> Lunes a Viernes: 9:00 AM - 6:00 PM<br>
-                        <i class="fas fa-clock"></i> Sábados: 10:00 AM - 2:00 PM
-                    </p>
-                    
-                    <h3 style="margin-top: 30px;">Síguenos</h3>
-                    <div class="social-links">
-                        <a href="#" class="social-link" aria-label="Facebook">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="Behance">
-                            <i class="fab fa-behance"></i>
-                        </a>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer Minimalista -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <img src="assets/logo-white.svg" alt="Nexus Logo" class="logo">
-                    <h3>Nexus</h3>
-                    <p>Soluciones digitales para un mundo conectado.</p>
+                    {{#if logoUrl}}
+                    <img src="{{logoUrl}}" alt="{{businessName}}" class="footer-logo">
+                    {{else}}
+                    <span class="text-logo">{{businessName}}</span>
+                    {{/if}}
+                    <p>{{businessShortDescription}}</p>
                 </div>
                 
                 <div class="footer-links">
-                    <h4>Enlaces rápidos</h4>
+                    <h4>Enlaces Rápidos</h4>
                     <ul>
                         <li><a href="#home">Inicio</a></li>
                         <li><a href="#services">Servicios</a></li>
-                        <li><a href="#gallery">Galería</a></li>
-                        <li><a href="#location">Ubicación</a></li>
+                        <li><a href="#about">Nosotros</a></li>
                         <li><a href="#contact">Contacto</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-contact">
                     <h4>Contacto</h4>
-                    <p><i class="fas fa-map-marker-alt"></i> Av. Reforma 123, CDMX</p>
-                    <p><i class="fas fa-phone-alt"></i> +52 55 1234 5678</p>
-                    <p><i class="fas fa-envelope"></i> hola@nexus.com</p>
-                </div>
-                
-                <div class="footer-social">
-                    <h4>Redes sociales</h4>
-                    <div class="social-icons">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    </div>
+                    <p><i class="fas fa-map-marker-alt"></i> {{businessAddress}}</p>
+                    <p><i class="fas fa-phone"></i> {{contactPhone}}</p>
+                    <p><i class="fas fa-envelope"></i> {{contactEmail}}</p>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; <span id="current-year"></span> Nexus. Todos los derechos reservados.</p>
+                <p>&copy; <span id="current-year"></span> {{businessName}}. Todos los derechos reservados.</p>
+                <p>Creado con <strong>Tempath</strong></p>
             </div>
         </div>
     </footer>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/main_templates.js"></script>
+    <script>
+        // Año actual
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Menú móvil
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navList = document.querySelector('.nav-list');
+        
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Cerrar menú móvil si está abierto
+                    if (navList.classList.contains('active')) {
+                        navList.classList.remove('active');
+                        menuToggle.classList.remove('active');
+                    }
+                }
+            });
+        });
+        
+        // Formulario de contacto
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.');
+                this.reset();
+            });
+        }
+        
+        // Efecto hover en galería
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        galleryItems.forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.querySelector('.gallery-overlay').style.opacity = '1';
+            });
+            item.addEventListener('mouseleave', function() {
+                this.querySelector('.gallery-overlay').style.opacity = '0';
+            });
+        });
+    </script>
 </body>
 </html>

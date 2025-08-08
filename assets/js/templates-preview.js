@@ -41,8 +41,11 @@ document.addEventListener("DOMContentLoaded", () => {
   
     const templateMap = {
       'moderna': 'modern',
-      'clasica': 'classic', 
-      'creativa': 'minimal'
+      'clasica': 'classic',
+      'creativa': 'minimal',
+      'profesional': 'template01',
+      'minimalista': 'template02',
+      'vibrante': 'template03'
     };
   
     // Cargar cada plantilla real
@@ -497,7 +500,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const templateMap = {
         'moderna': 'modern',
         'clasica': 'classic', 
-        'creativa': 'minimal'
+        'creativa': 'minimal',
+        'profesional': 'template01',
+        'minimalista': 'template02',
+        'vibrante': 'template03'
       };
 
       const actualTemplateName = templateMap[templateType] || 'modern';
