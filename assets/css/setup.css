@@ -180,6 +180,16 @@
   margin-bottom: 2rem;
 }
 
+.form-row {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.form-row .form-group {
+  flex: 1;
+  margin-bottom: 0;
+}
+
 .form-group label {
   display: block;
   margin-bottom: 0.8rem;
@@ -244,6 +254,354 @@
 .color-options label {
   margin-bottom: 0;
   font-weight: 400;
+}
+
+/* Business Hours */
+.business-hours-container {
+  border: 1px solid var(--gray-color-2);
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.days-selector {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  justify-content: center;
+}
+
+.day-checkbox {
+  position: relative;
+}
+
+.day-checkbox input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+}
+
+.day-checkbox label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--gray-color-2);
+  color: var(--white-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.day-checkbox input[type="checkbox"]:checked + label {
+  background-color: var(--primary-accent);
+}
+
+.time-pickers {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.time-picker-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.time-picker-group label {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--gray-text-color);
+}
+
+.time-picker-group input[type="time"] {
+  padding: 0.5rem;
+  border: 1px solid var(--gray-color-2);
+  border-radius: 4px;
+}
+
+/* Estilos para el selector de hora */
+.timepicker {
+  background-color: white;
+  cursor: pointer;
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--gray-color-2);
+  border-radius: 4px;
+  text-align: center;
+}
+
+/* Estilos para horarios diferentes */
+.different-hours-section {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px dashed var(--gray-color-2);
+}
+
+.different-hours-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--gray-text-color);
+}
+
+.btn-different-hours {
+  background-color: var(--primary-bg-color);
+  color: var(--primary-accent);
+  border: 1px solid var(--primary-accent);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-different-hours:hover {
+  background-color: var(--primary-accent);
+  color: white;
+}
+
+.different-hours-container {
+  margin-top: 1rem;
+}
+
+.different-hours-item {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-radius: 6px;
+}
+
+.day-selector select {
+  padding: 0.5rem;
+  border: 1px solid var(--gray-color-2);
+  border-radius: 4px;
+  width: 120px;
+}
+
+.special-time-pickers {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.special-time-pickers input {
+  padding: 0.5rem;
+  border: 1px solid var(--gray-color-2);
+  border-radius: 4px;
+  width: 100px;
+  text-align: center;
+}
+
+.remove-special-hours {
+  background: none;
+  border: none;
+  color: var(--secondary-accent);
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  line-height: 1;
+}
+
+.btn-add-another-day {
+  background-color: var(--primary-bg-color);
+  color: var(--primary-accent);
+  border: 1px solid var(--primary-accent);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.btn-add-another-day:hover {
+  background-color: var(--primary-accent);
+  color: white;
+}
+
+/* Estilos para el modal de horarios especiales */
+.special-hours-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.special-hours-modal .modal-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+}
+
+.special-hours-modal h3 {
+  color: var(--primary-accent);
+  margin-bottom: 1rem;
+}
+
+.special-hours-modal p {
+  margin-bottom: 1.5rem;
+  color: var(--gray-text-color);
+  line-height: 1.5;
+}
+
+.modal-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.modal-btn {
+  padding: 0.8rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.modal-btn.keep-both {
+  background-color: var(--primary-accent);
+  color: white;
+}
+
+.modal-btn.keep-both:hover {
+  background-color: #7c4dff;
+}
+
+.modal-btn.disable-regular {
+  background-color: var(--secondary-accent);
+  color: white;
+}
+
+.modal-btn.disable-regular:hover {
+  background-color: #8b4a48;
+}
+
+.modal-btn.cancel {
+  background-color: var(--gray-color-2);
+  color: var(--primary-accent);
+}
+
+.modal-btn.cancel:hover {
+  background-color: var(--gray-color);
+}
+
+/* Services */
+.services-container {
+  margin-top: 2rem;
+}
+
+.service-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--gray-color-2);
+  border-radius: 6px;
+  background-color: var(--white-color);
+}
+
+.service-item input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid var(--gray-color-2);
+  border-radius: 4px;
+}
+
+.remove-service {
+  background: none;
+  border: none;
+  color: var(--secondary-accent);
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  line-height: 1;
+}
+
+.btn-add-service {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--primary-accent);
+  color: var(--white-color);
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-add-service:hover {
+  background-color: var(--secondary-accent);
+}
+
+/* Resumen Confirmacion */
+.confirmation-summary {
+  background-color: var(--white-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.summary-content {
+  width: 100%;
+  overflow-x: auto;
+}
+
+#summaryContent {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.summary-item {
+  display: table-row;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 1px solid var(--gray-color-2);
+}
+
+.summary-item strong {
+  display: table-cell;
+  width: 30%;
+  min-width: 150px;
+  padding: 12px 15px;
+  color: var(--gray-text-color);
+  vertical-align: top;
+  font-weight: 500;
+  border-right: 1px solid var(--gray-color-2);
+}
+
+.summary-item span {
+  display: table-cell;
+  padding: 12px 15px;
+  word-break: break-word;
+  max-width: 500px;
+}
+
+.summary-item a {
+  word-break: break-all;
+  color: var(--primary-accent);
+  text-decoration: none;
+}
+
+.summary-item a:hover {
+  text-decoration: underline;
 }
 
 /* Redes sociales */
@@ -555,6 +913,25 @@ textarea.invalid {
     height: 30px;
     font-size: 0.9rem;
   }
+
+  .different-hours-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .special-time-pickers {
+    width: 100%;
+  }
+
+    .summary-item strong {
+    width: 40%;
+    min-width: 120px;
+    padding: 8px 10px;
+  }
+  
+  .summary-item span {
+    padding: 8px 10px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -600,5 +977,35 @@ textarea.invalid {
   .btn-submit {
     width: 100%;
   }
-}
 
+  .day-selector select {
+    width: 100%;
+  }
+
+  .special-time-pickers {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .special-time-pickers input {
+    width: 100%;
+  }
+
+    .summary-item {
+    display: block;
+    padding: 10px 0;
+  }
+  
+  .summary-item strong {
+    display: block;
+    width: 100%;
+    padding: 5px 0;
+    border-right: none;
+    border-bottom: 1px dashed var(--gray-color-2);
+  }
+  
+  .summary-item span {
+    display: block;
+    padding: 8px 0 12px;
+  }
+}
