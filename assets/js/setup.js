@@ -42,6 +42,14 @@ document.addEventListener("DOMContentLoaded", function () {
     initialCountry: "mx",
     separateDialCode: true,
     utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    nationalMode: false,
+    formatOnDisplay: true,
+    autoFormat: true
+  });
+
+  phoneInput.addEventListener('input', function() {
+    // Forzar formato internacional
+    iti.setNumber(iti.getNumber());
   });
 
   initMultiStepForm();
@@ -211,6 +219,167 @@ document.addEventListener("DOMContentLoaded", function () {
         handleImagesUpload(Array.from(imagesInput.files));
       }
     });
+  }
+
+  function initTimePickers() {
+    flatpickr('.timepicker', {
+      enableTime: true,
+      noCalendar: true,
+      dateFormat: "h:i K",
+      time_24hr: false,
+      minuteIncrement: 15,
+      locale: 'es',
+      plugins: [new confirmDatePlugin({
+        confirmIcon: "<i class='fas fa-check'></i>",
+        confirmText: "OK",
+        showAlways: true
+      })]
+    });
+  }
+
+  // Función para verificar si un día ya está seleccionado en los horarios regulares
+  function isDayAlreadySelected(day) {
+    const dayMap = {
+      'Lunes': 'monday',
+      'Martes': 'tuesday',
+      'Miércoles': 'wednesday',
+      'Jueves': 'thursday',
+      'Viernes': 'friday',
+      'Sábado': 'saturday',
+      'Domingo': 'sunday'
+    };
+    
+    const checkboxId = dayMap[day];
+    if (!checkboxId) return false;
+    
+    return document.getElementById(checkboxId).checked;
+  }
+
+  // Función para mostrar el diálogo de confirmación
+  async function showSpecialHoursConfirmation(day) {
+    return new Promise((resolve) => {
+      // Crear el modal de confirmación
+      const modal = document.createElement('div');
+      modal.className = 'special-hours-modal';
+      modal.innerHTML = `
+        <div class="modal-content">
+          <h3>Horario especial para ${day}</h3>
+          <p>Este día ya está incluido en tus horarios regulares. ¿Qué deseas hacer?</p>
+          <div class="modal-options">
+            <button class="modal-btn keep-both">Mantener ambos horarios</button>
+            <button class="modal-btn disable-regular">Desactivar el horario regular</button>
+            <button class="modal-btn cancel">Cancelar</button>
+          </div>
+        </div>
+      `;
+      
+      document.body.appendChild(modal);
+      
+      // Manejar las opciones
+      modal.querySelector('.keep-both').addEventListener('click', () => {
+        modal.remove();
+        resolve('keep-both');
+      });
+      
+      modal.querySelector('.disable-regular').addEventListener('click', () => {
+        const checkboxId = {
+          'Lunes': 'monday',
+          'Martes': 'tuesday',
+          'Miércoles': 'wednesday',
+          'Jueves': 'thursday',
+          'Viernes': 'friday',
+          'Sábado': 'saturday',
+          'Domingo': 'sunday'
+        }[day];
+        
+        if (checkboxId) {
+          document.getElementById(checkboxId).checked = false;
+        }
+        
+        modal.remove();
+        resolve('disable-regular');
+      });
+      
+      modal.querySelector('.cancel').addEventListener('click', () => {
+        modal.remove();
+        resolve('cancel');
+      });
+    });
+  }
+
+  function initDifferentHours() {
+      const addBtn = document.getElementById('addDifferentHoursBtn');
+      const container = document.getElementById('differentHoursContainer');
+      const addAnotherBtn = document.getElementById('addAnotherDayBtn');
+      
+      addBtn.addEventListener('click', function() {
+          container.style.display = 'block';
+          addBtn.style.display = 'none';
+          
+          // Aplicar la validación al primer elemento
+          const firstDaySelect = container.querySelector('.special-day');
+          setupDaySelectValidation(firstDaySelect);
+      });
+      
+      addAnotherBtn.addEventListener('click', async function() {
+          const newItem = document.createElement('div');
+          newItem.className = 'different-hours-item';
+          newItem.innerHTML = `
+              <div class="day-selector">
+                  <select class="special-day">
+                      <option value="Lunes">Lunes</option>
+                      <option value="Martes">Martes</option>
+                      <option value="Miércoles">Miércoles</option>
+                      <option value="Jueves">Jueves</option>
+                      <option value="Viernes">Viernes</option>
+                      <option value="Sábado">Sábado</option>
+                      <option value="Domingo">Domingo</option>
+                  </select>
+              </div>
+              <div class="special-time-pickers">
+                  <input type="text" class="special-opening-time timepicker" placeholder="Apertura" readonly>
+                  <input type="text" class="special-closing-time timepicker" placeholder="Cierre" readonly>
+                  <button type="button" class="remove-special-hours">×</button>
+              </div>
+          `;
+          
+          container.insertBefore(newItem, addAnotherBtn);
+          initTimePickers();
+          
+          // Aplicar la validación al nuevo elemento
+          const daySelect = newItem.querySelector('.special-day');
+          setupDaySelectValidation(daySelect);
+      });
+      
+      container.addEventListener('click', function(e) {
+          if (e.target.classList.contains('remove-special-hours')) {
+              e.target.closest('.different-hours-item').remove();
+              if (container.querySelectorAll('.different-hours-item').length === 0) {
+                  container.style.display = 'none';
+                  addBtn.style.display = 'block';
+              }
+          }
+      });
+  }
+
+  // Nueva función para configurar la validación del select de días
+  async function setupDaySelectValidation(daySelect) {
+      daySelect.addEventListener('change', async function() {
+          const selectedDay = this.value;
+          if (isDayAlreadySelected(selectedDay)) {
+              const action = await showSpecialHoursConfirmation(selectedDay);
+              if (action === 'cancel') {
+                  const container = document.getElementById('differentHoursContainer');
+                  const item = this.closest('.different-hours-item');
+                  item.remove();
+                  
+                  if (container.querySelectorAll('.different-hours-item').length === 0) {
+                      container.style.display = 'none';
+                      document.getElementById('addDifferentHoursBtn').style.display = 'block';
+                  }
+              }
+          }
+      });
   }
 
   function handleLogoUpload(file) {
@@ -407,6 +576,8 @@ document.addEventListener("DOMContentLoaded", function () {
   function initMultiStepForm() {
     showStep(currentStep);
     initDropzones();
+    initTimePickers();
+    initDifferentHours();
 
     nextBtn.addEventListener("click", nextStep);
     prevBtn.addEventListener("click", prevStep);
@@ -489,12 +660,15 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function addSummaryItem(label, value) {
-    if (!value) return;
-    
-    const summaryItem = document.createElement('div');
-    summaryItem.className = 'summary-item';
-    summaryItem.innerHTML = `<strong>${label}:</strong> ${value}`;
-    document.getElementById('summaryContent').appendChild(summaryItem);
+      if (!value) return;
+      
+      const summaryItem = document.createElement('div');
+      summaryItem.className = 'summary-item';
+      summaryItem.innerHTML = `
+          <strong>${label}</strong>
+          <span>${value}</span>
+      `;
+      document.getElementById('summaryContent').appendChild(summaryItem);
   }
 
   function getBusinessHoursSummary() {
@@ -502,28 +676,38 @@ document.addEventListener("DOMContentLoaded", function () {
     const openingTime = document.getElementById('openingTime').value;
     const closingTime = document.getElementById('closingTime').value;
     
-    if (days.length === 0 || !openingTime || !closingTime) return '';
+    let summary = '';
     
-    if (days.length === 7) {
-      return `Todos los días: ${formatTime(openingTime)} - ${formatTime(closingTime)}`;
-    } else if (days.length === 5 && 
-               days.includes('Lunes') && 
-               days.includes('Martes') && 
-               days.includes('Miércoles') && 
-               days.includes('Jueves') && 
-               days.includes('Viernes')) {
-      return `Lunes a Viernes: ${formatTime(openingTime)} - ${formatTime(closingTime)}`;
-    } else {
-      return `${days.join(', ')}: ${formatTime(openingTime)} - ${formatTime(closingTime)}`;
+    if (days.length > 0 && openingTime && closingTime) {
+      if (days.length === 7) {
+        summary += `Todos los días: ${openingTime} - ${closingTime}`;
+      } else if (days.length === 5 && 
+                 days.includes('Lunes') && 
+                 days.includes('Martes') && 
+                 days.includes('Miércoles') && 
+                 days.includes('Jueves') && 
+                 days.includes('Viernes')) {
+        summary += `Lunes a Viernes: ${openingTime} - ${closingTime}`;
+      } else {
+        summary += `${days.join(', ')}: ${openingTime} - ${closingTime}`;
+      }
     }
-  }
-
-  function formatTime(time) {
-    const [hours, minutes] = time.split(':');
-    const hour = parseInt(hours);
-    const ampm = hour >= 12 ? 'pm' : 'am';
-    const displayHour = hour % 12 || 12;
-    return `${displayHour}:${minutes} ${ampm}`;
+    
+    // Agregar horarios especiales
+    const specialHours = document.querySelectorAll('.different-hours-item');
+    if (specialHours.length > 0) {
+      summary += '<br><br>Horarios especiales:<br>';
+      specialHours.forEach(item => {
+        const day = item.querySelector('.special-day').value;
+        const open = item.querySelector('.special-opening-time').value;
+        const close = item.querySelector('.special-closing-time').value;
+        if (open && close) {
+          summary += `${day}: ${open} - ${close}<br>`;
+        }
+      });
+    }
+    
+    return summary || 'No especificado';
   }
 
   function nextStep() {
@@ -845,24 +1029,38 @@ document.addEventListener("DOMContentLoaded", function () {
       // Recopilar datos del formulario
       const formData = collectFormData();
       
-      // Agregar URLs de imágenes
+      // Estructura esperada para guardar en Firebase
       const finalData = {
-        ...formData.businessInfo,
-        ...formData.location,
-        ...formData.customization,
+        businessName: formData.businessInfo.name,
+        businessDescription: formData.businessInfo.description,
+        contactPhone: formData.businessInfo.phone,
+        businessAddress: formData.location.address || null,
+        googleMaps: formData.location.maps || null,
+        businessHours: formData.location.hours || null,
+        primaryColor: formData.customization.primaryColor,
+        secondaryColor: formData.customization.secondaryColor,
         logoUrl: logoUrl,
-        heroImageUrl: heroUrl,
-        aboutImageUrl: aboutUrl,
         galleryUrls: galleryUrls,
         socialMedia: formData.socialMedia,
-        services: formData.services,
         createdAt: new Date().toISOString(),
-        userId: auth.currentUser.uid
+        userId: auth.currentUser.uid,
+        
+        // Nuevos campos que necesitas mantener
+        businessSlogan: formData.businessInfo.slogan,
+        businessShortDescription: formData.businessInfo.shortDescription,
+        contactEmail: formData.businessInfo.email,
+        aboutUs: formData.businessInfo.aboutUs,
+        servicesDescription: formData.businessInfo.servicesDescription,
+        yearsExperience: formData.businessInfo.yearsExperience,
+        happyClients: formData.businessInfo.happyClients,
+        heroImageUrl: heroUrl,
+        aboutImageUrl: aboutUrl,
+        services: formData.services
       };
       
       console.log("Datos finales a guardar:", finalData);
       
-      // Guardar en Firebase usando push() para crear campos separados
+      // Guardar en Firebase
       const user = auth.currentUser;
       if (user) {
         const userRef = ref(db, `Informacion-Usuarios/${user.uid}`);
@@ -871,8 +1069,9 @@ document.addEventListener("DOMContentLoaded", function () {
         
         console.log('Datos guardados exitosamente');
         
-        // Redirigir a selección de plantillas
-        window.location.href = 'templates-selection.html';
+        // Redirigir a selección de plantillas con el ID del negocio
+        const businessId = newEntryRef.key;
+        window.location.href = `templates-selection.html?businessId=${businessId}`;
       }
       
     } catch (error) {

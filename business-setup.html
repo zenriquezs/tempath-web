@@ -182,6 +182,7 @@
             <p class="field-description">Ejemplo correcto: https://www.google.com/maps/place/TuNegocio</p>
           </div>
 
+          <!-- Sección 4: Horario de trabajo -->
           <div class="form-group">
             <label>Horario de atención</label>
             <div class="business-hours-container">
@@ -215,26 +216,54 @@
                   <label for="sunday">D</label>
                 </div>
               </div>
-              
+
               <div class="time-pickers">
                 <div class="time-picker-group">
                   <label for="openingTime">Hora de apertura</label>
-                  <input type="time" id="openingTime" name="openingTime" value="09:00">
+                  <input type="text" id="openingTime" name="openingTime" class="timepicker" placeholder="Selecciona hora" readonly>
                 </div>
                 <div class="time-picker-group">
                   <label for="closingTime">Hora de cierre</label>
-                  <input type="time" id="closingTime" name="closingTime" value="18:00">
+                  <input type="text" id="closingTime" name="closingTime" class="timepicker" placeholder="Selecciona hora" readonly>
                 </div>
               </div>
             </div>
             <p class="field-description">Selecciona los días y horarios de atención</p>
+            
+            <div class="different-hours-section">
+                <label class="different-hours-label">¿Tienes algún día con horario diferente?</label>
+                <button type="button" id="addDifferentHoursBtn" class="btn-different-hours">Sí, agregar días especiales</button>
+                
+                <div id="differentHoursContainer" class="different-hours-container" style="display: none;">
+                    <div class="different-hours-item">
+                        <div class="day-selector">
+                            <select class="special-day">
+                                <option value="" selected disabled>Selecciona día</option>
+                                <option value="Lunes">Lunes</option>
+                                <option value="Martes">Martes</option>
+                                <option value="Miércoles">Miércoles</option>
+                                <option value="Jueves">Jueves</option>
+                                <option value="Viernes">Viernes</option>
+                                <option value="Sábado">Sábado</option>
+                                <option value="Domingo">Domingo</option>
+                            </select>
+                        </div>
+                        <div class="special-time-pickers">
+                            <input type="text" class="special-opening-time timepicker" placeholder="Apertura" readonly>
+                            <input type="text" class="special-closing-time timepicker" placeholder="Cierre" readonly>
+                            <button type="button" class="remove-special-hours">×</button>
+                        </div>
+                    </div>
+                    <button type="button" id="addAnotherDayBtn" class="btn-add-another-day">Agregar otro día</button>
+                </div>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- Step 2: Personalización -->
       <div class="form-step" data-step="2">
-        <!-- Sección 4: Personalización adicional -->
+        <!-- Sección 5: Personalización adicional -->
         <div class="form-section" data-aos="fade-up" data-aos-delay="200">
           <h2>Personalización</h2>
           <p class="section-description">Añade detalles que hagan única tu página</p>
@@ -325,7 +354,9 @@
           <div class="confirmation-content" data-aos="fade-up" data-aos-delay="300">
             <div class="confirmation-summary">
               <h3>Resumen de tu configuración</h3>
-              <div id="summaryContent"></div>
+              <div class="summary-content">
+                <div id="summaryContent"></div>
+              </div>
             </div>
             <p>Tu sitio web se generará con la información que has proporcionado. Después de crear tu sitio, podrás editarlo en cualquier momento desde tu panel de control.</p>
           </div>
@@ -432,6 +463,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/confirmDate/confirmDate.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <script type="module" src="assets/js/main.js"></script>
   <script type="module" src="assets/js/setup.js"></script>
