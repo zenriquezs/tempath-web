@@ -17,20 +17,39 @@ export async function getUserBusinessData(userId) {
   return null;
 }
 
+// Cargar configuración de plantillas dinámicamente
+let templatesConfig = null;
+
+async function loadTemplatesConfig() {
+  if (!templatesConfig) {
+    try {
+      const response = await fetch('./templates/templates-config.json');
+      templatesConfig = await response.json();
+    } catch (error) {
+      console.error('Error cargando configuración de plantillas:', error);
+      // Fallback a configuración hardcodeada
+      templatesConfig = {
+        templates: [
+          { id: 'moderna', fileName: 'modern' },
+          { id: 'clasica', fileName: 'classic' },
+          { id: 'creativa', fileName: 'minimal' }
+        ]
+      };
+    }
+  }
+  return templatesConfig;
+}
+
 export async function loadTemplate(templateType) {
   try {
-    // Mapeo de nombres de plantillas a archivos
-    const templateMap = {
-      'moderna': 'modern',
-      'clasica': 'classic',
-      'creativa': 'creative',
-      'profesional': 'template01',
-      'minimalista': 'template02',
-      'vibrante': 'template03'
-    };
+    const config = await loadTemplatesConfig();
+    const template = config.templates.find(t => t.id === templateType);
+    
+    if (!template) {
+      throw new Error(`Plantilla '${templateType}' no encontrada`);
+    }
 
-    const templateFileName = templateMap[templateType] || templateType;
-    const response = await fetch(`./templates/${templateFileName}.html`);
+    const response = await fetch(`./templates/${template.fileName}.html`);
     if (!response.ok) {
       throw new Error(`Error cargando plantilla: ${response.status}`);
     }
@@ -39,6 +58,18 @@ export async function loadTemplate(templateType) {
     console.error('Error cargando plantilla:', error);
     return null;
   }
+}
+
+// Función para obtener todas las plantillas disponibles
+export async function getAvailableTemplates() {
+  const config = await loadTemplatesConfig();
+  return config.templates;
+}
+
+// Función para obtener metadatos de una plantilla específica
+export async function getTemplateMetadata(templateId) {
+  const config = await loadTemplatesConfig();
+  return config.templates.find(t => t.id === templateId);
 }
 
 export function processTemplate(templateHtml, businessData) {

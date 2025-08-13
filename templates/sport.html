@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{businessName}}</title>
+  <link rel="stylesheet" href="css/sport.css">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: {{primaryColor}};
+      --secondary-color: {{secondaryColor}};
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Deportivo -->
+  <header class="sport-header">
+    <div class="sport-overlay"></div>
+    <div class="container">
+      <nav class="sport-nav">
+        {{#if logoUrl}}
+        <div class="sport-logo">
+          <img src="{{logoUrl}}" alt="{{businessName}} Logo">
+        </div>
+        {{/if}}
+        <div class="sport-menu">
+          <a href="#inicio">INICIO</a>
+          <a href="#servicios">SERVICIOS</a>
+          <a href="#galeria">GALERÍA</a>
+          <a href="#contacto">CONTACTO</a>
+        </div>
+      </nav>
+      <div class="sport-hero">
+        <h1 class="sport-title">{{businessName}}</h1>
+        <p class="sport-subtitle">{{businessDescription}}</p>
+        <div class="sport-cta">
+          <a href="#contacto" class="sport-btn">¡ÚNETE AHORA!</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sección Principal -->
+  <main>
+    <!-- Servicios -->
+    <section id="servicios" class="sport-services">
+      <div class="container">
+        <h2 class="sport-section-title">NUESTROS SERVICIOS</h2>
+        <div class="sport-services-grid">
+          {{#each services}}
+          <div class="sport-service-card">
+            <div class="sport-service-icon">
+              <i class="{{icon}}"></i>
+            </div>
+            <h3>{{name}}</h3>
+            <p>{{description}}</p>
+            {{#if price}}
+            <div class="sport-price">{{price}}</div>
+            {{/if}}
+            <div class="sport-service-action">
+              <a href="#contacto" class="sport-btn-small">MÁS INFO</a>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </section>
+
+    <!-- Estadísticas -->
+    <section class="sport-stats">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number">500+</div>
+            <div class="stat-label">Clientes Satisfechos</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">5</div>
+            <div class="stat-label">Años de Experiencia</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Disponibilidad</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Compromiso</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Galería -->
+    {{#if gallery}}
+    <section id="galeria" class="sport-gallery">
+      <div class="container">
+        <h2 class="sport-section-title">GALERÍA</h2>
+        <div class="sport-gallery-grid">
+          {{#each gallery}}
+          <div class="sport-gallery-item">
+            <img src="{{this}}" alt="Galería {{businessName}}">
+            <div class="sport-gallery-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </section>
+    {{/if}}
+
+    <!-- Contacto -->
+    <section id="contacto" class="sport-contact">
+      <div class="container">
+        <h2 class="sport-section-title">CONTACTO</h2>
+        <div class="sport-contact-grid">
+          <div class="sport-contact-info">
+            {{#if address}}
+            <div class="sport-contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <h4>UBICACIÓN</h4>
+                <p>{{address}}</p>
+              </div>
+            </div>
+            {{/if}}
+            {{#if phone}}
+            <div class="sport-contact-item">
+              <i class="fas fa-phone"></i>
+              <div>
+                <h4>TELÉFONO</h4>
+                <p>{{phone}}</p>
+              </div>
+            </div>
+            {{/if}}
+            {{#if email}}
+            <div class="sport-contact-item">
+              <i class="fas fa-envelope"></i>
+              <div>
+                <h4>EMAIL</h4>
+                <p>{{email}}</p>
+              </div>
+            </div>
+            {{/if}}
+            {{#if hours}}
+            <div class="sport-contact-item">
+              <i class="fas fa-clock"></i>
+              <div>
+                <h4>HORARIOS</h4>
+                <p>{{hours}}</p>
+              </div>
+            </div>
+            {{/if}}
+          </div>
+          <div class="sport-contact-actions">
+            <a href="tel:{{phone}}" class="sport-btn sport-btn-full">LLAMAR AHORA</a>
+            {{#if whatsapp}}
+            <a href="https://wa.me/{{whatsapp}}" class="sport-btn sport-btn-secondary sport-btn-full">WHATSAPP</a>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="sport-footer">
+    <div class="container">
+      <div class="sport-footer-content">
+        <p>&copy; 2024 {{businessName}}. TODOS LOS DERECHOS RESERVADOS.</p>
+        {{#if socialMedia}}
+        <div class="sport-social">
+          {{#if socialMedia.facebook}}
+          <a href="{{socialMedia.facebook}}"><i class="fab fa-facebook"></i></a>
+          {{/if}}
+          {{#if socialMedia.instagram}}
+          <a href="{{socialMedia.instagram}}"><i class="fab fa-instagram"></i></a>
+          {{/if}}
+          {{#if socialMedia.twitter}}
+          <a href="{{socialMedia.twitter}}"><i class="fab fa-twitter"></i></a>
+          {{/if}}
+        </div>
+        {{/if}}
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

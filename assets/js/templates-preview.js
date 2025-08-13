@@ -1,6 +1,7 @@
-import { getUserBusinessData, generateTemplate, loadTemplate } from './template-generator.js';
+import { getUserBusinessData, generateTemplate, loadTemplate, getAvailableTemplates } from './template-generator.js';
 import { auth } from '../../auth/js/firebaseConfig.js';
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+import { generateTemplatesGrid } from './template-ui-generator.js';
 
 document.addEventListener("DOMContentLoaded", () => {
   let businessData = null;
@@ -39,24 +40,17 @@ document.addEventListener("DOMContentLoaded", () => {
   async function loadRealTemplatePreviews() {
     if (!businessData) return;
   
-    const templateMap = {
-      'moderna': 'modern',
-      'clasica': 'classic',
-      'creativa': 'minimal',
-      'profesional': 'template01',
-      'minimalista': 'template02',
-      'vibrante': 'template03'
-    };
-  
+    const templates = await getAvailableTemplates();
+    
     // Cargar cada plantilla real
-    for (const [displayName, templateName] of Object.entries(templateMap)) {
+    for (const template of templates) {
       try {
         // Generar plantilla completa con datos reales
-        const generatedHtml = await generateTemplate(templateName, businessData);
+        const generatedHtml = await generateTemplate(template.id, businessData);
         
         if (generatedHtml) {
           // Crear iframe para mostrar la plantilla en miniatura
-          const previewContainer = document.querySelector(`[data-template="${displayName}"] .template-preview`);
+          const previewContainer = document.querySelector(`[data-template="${template.id}"] .template-preview`);
           
           if (previewContainer) {
             // Limpiar contenido predeterminado
@@ -87,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
               
               const cssLink = iframeDoc.createElement('link');
               cssLink.rel = 'stylesheet';
-              cssLink.href = `./templates/css/${templateName}.css`;
+              cssLink.href = `./templates/css/${template.fileName}.css`;
               iframeDoc.head.appendChild(cssLink);
               
               const previewStyle = iframeDoc.createElement('style');
@@ -413,6 +407,311 @@ document.addEventListener("DOMContentLoaded", () => {
     generateSocialIconsPreview();
   }
 
+  // Generar iconos de redes sociales para las previsualizaciones
+  function generateSocialIconsPreview() {
+    const socialNetworks = ['instagram', 'facebook', 'linkedin', 'tiktok'];
+    const availableNetworks = socialNetworks.slice(0, 3);
+
+    document.querySelectorAll('.social-icons-preview').forEach(container => {
+      container.innerHTML = '';
+      availableNetworks.forEach(network => {
+        const icon = document.createElement('a');
+        icon.className = `social-icon-preview ${network}`;
+        icon.href = '#';
+        icon.textContent = getNetworkIcon(network);
+        icon.style.cssText = `
+          display: inline-block;
+          width: 30px;
+          height: 30px;
+          margin: 0 5px;
+          background: #333;
+          color: white;
+          text-align: center;
+          line-height: 30px;
+          border-radius: 50%;
+          text-decoration: none;
+          font-size: 14px;
+        `;
+        container.appendChild(icon);
+      });
+    });
+  }
+
+  function getNetworkIcon(network) {
+    const icons = {
+      instagram: '📷',
+      facebook: '📘',
+      linkedin: '💼',
+      tiktok: '🎵'
+    };
+    return icons[network] || '🌐';
+  }
+
+  // Configurar botones de previsualización completa
+  function setupPreviewButtons() {
+    // Botones "Ver vista completa"
+    document.querySelectorAll('.template-preview-btn, .template-preview').forEach(element => {
+      element.addEventListener('click', async function(e) {
+        e.preventDefault();
+        const templateType = this.dataset.template || this.closest('.template-card').dataset.template;
+        await showFullPreview(templateType);
+      });
+    });
+
+    // Modal controls
+    const modal = document.getElementById('templateModal');
+    const closeBtn = document.querySelector('.modal-close');
+    const backBtn = document.querySelector('.modal-back');
+    const selectBtn = document.getElementById('modalSelectBtn');
+
+    closeBtn.addEventListener('click', closeModal);
+    backBtn.addEventListener('click', closeModal);
+    
+    selectBtn.addEventListener('click', function() {
+      const templateType = this.dataset.template;
+      if (templateType) {
+        selectTemplate(templateType);
+      }
+    });
+
+    // Cerrar modal al hacer click fuera
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+  }
+
+  // Mostrar previsualización completa usando template-generator.js
+  async function showFullPreview(templateType) {
+    try {
+      const modal = document.getElementById('templateModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const fullPreview = document.getElementById('fullTemplatePreview');
+      const selectBtn = document.getElementById('modalSelectBtn');
+
+        modalTitle.textContent = `Vista Completa - Plantilla ${templateType.charAt(0).toUpperCase() + templateType.slice(1)}`;
+      selectBtn.textContent = `Seleccionar plantilla ${templateType}`;
+      selectBtn.dataset.template = templateType;
+
+      // Mostrar loading
+      fullPreview.innerHTML = '<div style="text-align: center; padding: 2rem;"><p>Cargando previsualización...</p></div>';
+      
+      // Generar plantilla completa usando template-generator.js
+      const generatedHtml = await generateTemplate(templateType, businessData);
+      
+      if (generatedHtml) {
+        // ✅ CREAR IFRAME PARA LA VISTA COMPLETA CON ESTILOS CORREGIDOS
+        const iframe = document.createElement('iframe');
+        iframe.style.cssText = `
+          width: 100%;
+          height: 600px;
+          border: none;
+          border-radius: 8px;
+          background: white;
+        `;
+        
+        // Limpiar contenedor y agregar iframe
+        fullPreview.innerHTML = '';
+        fullPreview.appendChild(iframe);
+        
+        // Cargar contenido en el iframe
+        iframe.onload = function() {
+          const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+          
+          // Escribir el HTML generado
+          iframeDoc.open();
+          iframeDoc.write(generatedHtml);
+          iframeDoc.close();
+          
+          // ✅ CARGAR CSS ESPECÍFICO DE LA PLANTILLA
+          const cssLink = iframeDoc.createElement('link');
+          cssLink.rel = 'stylesheet';
+          cssLink.href = `./templates/css/${templateType}.css`;
+          iframeDoc.head.appendChild(cssLink);
+          
+          // ✅ ESTILOS PARA CORREGIR EL NAVBAR EN VISTA COMPLETA
+          const modalStyle = iframeDoc.createElement('style');
+          modalStyle.textContent = `
+            body {
+              margin: 0;
+              padding: 0;
+              overflow-x: hidden;
+            }
+            /* ✅ CORREGIR NAVBAR PARA VISTA COMPLETA */
+            .navbar {
+              position: relative !important;
+              top: 0 !important;
+              width: 100% !important;
+              z-index: 1000 !important;
+              margin-bottom: 0 !important;
+            }
+            .navbar.fixed {
+              position: relative !important;
+            }
+            /* Asegurar que el contenido se vea correctamente */
+            .container {
+              max-width: 1200px;
+              margin: 0 auto;
+              padding: 0 20px;
+            }
+            /* Ajustar hero section para compensar */
+            .hero-section {
+              padding-top: 20px !important;
+            }
+            /* Ocultar elementos que pueden causar problemas */
+            .whatsapp-float {
+              display: none !important;
+            }
+            .lightbox {
+              display: none !important;
+            }
+            /* Mejorar la visualización general */
+            * {
+              box-sizing: border-box;
+            }
+          `;
+          iframeDoc.head.appendChild(modalStyle);
+        };
+        
+        // Inicializar el iframe
+        iframe.src = 'about:blank';
+      } else {
+        fullPreview.innerHTML = '<div style="text-align: center; padding: 2rem; color: red;"><p>Error al cargar la previsualización</p></div>';
+      }
+
+      modal.classList.add('show');
+      modal.style.display = 'block';
+    } catch (error) {
+      console.error('Error mostrando previsualización:', error);
+      alert('Error al mostrar la previsualización. Inténtalo de nuevo.');
+    }
+  }
+
+  // Cerrar modal
+  function closeModal() {
+    const modal = document.getElementById('templateModal');
+    modal.classList.remove('show');
+    modal.style.display = 'none';
+  }
+
+  // Seleccionar plantilla con modal personalizado
+  function selectTemplate(templateType) {
+    // Crear modal de confirmación personalizado
+    const confirmModal = document.createElement('div');
+    confirmModal.className = 'confirm-modal';
+    confirmModal.innerHTML = `
+      <div class="confirm-modal-content">
+        <div class="confirm-modal-header">
+          <div class="confirm-icon"></div>
+          <h3>¡Excelente elección!</h3>
+        </div>
+        <div class="confirm-modal-body">
+          <p>¿Estás seguro de que quieres seleccionar la plantilla <strong>${templateType}</strong>?</p>
+          <p class="confirm-subtitle">Esto generará tu sitio web personalizado con esta plantilla.</p>
+        </div>
+        <div class="confirm-modal-footer">
+          <button class="btn btn-cancel" onclick="closeConfirmModal()">Cancelar</button>
+          <button class="btn btn-confirm" onclick="confirmSelection('${templateType}')">Sí, seleccionar</button>
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(confirmModal);
+    
+    // Mostrar modal con animación
+    setTimeout(() => {
+      confirmModal.classList.add('show');
+    }, 10);
+    
+    // Funciones globales para el modal
+    window.closeConfirmModal = function() {
+      confirmModal.classList.remove('show');
+      setTimeout(() => {
+        document.body.removeChild(confirmModal);
+      }, 300);
+    };
+    
+    window.confirmSelection = function(templateType) {
+      closeConfirmModal();
+      proceedWithSelection(templateType);
+    };
+  }
+
+  // Proceder con la selección y mostrar loading
+  function proceedWithSelection(templateType) {
+    localStorage.setItem('selectedTemplate', templateType);
+    localStorage.setItem('businessData', JSON.stringify(businessData));
+    
+    closeModal();
+    
+    // Mostrar animación de carga
+    showLoadingAnimation(templateType);
+    
+    // Redirigir después de la animación
+    setTimeout(() => {
+      const params = new URLSearchParams({
+        template: templateType,
+        user: currentUserId || 'demo'
+      });
+      
+      window.location.href = `template-editor.html?${params.toString()}`;
+    }, 2500);
+  }
+  
+  function showLoadingAnimation(templateType) {
+    const loadingModal = document.createElement('div');
+    loadingModal.className = 'loading-modal';
+    loadingModal.innerHTML = `
+      <div class="loading-content">
+        <div class="loading-icon">
+          <div class="loading-spinner"></div>
+          <div class="loading-checkmark">✓</div>
+        </div>
+        <h3 class="loading-title">Generando tu sitio web...</h3>
+        <p class="loading-subtitle">Plantilla: ${templateType}</p>
+        <div class="loading-progress">
+          <div class="loading-bar"></div>
+        </div>
+        <div class="loading-steps">
+          <div class="step active"> Procesando datos</div>
+          <div class="step"> Aplicando diseño</div>
+          <div class="step"> Optimizando</div>
+          <div class="step"> Finalizando</div>
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(loadingModal);
+    
+    // Mostrar modal
+    setTimeout(() => {
+      loadingModal.classList.add('show');
+    }, 10);
+    
+    // Animar pasos
+    const steps = loadingModal.querySelectorAll('.step');
+    steps.forEach((step, index) => {
+      setTimeout(() => {
+        step.classList.add('active');
+      }, (index + 1) * 600);
+    });
+    
+    // Mostrar checkmark al final
+    setTimeout(() => {
+      loadingModal.querySelector('.loading-spinner').style.display = 'none';
+      loadingModal.querySelector('.loading-checkmark').style.display = 'block';
+      loadingModal.querySelector('.loading-title').textContent = '¡Listo!';
+      loadingModal.querySelector('.loading-subtitle').textContent = 'Redirigiendo al editor...';
+    }, 2000);
+  }
+});
+
+// Inicializar UI dinámica
+document.addEventListener("DOMContentLoaded", async () => {
+  // Generar grid de plantillas dinámicamente
+  await generateTemplatesGrid();
+  
   // Generar iconos de redes sociales para las previsualizaciones
   function generateSocialIconsPreview() {
     const socialNetworks = ['instagram', 'facebook', 'linkedin', 'tiktok'];
