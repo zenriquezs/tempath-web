@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{businessName}}</title>
+  <link rel="stylesheet" href="css/corporate.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Slab:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: {{primaryColor}};
+      --secondary-color: {{secondaryColor}};
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Corporativo -->
+  <header class="corporate-header">
+    <div class="container">
+      <div class="corporate-top-bar">
+        <div class="corporate-contact-info">
+          {{#if phone}}
+          <span><i class="fas fa-phone"></i> {{phone}}</span>
+          {{/if}}
+          {{#if email}}
+          <span><i class="fas fa-envelope"></i> {{email}}</span>
+          {{/if}}
+        </div>
+        {{#if socialMedia}}
+        <div class="corporate-social">
+          {{#if socialMedia.facebook}}
+          <a href="{{socialMedia.facebook}}"><i class="fab fa-facebook"></i></a>
+          {{/if}}
+          {{#if socialMedia.linkedin}}
+          <a href="{{socialMedia.linkedin}}"><i class="fab fa-linkedin"></i></a>
+          {{/if}}
+          {{#if socialMedia.twitter}}
+          <a href="{{socialMedia.twitter}}"><i class="fab fa-twitter"></i></a>
+          {{/if}}
+        </div>
+        {{/if}}
+      </div>
+      
+      <nav class="corporate-nav">
+        <div class="corporate-brand">
+          {{#if logoUrl}}
+          <img src="{{logoUrl}}" alt="{{businessName}} Logo" class="corporate-logo">
+          {{/if}}
+          <span class="corporate-name">{{businessName}}</span>
+        </div>
+        <ul class="corporate-menu">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#galeria">Galería</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+        <div class="corporate-cta">
+          <a href="#contacto" class="corporate-btn">Consulta Gratuita</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="inicio" class="corporate-hero">
+    <div class="container">
+      <div class="corporate-hero-content">
+        <div class="corporate-hero-text">
+          <h1>{{businessName}}</h1>
+          <p class="corporate-hero-subtitle">{{businessDescription}}</p>
+          <div class="corporate-hero-features">
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <span>Experiencia Comprobada</span>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <span>Resultados Garantizados</span>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <span>Atención Personalizada</span>
+            </div>
+          </div>
+          <div class="corporate-hero-actions">
+            <a href="#contacto" class="corporate-btn corporate-btn-primary">Solicitar Cotización</a>
+            <a href="#servicios" class="corporate-btn corporate-btn-outline">Ver Servicios</a>
+          </div>
+        </div>
+        <div class="corporate-hero-image">
+          {{#if logoUrl}}
+          <img src="{{logoUrl}}" alt="{{businessName}}">
+          {{else}}
+          <div class="corporate-placeholder">
+            <i class="fas fa-building"></i>
+          </div>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Servicios -->
+  <section id="servicios" class="corporate-services">
+    <div class="container">
+      <div class="corporate-section-header">
+        <h2>Nuestros Servicios</h2>
+        <p>Soluciones profesionales adaptadas a sus necesidades</p>
+      </div>
+      <div class="corporate-services-grid">
+        {{#each services}}
+        <div class="corporate-service-card">
+          <div class="corporate-service-header">
+            <div class="corporate-service-icon">
+              <i class="{{icon}}"></i>
+            </div>
+            <h3>{{name}}</h3>
+          </div>
+          <div class="corporate-service-content">
+            <p>{{description}}</p>
+            {{#if price}}
+            <div class="corporate-service-price">
+              <span class="price-label">Desde</span>
+              <span class="price-value">{{price}}</span>
+            </div>
+            {{/if}}
+          </div>
+          <div class="corporate-service-footer">
+            <a href="#contacto" class="corporate-service-btn">Más Información</a>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </section>
+
+  <!-- Nosotros -->
+  <section id="nosotros" class="corporate-about">
+    <div class="container">
+      <div class="corporate-about-grid">
+        <div class="corporate-about-content">
+          <h2>Acerca de {{businessName}}</h2>
+          <p>{{businessDescription}}</p>
+          <div class="corporate-about-stats">
+            <div class="stat-item">
+              <div class="stat-number">10+</div>
+              <div class="stat-label">Años de Experiencia</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">500+</div>
+              <div class="stat-label">Proyectos Completados</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">98%</div>
+              <div class="stat-label">Satisfacción del Cliente</div>
+            </div>
+          </div>
+        </div>
+        <div class="corporate-about-image">
+          <div class="corporate-about-placeholder">
+            <i class="fas fa-users"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galería -->
+  {{#if gallery}}
+  <section id="galeria" class="corporate-gallery">
+    <div class="container">
+      <div class="corporate-section-header">
+        <h2>Nuestro Trabajo</h2>
+        <p>Ejemplos de nuestros proyectos exitosos</p>
+      </div>
+      <div class="corporate-gallery-grid">
+        {{#each gallery}}
+        <div class="corporate-gallery-item">
+          <img src="{{this}}" alt="Proyecto {{businessName}}">
+          <div class="corporate-gallery-overlay">
+            <div class="corporate-gallery-content">
+              <h4>Proyecto Destacado</h4>
+              <p>Ver detalles</p>
+            </div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </section>
+  {{/if}}
+
+  <!-- Contacto -->
+  <section id="contacto" class="corporate-contact">
+    <div class="container">
+      <div class="corporate-section-header">
+        <h2>Contáctanos</h2>
+        <p>Estamos aquí para ayudarte con tus proyectos</p>
+      </div>
+      <div class="corporate-contact-grid">
+        <div class="corporate-contact-info">
+          <h3>Información de Contacto</h3>
+          {{#if address}}
+          <div class="corporate-contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="contact-details">
+              <h4>Dirección</h4>
+              <p>{{address}}</p>
+            </div>
+          </div>
+          {{/if}}
+          {{#if phone}}
+          <div class="corporate-contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-phone"></i>
+            </div>
+            <div class="contact-details">
+              <h4>Teléfono</h4>
+              <p>{{phone}}</p>
+            </div>
+          </div>
+          {{/if}}
+          {{#if email}}
+          <div class="corporate-contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="contact-details">
+              <h4>Email</h4>
+              <p>{{email}}</p>
+            </div>
+          </div>
+          {{/if}}
+          {{#if hours}}
+          <div class="corporate-contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div class="contact-details">
+              <h4>Horarios</h4>
+              <p>{{hours}}</p>
+            </div>
+          </div>
+          {{/if}}
+        </div>
+        <div class="corporate-contact-form">
+          <h3>Solicitar Cotización</h3>
+          <div class="corporate-contact-actions">
+            <a href="tel:{{phone}}" class="corporate-btn corporate-btn-primary corporate-btn-full">
+              <i class="fas fa-phone"></i> Llamar Ahora
+            </a>
+            {{#if whatsapp}}
+            <a href="https://wa.me/{{whatsapp}}" class="corporate-btn corporate-btn-secondary corporate-btn-full">
+              <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            {{/if}}
+            {{#if email}}
+            <a href="mailto:{{email}}" class="corporate-btn corporate-btn-outline corporate-btn-full">
+              <i class="fas fa-envelope"></i> Enviar Email
+            </a>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="corporate-footer">
+    <div class="container">
+      <div class="corporate-footer-content">
+        <div class="corporate-footer-brand">
+          {{#if logoUrl}}
+          <img src="{{logoUrl}}" alt="{{businessName}} Logo">
+          {{/if}}
+          <h4>{{businessName}}</h4>
+          <p>{{businessDescription}}</p>
+        </div>
+        <div class="corporate-footer-links">
+          <h4>Enlaces Rápidos</h4>
+          <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="corporate-footer-contact">
+          <h4>Contacto</h4>
+          {{#if phone}}
+          <p><i class="fas fa-phone"></i> {{phone}}</p>
+          {{/if}}
+          {{#if email}}
+          <p><i class="fas fa-envelope"></i> {{email}}</p>
+          {{/if}}
+        </div>
+      </div>
+      <div class="corporate-footer-bottom">
+        <p>&copy; 2024 {{businessName}}. Todos los derechos reservados.</p>
+        {{#if socialMedia}}
+        <div class="corporate-footer-social">
+          {{#if socialMedia.facebook}}
+          <a href="{{socialMedia.facebook}}"><i class="fab fa-facebook"></i></a>
+          {{/if}}
+          {{#if socialMedia.linkedin}}
+          <a href="{{socialMedia.linkedin}}"><i class="fab fa-linkedin"></i></a>
+          {{/if}}
+          {{#if socialMedia.twitter}}
+          <a href="{{socialMedia.twitter}}"><i class="fab fa-twitter"></i></a>
+          {{/if}}
+        </div>
+        {{/if}}
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

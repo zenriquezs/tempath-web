@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{businessName}}</title>
+  <link rel="stylesheet" href="css/elegant.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: {{primaryColor}};
+      --secondary-color: {{secondaryColor}};
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Elegante -->
+  <header class="elegant-header">
+    <div class="container">
+      <div class="header-content">
+        {{#if logoUrl}}
+        <div class="logo-section">
+          <img src="{{logoUrl}}" alt="{{businessName}} Logo" class="elegant-logo">
+        </div>
+        {{/if}}
+        <h1 class="elegant-title">{{businessName}}</h1>
+        <p class="elegant-subtitle">{{businessDescription}}</p>
+        <div class="elegant-divider"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navegación Elegante -->
+  <nav class="elegant-nav">
+    <div class="container">
+      <ul class="elegant-menu">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Sección Principal -->
+  <main id="inicio" class="elegant-main">
+    <div class="container">
+      <section class="intro-section">
+        <div class="intro-content">
+          <h2>Bienvenido a {{businessName}}</h2>
+          <p>{{businessDescription}}</p>
+        </div>
+      </section>
+
+      <!-- Servicios -->
+      <section id="servicios" class="services-section">
+        <h2 class="section-title">Nuestros Servicios</h2>
+        <div class="services-grid">
+          {{#each services}}
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="{{icon}}"></i>
+            </div>
+            <h3>{{name}}</h3>
+            <p>{{description}}</p>
+            {{#if price}}
+            <div class="service-price">{{price}}</div>
+            {{/if}}
+          </div>
+          {{/each}}
+        </div>
+      </section>
+
+      <!-- Galería -->
+      {{#if gallery}}
+      <section id="galeria" class="gallery-section">
+        <h2 class="section-title">Galería</h2>
+        <div class="gallery-grid">
+          {{#each gallery}}
+          <div class="gallery-item">
+            <img src="{{this}}" alt="Galería {{businessName}}">
+          </div>
+          {{/each}}
+        </div>
+      </section>
+      {{/if}}
+
+      <!-- Contacto -->
+      <section id="contacto" class="contact-section">
+        <h2 class="section-title">Contacto</h2>
+        <div class="contact-grid">
+          <div class="contact-info">
+            {{#if address}}
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>{{address}}</span>
+            </div>
+            {{/if}}
+            {{#if phone}}
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <span>{{phone}}</span>
+            </div>
+            {{/if}}
+            {{#if email}}
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <span>{{email}}</span>
+            </div>
+            {{/if}}
+            {{#if hours}}
+            <div class="contact-item">
+              <i class="fas fa-clock"></i>
+              <span>{{hours}}</span>
+            </div>
+            {{/if}}
+          </div>
+          <div class="contact-cta">
+            <a href="tel:{{phone}}" class="elegant-btn">Llamar Ahora</a>
+            {{#if whatsapp}}
+            <a href="https://wa.me/{{whatsapp}}" class="elegant-btn elegant-btn-secondary">WhatsApp</a>
+            {{/if}}
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="elegant-footer">
+    <div class="container">
+      <div class="footer-content">
+        <p>&copy; 2024 {{businessName}}. Todos los derechos reservados.</p>
+        {{#if socialMedia}}
+        <div class="social-links">
+          {{#if socialMedia.facebook}}
+          <a href="{{socialMedia.facebook}}"><i class="fab fa-facebook"></i></a>
+          {{/if}}
+          {{#if socialMedia.instagram}}
+          <a href="{{socialMedia.instagram}}"><i class="fab fa-instagram"></i></a>
+          {{/if}}
+          {{#if socialMedia.twitter}}
+          <a href="{{socialMedia.twitter}}"><i class="fab fa-twitter"></i></a>
+          {{/if}}
+        </div>
+        {{/if}}
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

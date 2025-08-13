@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{businessName}} - Tradición y Calidad</title>
+  <title>{{businessName}} - Excelencia y Profesionalismo</title>
   <link rel="stylesheet" href="css/classic.css">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <style>
     :root {
       --primary-color: {{primaryColor}};
@@ -14,19 +15,25 @@
   </style>
 </head>
 <body>
+  <!-- Navegación Moderna -->
   <nav class="navbar">
     <div class="nav-container">
-      {{#if logoUrl}}
-      <img src="{{logoUrl}}" alt="{{businessName}} Logo" class="nav-logo">
-      {{/if}}
-      <div class="nav-brand">{{businessName}}</div>
+      <div class="nav-brand-section">
+        {{#if logoUrl}}
+        <img src="{{logoUrl}}" alt="{{businessName}} Logo" class="nav-logo">
+        {{/if}}
+        <div class="nav-brand">{{businessName}}</div>
+      </div>
       <ul class="nav-menu">
-        <li><a href="#inicio" class="nav-link">Inicio</a></li>
-        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#servicios" class="nav-link">Servicios</a></li>
-        <li><a href="#galeria" class="nav-link">Galería</a></li>
-        <li><a href="#contacto" class="nav-link">Contacto</a></li>
+        <li><a href="#inicio" class="nav-link"><i class="fas fa-home"></i> Inicio</a></li>
+        <li><a href="#nosotros" class="nav-link"><i class="fas fa-users"></i> Nosotros</a></li>
+        <li><a href="#servicios" class="nav-link"><i class="fas fa-briefcase"></i> Servicios</a></li>
+        <li><a href="#galeria" class="nav-link"><i class="fas fa-images"></i> Galería</a></li>
+        <li><a href="#contacto" class="nav-link"><i class="fas fa-envelope"></i> Contacto</a></li>
       </ul>
+      <div class="nav-cta">
+        <a href="#contacto" class="btn-nav-cta">Consulta Gratis</a>
+      </div>
       <div class="hamburger">
         <span></span>
         <span></span>
@@ -35,48 +42,119 @@
     </div>
   </nav>
 
+  <!-- Hero Section Moderno -->
   <header id="inicio" class="hero">
-    <div class="hero-overlay"></div>
+    <div class="hero-background">
+      <div class="hero-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+      </div>
+    </div>
     <div class="container">
       <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fas fa-award"></i>
+          <span>Líderes en Excelencia</span>
+        </div>
         {{#if logoUrl}}
-        <img src="{{logoUrl}}" alt="{{businessName}} Logo" class="hero-logo">
+        <div class="hero-logo-container">
+          <img src="{{logoUrl}}" alt="{{businessName}} Logo" class="hero-logo">
+        </div>
         {{/if}}
         <h1 class="hero-title">{{businessName}}</h1>
-        <p class="hero-subtitle">Tradición, Calidad y Excelencia</p>
+        <p class="hero-subtitle">Transformando ideas en resultados excepcionales</p>
         <p class="hero-description">{{businessDescription}}</p>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-number">15+</div>
+            <div class="stat-label">Años</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">500+</div>
+            <div class="stat-label">Clientes</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">98%</div>
+            <div class="stat-label">Satisfacción</div>
+          </div>
+        </div>
         <div class="hero-buttons">
-          <a href="#contacto" class="btn btn-primary">Contáctanos</a>
-          <a href="#nosotros" class="btn btn-secondary">Conoce Más</a>
+          <a href="#contacto" class="btn btn-primary">
+            <i class="fas fa-phone"></i>
+            Contáctanos Ahora
+          </a>
+          <a href="#nosotros" class="btn btn-secondary">
+            <i class="fas fa-play"></i>
+            Conoce Más
+          </a>
         </div>
       </div>
     </div>
+    <div class="hero-scroll-indicator">
+      <div class="scroll-arrow"></div>
+    </div>
   </header>
 
+  <!-- Sección Nosotros Mejorada -->
   <section id="nosotros" class="about-section">
     <div class="container">
       <div class="section-header">
-        <h2 class="section-title">Nuestra Historia</h2>
-        <div class="section-divider"></div>
+        <div class="section-badge">
+          <i class="fas fa-star"></i>
+          <span>Nuestra Historia</span>
+        </div>
+        <h2 class="section-title">Construyendo Confianza Desde el Primer Día</h2>
+        <p class="section-subtitle">Más de una década comprometidos con la excelencia y la innovación</p>
       </div>
       <div class="about-content">
-        <div class="about-text">
-          <p class="about-description">{{businessDescription}}</p>
-          <div class="about-features">
-            <div class="feature-item">
-              <div class="feature-icon">🏆</div>
-              <h4>Calidad Premium</h4>
-              <p>Comprometidos con la excelencia en cada detalle</p>
+        <div class="about-main">
+          <div class="about-text">
+            <div class="about-intro">
+              <h3>{{businessName}} - Tu Socio de Confianza</h3>
+              <p class="about-description">{{businessDescription}}</p>
             </div>
-            <div class="feature-item">
-              <div class="feature-icon">⭐</div>
-              <h4>Tradición</h4>
-              <p>Años de experiencia respaldando nuestro servicio</p>
+            <div class="about-highlights">
+              <div class="highlight-item">
+                <div class="highlight-icon">
+                  <i class="fas fa-trophy"></i>
+                </div>
+                <div class="highlight-content">
+                  <h4>Excelencia Comprobada</h4>
+                  <p>Estándares de calidad que superan las expectativas del mercado</p>
+                </div>
+              </div>
+              <div class="highlight-item">
+                <div class="highlight-icon">
+                  <i class="fas fa-handshake"></i>
+                </div>
+                <div class="highlight-content">
+                  <h4>Relaciones Duraderas</h4>
+                  <p>Construimos partnerships a largo plazo basados en confianza mutua</p>
+                </div>
+              </div>
+              <div class="highlight-item">
+                <div class="highlight-icon">
+                  <i class="fas fa-lightbulb"></i>
+                </div>
+                <div class="highlight-content">
+                  <h4>Innovación Constante</h4>
+                  <p>Siempre a la vanguardia con las últimas tendencias y tecnologías</p>
+                </div>
+              </div>
             </div>
-            <div class="feature-item">
-              <div class="feature-icon">🤝</div>
-              <h4>Confianza</h4>
-              <p>Relaciones duraderas con nuestros clientes</p>
+          </div>
+          <div class="about-visual">
+            <div class="about-card">
+              <div class="card-content">
+                <h4>Nuestros Valores</h4>
+                <ul class="values-list">
+                  <li><i class="fas fa-check"></i> Integridad</li>
+                  <li><i class="fas fa-check"></i> Calidad</li>
+                  <li><i class="fas fa-check"></i> Innovación</li>
+                  <li><i class="fas fa-check"></i> Compromiso</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -84,72 +162,133 @@
     </div>
   </section>
 
+  <!-- Servicios Modernos -->
   <section id="servicios" class="services-section">
     <div class="container">
       <div class="section-header">
-        <h2 class="section-title">Nuestros Servicios</h2>
-        <div class="section-divider"></div>
-        <p class="section-subtitle">Ofrecemos soluciones integrales con la más alta calidad</p>
+        <div class="section-badge">
+          <i class="fas fa-cogs"></i>
+          <span>Nuestros Servicios</span>
+        </div>
+        <h2 class="section-title">Soluciones Integrales Para Tu Éxito</h2>
+        <p class="section-subtitle">Servicios diseñados para impulsar tu crecimiento y maximizar resultados</p>
       </div>
       <div class="services-grid">
         <div class="service-card">
-          <div class="service-icon">💼</div>
-          <h3>Servicio Premium</h3>
-          <p>Atención personalizada y soluciones a medida para cada cliente</p>
+          <div class="service-header">
+            <div class="service-icon">
+              <i class="fas fa-crown"></i>
+            </div>
+            <h3>Servicio Premium</h3>
+          </div>
+          <p>Atención personalizada y soluciones a medida para cada cliente, con seguimiento dedicado 24/7</p>
+          <div class="service-features">
+            <span class="feature-tag">Personalizado</span>
+            <span class="feature-tag">24/7</span>
+          </div>
+        </div>
+        <div class="service-card featured">
+          <div class="service-badge">Más Popular</div>
+          <div class="service-header">
+            <div class="service-icon">
+              <i class="fas fa-tools"></i>
+            </div>
+            <h3>Soporte Técnico</h3>
+          </div>
+          <p>Asistencia especializada y mantenimiento continuo con tecnología de vanguardia</p>
+          <div class="service-features">
+            <span class="feature-tag">Especializado</span>
+            <span class="feature-tag">Continuo</span>
+          </div>
         </div>
         <div class="service-card">
-          <div class="service-icon">🔧</div>
-          <h3>Soporte Técnico</h3>
-          <p>Asistencia especializada y mantenimiento continuo</p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">📞</div>
-          <h3>Consultoría</h3>
-          <p>Asesoramiento experto para optimizar tus resultados</p>
+          <div class="service-header">
+            <div class="service-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>Consultoría Estratégica</h3>
+          </div>
+          <p>Asesoramiento experto para optimizar procesos y maximizar el retorno de inversión</p>
+          <div class="service-features">
+            <span class="feature-tag">Estratégico</span>
+            <span class="feature-tag">ROI</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Estadísticas Mejoradas -->
   <section class="stats-section">
     <div class="container">
-      <div class="stats-grid">
-        <div class="stat-item">
-          <div class="stat-number">15+</div>
-          <div class="stat-label">Años de Experiencia</div>
+      <div class="stats-content">
+        <div class="stats-header">
+          <h3>Números Que Hablan Por Nosotros</h3>
+          <p>Resultados medibles que demuestran nuestro compromiso</p>
         </div>
-        <div class="stat-item">
-          <div class="stat-number">500+</div>
-          <div class="stat-label">Clientes Satisfechos</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">1000+</div>
-          <div class="stat-label">Proyectos Completados</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">24/7</div>
-          <div class="stat-label">Soporte Disponible</div>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-calendar-alt"></i>
+            </div>
+            <div class="stat-number" data-target="15">0</div>
+            <div class="stat-label">Años de Experiencia</div>
+            <div class="stat-description">Construyendo excelencia</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="stat-number" data-target="500">0</div>
+            <div class="stat-label">Clientes Satisfechos</div>
+            <div class="stat-description">Confianza ganada</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-project-diagram"></i>
+            </div>
+            <div class="stat-number" data-target="1000">0</div>
+            <div class="stat-label">Proyectos Completados</div>
+            <div class="stat-description">Éxitos entregados</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Soporte Disponible</div>
+            <div class="stat-description">Siempre contigo</div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Galería Moderna -->
   {{#if galleryUrls}}
   <section id="galeria" class="gallery-section">
     <div class="container">
       <div class="section-header">
-        <h2 class="section-title">Galería de Trabajos</h2>
-        <div class="section-divider"></div>
-        <p class="section-subtitle">Algunos de nuestros proyectos más destacados</p>
+        <div class="section-badge">
+          <i class="fas fa-camera"></i>
+          <span>Nuestro Trabajo</span>
+        </div>
+        <h2 class="section-title">Galería de Proyectos Destacados</h2>
+        <p class="section-subtitle">Cada proyecto cuenta una historia de éxito y dedicación</p>
       </div>
       <div class="gallery-grid">
         {{#each galleryUrls}}
         <div class="gallery-item" data-aos="fade-up" data-aos-delay="{{multiply @index 100}}">
-          <img src="{{this}}" alt="Proyecto {{add @index 1}}" loading="lazy">
-          <div class="gallery-overlay">
-            <div class="gallery-content">
-              <h4>Proyecto {{add @index 1}}</h4>
-              <p>Ver detalles</p>
+          <div class="gallery-image">
+            <img src="{{this}}" alt="Proyecto {{add @index 1}}" loading="lazy">
+            <div class="gallery-overlay">
+              <div class="gallery-content">
+                <h4>Proyecto {{add @index 1}}</h4>
+                <p>Ver detalles completos</p>
+                <div class="gallery-button">
+                  <i class="fas fa-expand"></i>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -159,155 +298,372 @@
   </section>
   {{/if}}
 
+  <!-- Testimonios Modernos -->
   <section class="testimonials-section">
     <div class="container">
       <div class="section-header">
+        <div class="section-badge">
+          <i class="fas fa-quote-left"></i>
+          <span>Testimonios</span>
+        </div>
         <h2 class="section-title">Lo Que Dicen Nuestros Clientes</h2>
-        <div class="section-divider"></div>
+        <p class="section-subtitle">Experiencias reales de quienes confían en nosotros</p>
       </div>
       <div class="testimonials-grid">
         <div class="testimonial-card">
+          <div class="testimonial-header">
+            <div class="testimonial-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <div class="testimonial-quote">
+              <i class="fas fa-quote-left"></i>
+            </div>
+          </div>
           <div class="testimonial-content">
-            <p>"Excelente servicio y atención al detalle. Superaron todas nuestras expectativas."</p>
+            <p>"Excelente servicio y atención al detalle. Superaron todas nuestras expectativas y entregaron resultados excepcionales en tiempo récord."</p>
           </div>
           <div class="testimonial-author">
-            <strong>María González</strong>
-            <span>Cliente Satisfecha</span>
+            <div class="author-avatar">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="author-info">
+              <strong>María González</strong>
+              <span>Directora de Operaciones</span>
+            </div>
           </div>
         </div>
         <div class="testimonial-card">
+          <div class="testimonial-header">
+            <div class="testimonial-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <div class="testimonial-quote">
+              <i class="fas fa-quote-left"></i>
+            </div>
+          </div>
           <div class="testimonial-content">
-            <p>"Profesionalismo y calidad en cada proyecto. Altamente recomendados."</p>
+            <p>"Profesionalismo y calidad en cada proyecto. Su equipo no solo cumple, sino que supera las expectativas. Altamente recomendados."</p>
           </div>
           <div class="testimonial-author">
-            <strong>Carlos Rodríguez</strong>
-            <span>Socio Comercial</span>
+            <div class="author-avatar">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="author-info">
+              <strong>Carlos Rodríguez</strong>
+              <span>CEO & Fundador</span>
+            </div>
           </div>
         </div>
         <div class="testimonial-card">
+          <div class="testimonial-header">
+            <div class="testimonial-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <div class="testimonial-quote">
+              <i class="fas fa-quote-left"></i>
+            </div>
+          </div>
           <div class="testimonial-content">
-            <p>"La tradición y experiencia se nota en cada detalle de su trabajo."</p>
+            <p>"La experiencia y dedicación se nota en cada detalle. Han sido nuestros socios estratégicos durante años."</p>
           </div>
           <div class="testimonial-author">
-            <strong>Ana Martínez</strong>
-            <span>Cliente Frecuente</span>
+            <div class="author-avatar">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="author-info">
+              <strong>Ana Martínez</strong>
+              <span>Gerente de Proyectos</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Contacto Moderno -->
   <section id="contacto" class="contact-section">
     <div class="container">
       <div class="section-header">
-        <h2 class="section-title">Información de Contacto</h2>
-        <div class="section-divider"></div>
-        <p class="section-subtitle">Estamos aquí para atenderte</p>
+        <div class="section-badge">
+          <i class="fas fa-handshake"></i>
+          <span>Contacto</span>
+        </div>
+        <h2 class="section-title">Comencemos Tu Próximo Proyecto</h2>
+        <p class="section-subtitle">Estamos listos para convertir tus ideas en realidad</p>
       </div>
       <div class="contact-content">
         <div class="contact-info">
+          <div class="contact-intro">
+            <h3>¿Listo para comenzar?</h3>
+            <p>Contáctanos hoy y descubre cómo podemos ayudarte a alcanzar tus objetivos.</p>
+          </div>
           <div class="contact-grid">
             <div class="contact-card">
-              <div class="contact-icon">📞</div>
-              <h4>Teléfono</h4>
-              <p>{{contactPhone}}</p>
+              <div class="contact-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div class="contact-details">
+                <h4>Teléfono</h4>
+                <p>{{contactPhone}}</p>
+                <span class="contact-note">Llamadas y WhatsApp</span>
+              </div>
             </div>
             {{#if businessAddress}}
             <div class="contact-card">
-              <div class="contact-icon">📍</div>
-              <h4>Dirección</h4>
-              <p>{{businessAddress}}</p>
+              <div class="contact-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="contact-details">
+                <h4>Ubicación</h4>
+                <p>{{businessAddress}}</p>
+                <span class="contact-note">Visítanos</span>
+              </div>
             </div>
             {{/if}}
             {{#if businessHours}}
             <div class="contact-card">
-              <div class="contact-icon">🕒</div>
-              <h4>Horarios</h4>
-              <p>{{businessHours}}</p>
+              <div class="contact-icon">
+                <i class="fas fa-clock"></i>
+              </div>
+              <div class="contact-details">
+                <h4>Horarios</h4>
+                <p>{{businessHours}}</p>
+                <span class="contact-note">Atención personalizada</span>
+              </div>
             </div>
             {{/if}}
             {{#if googleMaps}}
             <div class="contact-card">
-              <div class="contact-icon">🗺️</div>
-              <h4>Ubicación</h4>
-              <a href="{{googleMaps}}" target="_blank" class="map-link">Ver en Google Maps</a>
+              <div class="contact-icon">
+                <i class="fas fa-route"></i>
+              </div>
+              <div class="contact-details">
+                <h4>Cómo Llegar</h4>
+                <a href="{{googleMaps}}" target="_blank" class="map-link">
+                  <i class="fas fa-external-link-alt"></i>
+                  Ver en Google Maps
+                </a>
+                <span class="contact-note">Fácil acceso</span>
+              </div>
             </div>
             {{/if}}
           </div>
         </div>
-        <div class="contact-form">
-          <h3>Envíanos un Mensaje</h3>
-          <form class="form">
-            <div class="form-group">
-              <input type="text" placeholder="Tu Nombre" required>
+        <div class="contact-form-container">
+          <div class="form-header">
+            <h3>Solicita tu Consulta Gratuita</h3>
+            <p>Completa el formulario y te contactaremos en menos de 24 horas</p>
+          </div>
+          <form class="contact-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Nombre Completo *</label>
+                <input type="text" id="name" name="name" placeholder="Tu nombre completo" required>
+                <i class="fas fa-user form-icon"></i>
+              </div>
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                <i class="fas fa-envelope form-icon"></i>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone">Teléfono</label>
+                <input type="tel" id="phone" name="phone" placeholder="Tu número de teléfono">
+                <i class="fas fa-phone form-icon"></i>
+              </div>
+              <div class="form-group">
+                <label for="subject">Asunto</label>
+                <select id="subject" name="subject">
+                  <option value="">Selecciona un tema</option>
+                  <option value="consulta">Consulta General</option>
+                  <option value="proyecto">Nuevo Proyecto</option>
+                  <option value="soporte">Soporte Técnico</option>
+                  <option value="otro">Otro</option>
+                </select>
+                <i class="fas fa-tag form-icon"></i>
+              </div>
             </div>
             <div class="form-group">
-              <input type="email" placeholder="Tu Email" required>
+              <label for="message">Mensaje *</label>
+              <textarea id="message" name="message" rows="5" placeholder="Cuéntanos sobre tu proyecto o consulta..." required></textarea>
+              <i class="fas fa-comment form-icon"></i>
             </div>
-            <div class="form-group">
-              <input type="tel" placeholder="Tu Teléfono">
+            <div class="form-footer">
+              <div class="form-privacy">
+                <input type="checkbox" id="privacy" name="privacy" required>
+                <label for="privacy">Acepto la política de privacidad y el tratamiento de mis datos</label>
+              </div>
+              <button type="submit" class="btn btn-primary btn-full">
+                <i class="fas fa-paper-plane"></i>
+                Enviar Mensaje
+                <span class="btn-loading">
+                  <i class="fas fa-spinner fa-spin"></i>
+                </span>
+              </button>
             </div>
-            <div class="form-group">
-              <textarea placeholder="Tu Mensaje" rows="5" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary btn-full">Enviar Mensaje</button>
           </form>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Redes Sociales -->
   {{#if socialMedia}}
   <section class="social-section">
     <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Síguenos en Redes Sociales</h2>
-        <div class="section-divider"></div>
-        <p class="section-subtitle">Mantente conectado con nosotros</p>
-      </div>
-      <div class="social-grid">
-        {{#each socialMedia}}
-        <a href="{{this}}" target="_blank" class="social-card">
-          <div class="social-icon">{{getSocialIcon @key}}</div>
-          <span>{{@key}}</span>
-        </a>
-        {{/each}}
+      <div class="social-content">
+        <div class="social-header">
+          <h3>Síguenos en Redes Sociales</h3>
+          <p>Mantente conectado y no te pierdas nuestras últimas novedades</p>
+        </div>
+        <div class="social-grid">
+          {{#each socialMedia}}
+          <a href="{{this}}" target="_blank" class="social-card">
+            <div class="social-icon">
+              {{#if (eq @key 'facebook')}}
+              <i class="fab fa-facebook-f"></i>
+              {{else if (eq @key 'instagram')}}
+              <i class="fab fa-instagram"></i>
+              {{else if (eq @key 'twitter')}}
+              <i class="fab fa-twitter"></i>
+              {{else if (eq @key 'linkedin')}}
+              <i class="fab fa-linkedin-in"></i>
+              {{else if (eq @key 'youtube')}}
+              <i class="fab fa-youtube"></i>
+              {{else}}
+              <i class="fas fa-link"></i>
+              {{/if}}
+            </div>
+            <span class="social-name">{{@key}}</span>
+            <div class="social-arrow">
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          </a>
+          {{/each}}
+        </div>
       </div>
     </div>
   </section>
   {{/if}}
 
+  <!-- Footer Moderno -->
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
-        <div class="footer-section">
-          <h3>{{businessName}}</h3>
-          <p>Tradición, calidad y excelencia en cada proyecto.</p>
+        <div class="footer-main">
+          <div class="footer-brand">
+            {{#if logoUrl}}
+            <img src="{{logoUrl}}" alt="{{businessName}} Logo" class="footer-logo">
+            {{/if}}
+            <h3>{{businessName}}</h3>
+            <p>Transformando ideas en resultados excepcionales. Tu éxito es nuestro compromiso.</p>
+            <div class="footer-rating">
+              <div class="rating-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <span>5.0 - Excelencia Comprobada</span>
+            </div>
+          </div>
+          <div class="footer-links">
+            <div class="footer-section">
+              <h4>Contacto Directo</h4>
+              <div class="footer-contact">
+                <div class="contact-item">
+                  <i class="fas fa-phone"></i>
+                  <span>{{contactPhone}}</span>
+                </div>
+                {{#if businessAddress}}
+                <div class="contact-item">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <span>{{businessAddress}}</span>
+                </div>
+                {{/if}}
+                {{#if businessHours}}
+                <div class="contact-item">
+                  <i class="fas fa-clock"></i>
+                  <span>{{businessHours}}</span>
+                </div>
+                {{/if}}
+              </div>
+            </div>
+            <div class="footer-section">
+              <h4>Servicios Principales</h4>
+              <ul class="footer-services">
+                <li><i class="fas fa-check"></i> Servicio Premium</li>
+                <li><i class="fas fa-check"></i> Soporte Técnico</li>
+                <li><i class="fas fa-check"></i> Consultoría</li>
+                <li><i class="fas fa-check"></i> Mantenimiento</li>
+              </ul>
+            </div>
+            <div class="footer-section">
+              <h4>Certificaciones</h4>
+              <div class="footer-badges">
+                <div class="badge-item">
+                  <i class="fas fa-award"></i>
+                  <span>ISO 9001</span>
+                </div>
+                <div class="badge-item">
+                  <i class="fas fa-shield-alt"></i>
+                  <span>Calidad Garantizada</span>
+                </div>
+                <div class="badge-item">
+                  <i class="fas fa-medal"></i>
+                  <span>Excelencia</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="footer-section">
-          <h4>Contacto Rápido</h4>
-          <p>📞 {{contactPhone}}</p>
-          {{#if businessAddress}}
-          <p>📍 {{businessAddress}}</p>
-          {{/if}}
+        <div class="footer-bottom">
+          <div class="footer-copyright">
+            <p>&copy; 2024 {{businessName}}. Todos los derechos reservados.</p>
+            <div class="footer-legal">
+              <a href="#">Política de Privacidad</a>
+              <a href="#">Términos de Servicio</a>
+            </div>
+          </div>
+          <div class="footer-powered">
+            <p>Sitio web creado con <strong>Tempath</strong> <i class="fas fa-heart"></i></p>
+          </div>
         </div>
-        <div class="footer-section">
-          <h4>Horarios</h4>
-          {{#if businessHours}}
-          <p>{{businessHours}}</p>
-          {{else}}
-          <p>Lunes a Viernes: 9:00 - 18:00</p>
-          {{/if}}
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2024 {{businessName}}. Todos los derechos reservados.</p>
-        <p>Sitio web creado con <strong>Tempath</strong></p>
       </div>
     </div>
   </footer>
 
+  <!-- Botón de WhatsApp Flotante -->
+  <div class="whatsapp-float">
+    <a href="https://wa.me/{{contactPhone}}" target="_blank" class="whatsapp-btn">
+      <i class="fab fa-whatsapp"></i>
+      <span class="whatsapp-text">¡Chatea con nosotros!</span>
+    </a>
+  </div>
+
+  <!-- Botón Scroll to Top -->
+  <div class="scroll-to-top" id="scrollToTop">
+    <i class="fas fa-chevron-up"></i>
+  </div>
+
+  <!-- JavaScript  -->
   <script>
+    // Smooth scrolling para enlaces internos
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -321,39 +677,125 @@
       });
     });
 
- 
+    // Menú hamburguesa
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     
     hamburger.addEventListener('click', () => {
       hamburger.classList.toggle('active');
       navMenu.classList.toggle('active');
+      document.body.classList.toggle('menu-open');
     });
 
- 
+    // Cerrar menú al hacer clic en un enlace
     document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
       hamburger.classList.remove('active');
       navMenu.classList.remove('active');
+      document.body.classList.remove('menu-open');
     }));
 
- 
+    // Navbar scroll effect
     window.addEventListener('scroll', () => {
       const navbar = document.querySelector('.navbar');
+      const scrollToTop = document.getElementById('scrollToTop');
+      
       if (window.scrollY > 100) {
         navbar.classList.add('scrolled');
+        scrollToTop.classList.add('visible');
       } else {
         navbar.classList.remove('scrolled');
+        scrollToTop.classList.remove('visible');
       }
     });
 
- 
-    document.querySelector('.form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('¡Gracias por tu mensaje! Te contactaremos pronto.');
-      this.reset();
+    // Scroll to top functionality
+    document.getElementById('scrollToTop').addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
     });
 
- 
+    // Animación de contadores
+    function animateCounters() {
+      const counters = document.querySelectorAll('.stat-number[data-target]');
+      
+      counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-target'));
+        const increment = target / 100;
+        let current = 0;
+        
+        const updateCounter = () => {
+          if (current < target) {
+            current += increment;
+            counter.textContent = Math.ceil(current);
+            setTimeout(updateCounter, 20);
+          } else {
+            counter.textContent = target;
+          }
+        };
+        
+        updateCounter();
+      });
+    }
+
+    // Intersection Observer para animaciones
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+          
+          // Animar contadores cuando la sección de stats es visible
+          if (entry.target.classList.contains('stats-section')) {
+            animateCounters();
+          }
+        }
+      });
+    }, observerOptions);
+
+    // Observar elementos para animaciones
+    document.querySelectorAll('.section-header, .service-card, .stat-card, .testimonial-card, .gallery-item').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Observar sección de estadísticas
+    const statsSection = document.querySelector('.stats-section');
+    if (statsSection) {
+      observer.observe(statsSection);
+    }
+
+    // Formulario de contacto
+    document.querySelector('.contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const submitBtn = this.querySelector('button[type="submit"]');
+      const btnText = submitBtn.querySelector('i:not(.btn-loading i)');
+      const btnLoading = submitBtn.querySelector('.btn-loading');
+      
+      // Mostrar estado de carga
+      submitBtn.disabled = true;
+      btnText.style.display = 'none';
+      btnLoading.style.display = 'inline-block';
+      
+      // Simular envío (aquí iría la lógica real de envío)
+      setTimeout(() => {
+        // Restaurar botón
+        submitBtn.disabled = false;
+        btnText.style.display = 'inline-block';
+        btnLoading.style.display = 'none';
+        
+        // Mostrar mensaje de éxito
+        alert('¡Gracias por tu mensaje! Te contactaremos pronto.');
+        this.reset();
+      }, 2000);
+    });
+
+    // Galería lightbox
     document.querySelectorAll('.gallery-item').forEach(item => {
       item.addEventListener('click', function() {
         const img = this.querySelector('img');
@@ -362,17 +804,59 @@
         lightbox.innerHTML = `
           <div class="lightbox-content">
             <img src="${img.src}" alt="${img.alt}">
-            <span class="lightbox-close">&times;</span>
+            <button class="lightbox-close">
+              <i class="fas fa-times"></i>
+            </button>
           </div>
         `;
         document.body.appendChild(lightbox);
+        document.body.style.overflow = 'hidden';
         
+        // Cerrar lightbox
         lightbox.addEventListener('click', function(e) {
-          if (e.target === lightbox || e.target.className === 'lightbox-close') {
+          if (e.target === lightbox || e.target.closest('.lightbox-close')) {
             document.body.removeChild(lightbox);
+            document.body.style.overflow = 'auto';
+          }
+        });
+        
+        // Cerrar con ESC
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && document.querySelector('.lightbox')) {
+            document.body.removeChild(lightbox);
+            document.body.style.overflow = 'auto';
           }
         });
       });
+    });
+
+    // Efecto parallax suave para hero
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const hero = document.querySelector('.hero');
+      const heroShapes = document.querySelectorAll('.hero-shapes .shape');
+      
+      if (hero && scrolled < hero.offsetHeight) {
+        heroShapes.forEach((shape, index) => {
+          const speed = 0.5 + (index * 0.1);
+          shape.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+      }
+    });
+
+    // Inicialización
+    document.addEventListener('DOMContentLoaded', function() {
+      // Agregar clase de carga completada
+      document.body.classList.add('loaded');
+      
+      // Activar animaciones iniciales
+      setTimeout(() => {
+        document.querySelectorAll('.hero-content > *').forEach((el, index) => {
+          setTimeout(() => {
+            el.classList.add('animate');
+          }, index * 100);
+        });
+      }, 300);
     });
   </script>
 </body>

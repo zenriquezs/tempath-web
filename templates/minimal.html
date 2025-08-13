@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{businessName}} - Simplicidad y Elegancia</title>
+  <title>{{businessName}} - Creatividad e Innovación</title>
   <link rel="stylesheet" href="css/minimal.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
       --primary-color: {{primaryColor}};
@@ -14,143 +15,293 @@
   </style>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="nav">
+  <!-- Cursor personalizado -->
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
+  <!-- Navegación creativa -->
+  <nav class="navbar" id="navbar">
     <div class="nav-container">
-      {{#if logoUrl}}
-      <img src="{{logoUrl}}" alt="{{businessName}}" class="nav-logo">
-      {{/if}}
-      <div class="nav-brand">{{businessName}}</div>
-      <div class="nav-menu">
-        <a href="#inicio" class="nav-link">Inicio</a>
-        <a href="#acerca" class="nav-link">Acerca</a>
-        <a href="#servicios" class="nav-link">Servicios</a>
-        <a href="#galeria" class="nav-link">Galería</a>
-        <a href="#contacto" class="nav-link">Contacto</a>
+      <div class="nav-brand">
+        {{#if logoUrl}}
+        <img src="{{logoUrl}}" alt="{{businessName}}" class="nav-logo">
+        {{/if}}
+        <span class="brand-text">{{businessName}}</span>
       </div>
-      <div class="nav-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
+      
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#inicio" class="nav-link">Inicio</a></li>
+        <li><a href="#acerca" class="nav-link">Acerca</a></li>
+        <li><a href="#servicios" class="nav-link">Servicios</a></li>
+        <li><a href="#galeria" class="nav-link">Galería</a></li>
+        <li><a href="#contacto" class="nav-link">Contacto</a></li>
+      </ul>
+      
+      <div class="nav-actions">
+        <a href="#contacto" class="nav-cta">Colaborar</a>
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
     </div>
   </nav>
 
-  <!-- Hero Section -->
+  <!-- Hero Section Creativo -->
   <section id="inicio" class="hero">
+    <div class="hero-background">
+      <div class="geometric-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+      </div>
+      <div class="floating-particles"></div>
+    </div>
+    
     <div class="container">
       <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fas fa-palette"></i>
+          <span>Creatividad & Innovación</span>
+        </div>
+        
         {{#if logoUrl}}
         <div class="hero-logo">
           <img src="{{logoUrl}}" alt="{{businessName}} Logo">
         </div>
         {{/if}}
-        <h1 class="hero-title">{{businessName}}</h1>
-        <p class="hero-subtitle">Simplicidad y Elegancia</p>
+        
+        <h1 class="hero-title">
+          <span class="title-line">{{businessName}}</span>
+          <span class="title-accent">Donde las ideas</span>
+          <span class="title-line">cobran vida</span>
+        </h1>
+        
         <p class="hero-description">{{businessDescription}}</p>
+        
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number">100+</span>
+            <span class="stat-label">Proyectos</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">5+</span>
+            <span class="stat-label">Años</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">50+</span>
+            <span class="stat-label">Clientes</span>
+          </div>
+        </div>
+        
         <div class="hero-actions">
-          <a href="#contacto" class="btn btn-primary">Contactar</a>
-          <a href="#acerca" class="btn btn-outline">Conocer Más</a>
+          <a href="#contacto" class="btn btn-primary">
+            <span>Comenzar Proyecto</span>
+            <i class="fas fa-rocket"></i>
+          </a>
+          <a href="#galeria" class="btn btn-outline">
+            <span>Ver Portfolio</span>
+            <i class="fas fa-arrow-down"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scroll-indicator">
+      <div class="scroll-wheel"></div>
+      <span>Explora más</span>
+    </div>
+  </section>
+
+  <!-- Sección Acerca Creativa -->
+  <section id="acerca" class="about-section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-visual">
+          <div class="visual-card">
+            <div class="card-pattern"></div>
+            <div class="card-content">
+              <h3>Nuestra Filosofía</h3>
+              <p>Creemos que cada proyecto es una oportunidad única para crear algo extraordinario.</p>
+              <div class="philosophy-points">
+                <div class="point">
+                  <i class="fas fa-lightbulb"></i>
+                  <span>Innovación</span>
+                </div>
+                <div class="point">
+                  <i class="fas fa-heart"></i>
+                  <span>Pasión</span>
+                </div>
+                <div class="point">
+                  <i class="fas fa-star"></i>
+                  <span>Excelencia</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="about-content">
+          <div class="section-badge">
+            <i class="fas fa-users"></i>
+            <span>Sobre Nosotros</span>
+          </div>
+          
+          <h2 class="section-title">Creatividad que Transforma Ideas</h2>
+          
+          <p class="about-text">{{businessDescription}}</p>
+          
+          <div class="about-features">
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-magic"></i>
+              </div>
+              <div class="feature-content">
+                <h4>Diseño Único</h4>
+                <p>Cada proyecto refleja la personalidad única de nuestros clientes</p>
+              </div>
+            </div>
+            
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-cogs"></i>
+              </div>
+              <div class="feature-content">
+                <h4>Proceso Colaborativo</h4>
+                <p>Trabajamos mano a mano contigo en cada etapa del proyecto</p>
+              </div>
+            </div>
+            
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-trophy"></i>
+              </div>
+              <div class="feature-content">
+                <h4>Resultados Excepcionales</h4>
+                <p>Entregamos soluciones que superan las expectativas</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- About Section -->
-  <section id="acerca" class="section about">
+  <!-- Servicios Creativos -->
+  <section id="servicios" class="services-section">
     <div class="container">
       <div class="section-header">
-        <h2 class="section-title">Acerca de Nosotros</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="about-content">
-        <p class="about-text">{{businessDescription}}</p>
-        <div class="about-values">
-          <div class="value-item">
-            <div class="value-icon">⚡</div>
-            <h3>Eficiencia</h3>
-            <p>Soluciones rápidas y efectivas</p>
-          </div>
-          <div class="value-item">
-            <div class="value-icon">🎯</div>
-            <h3>Precisión</h3>
-            <p>Enfoque directo y resultados claros</p>
-          </div>
-          <div class="value-item">
-            <div class="value-icon"></div>
-            <h3>Calidad</h3>
-            <p>Excelencia en cada detalle</p>
-          </div>
+        <div class="section-badge">
+          <i class="fas fa-palette"></i>
+          <span>Nuestros Servicios</span>
         </div>
+        <h2 class="section-title">Soluciones Creativas Integrales</h2>
+        <p class="section-subtitle">Transformamos tus ideas en experiencias digitales memorables</p>
       </div>
-    </div>
-  </section>
-
-  <!-- Services Section -->
-  <section id="servicios" class="section services">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Servicios</h2>
-        <div class="section-line"></div>
-      </div>
+      
       <div class="services-grid">
         <div class="service-card">
+          <div class="service-background"></div>
+          <div class="service-icon">
+            <i class="fas fa-paint-brush"></i>
+          </div>
           <div class="service-number">01</div>
-          <h3>Consultoría</h3>
-          <p>Asesoramiento especializado y estratégico</p>
+          <h3 class="service-title">Diseño Gráfico</h3>
+          <p class="service-description">Identidades visuales que comunican la esencia de tu marca con impacto y originalidad.</p>
+          <ul class="service-features">
+            <li><i class="fas fa-check"></i> Branding completo</li>
+            <li><i class="fas fa-check"></i> Diseño editorial</li>
+            <li><i class="fas fa-check"></i> Packaging creativo</li>
+          </ul>
+          <a href="#contacto" class="service-link">
+            <span>Explorar</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
         </div>
-        <div class="service-card">
+        
+        <div class="service-card featured">
+          <div class="service-badge">Más Popular</div>
+          <div class="service-background"></div>
+          <div class="service-icon">
+            <i class="fas fa-laptop-code"></i>
+          </div>
           <div class="service-number">02</div>
-          <h3>Desarrollo</h3>
-          <p>Soluciones técnicas innovadoras</p>
+          <h3 class="service-title">Desarrollo Web</h3>
+          <p class="service-description">Sitios web únicos que combinan funcionalidad excepcional con diseño vanguardista.</p>
+          <ul class="service-features">
+            <li><i class="fas fa-check"></i> Diseño responsivo</li>
+            <li><i class="fas fa-check"></i> Animaciones avanzadas</li>
+            <li><i class="fas fa-check"></i> Optimización SEO</li>
+          </ul>
+          <a href="#contacto" class="service-link">
+            <span>Explorar</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
         </div>
+        
         <div class="service-card">
+          <div class="service-background"></div>
+          <div class="service-icon">
+            <i class="fas fa-video"></i>
+          </div>
           <div class="service-number">03</div>
-          <h3>Soporte</h3>
-          <p>Acompañamiento continuo y confiable</p>
+          <h3 class="service-title">Contenido Visual</h3>
+          <p class="service-description">Producción audiovisual que cuenta historias cautivadoras y genera conexión emocional.</p>
+          <ul class="service-features">
+            <li><i class="fas fa-check"></i> Motion graphics</li>
+            <li><i class="fas fa-check"></i> Video marketing</li>
+            <li><i class="fas fa-check"></i> Fotografía profesional</li>
+          </ul>
+          <a href="#contacto" class="service-link">
+            <span>Explorar</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Stats Section -->
-  <section class="section stats">
-    <div class="container">
-      <div class="stats-grid">
-        <div class="stat-item">
-          <div class="stat-number">5+</div>
-          <div class="stat-label">Años</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">100+</div>
-          <div class="stat-label">Proyectos</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">50+</div>
-          <div class="stat-label">Clientes</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">24/7</div>
-          <div class="stat-label">Soporte</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Gallery Section -->
+  <!-- Galería Creativa -->
   {{#if galleryUrls}}
-  <section id="galeria" class="section gallery">
+  <section id="galeria" class="portfolio-section">
     <div class="container">
       <div class="section-header">
-        <h2 class="section-title">Galería</h2>
-        <div class="section-line"></div>
+        <div class="section-badge">
+          <i class="fas fa-images"></i>
+          <span>Portfolio Creativo</span>
+        </div>
+        <h2 class="section-title">Proyectos que Inspiran</h2>
+        <p class="section-subtitle">Una selección de nuestros trabajos más destacados</p>
       </div>
-      <div class="gallery-grid">
+      
+      <div class="portfolio-filter">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="web">Web</button>
+        <button class="filter-btn" data-filter="branding">Branding</button>
+        <button class="filter-btn" data-filter="video">Video</button>
+      </div>
+      
+      <div class="portfolio-grid">
         {{#each galleryUrls}}
-        <div class="gallery-item" data-index="{{@index}}">
-          <img src="{{this}}" alt="Proyecto {{add @index 1}}" loading="lazy">
-          <div class="gallery-overlay">
-            <span class="gallery-expand">+</span>
+        <div class="portfolio-item" data-category="web">
+          <div class="portfolio-image">
+            <img src="{{this}}" alt="Proyecto {{add @index 1}}" loading="lazy">
+            <div class="portfolio-overlay">
+              <div class="portfolio-content">
+                <h4>Proyecto Creativo {{add @index 1}}</h4>
+                <p>Diseño & Desarrollo</p>
+                <div class="portfolio-tags">
+                  <span class="tag">Creativo</span>
+                  <span class="tag">Moderno</span>
+                </div>
+              </div>
+              <div class="portfolio-actions">
+                <button class="portfolio-btn" onclick="openLightbox('{{this}}')"><i class="fas fa-eye"></i></button>
+                <a href="#contacto" class="portfolio-btn"><i class="fas fa-link"></i></a>
+              </div>
+            </div>
           </div>
         </div>
         {{/each}}
@@ -159,128 +310,295 @@
   </section>
   {{/if}}
 
-  <!-- Contact Section -->
-  <section id="contacto" class="section contact">
+  <!-- Testimonios Creativos -->
+  <section class="testimonials-section">
     <div class="container">
       <div class="section-header">
-        <h2 class="section-title">Contacto</h2>
-        <div class="section-line"></div>
+        <div class="section-badge">
+          <i class="fas fa-quote-left"></i>
+          <span>Testimonios</span>
+        </div>
+        <h2 class="section-title">Historias de Éxito</h2>
       </div>
-      <div class="contact-content">
+      
+      <div class="testimonials-slider">
+        <div class="testimonial-card">
+          <div class="testimonial-pattern"></div>
+          <div class="testimonial-content">
+            <div class="testimonial-stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p>"Su enfoque creativo transformó completamente nuestra presencia digital. El resultado superó todas nuestras expectativas."</p>
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="author-info">
+              <h4>Ana Martínez</h4>
+              <span>Directora Creativa, Studio Design</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-pattern"></div>
+          <div class="testimonial-content">
+            <div class="testimonial-stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p>"Profesionales excepcionales que entienden la importancia del detalle. Cada proyecto es una obra de arte."</p>
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="author-info">
+              <h4>Carlos Rodríguez</h4>
+              <span>CEO, Innovate Corp</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacto Creativo -->
+  <section id="contacto" class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
         <div class="contact-info">
-          <div class="contact-list">
-            <div class="contact-item">
-              <span class="contact-label">Teléfono</span>
-              <span class="contact-value">{{contactPhone}}</span>
+          <div class="section-badge">
+            <i class="fas fa-envelope"></i>
+            <span>Contáctanos</span>
+          </div>
+          
+          <h2 class="section-title">¿Listo para Crear Algo Increíble?</h2>
+          <p class="contact-description">Transformemos tus ideas en realidades extraordinarias. Cada proyecto es una nueva aventura creativa.</p>
+          
+          <div class="contact-methods">
+            <div class="contact-method">
+              <div class="method-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div class="method-content">
+                <h4>Teléfono</h4>
+                <p>{{contactPhone}}</p>
+              </div>
             </div>
+            
             {{#if businessAddress}}
-            <div class="contact-item">
-              <span class="contact-label">Dirección</span>
-              <span class="contact-value">{{businessAddress}}</span>
+            <div class="contact-method">
+              <div class="method-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="method-content">
+                <h4>Estudio</h4>
+                <p>{{businessAddress}}</p>
+              </div>
             </div>
             {{/if}}
+            
             {{#if businessHours}}
-            <div class="contact-item">
-              <span class="contact-label">Horarios</span>
-              <span class="contact-value">{{businessHours}}</span>
-            </div>
-            {{/if}}
-            {{#if googleMaps}}
-            <div class="contact-item">
-              <span class="contact-label">Ubicación</span>
-              <span class="contact-value">
-                <a href="{{googleMaps}}" target="_blank" class="map-link">Ver en Maps →</a>
-              </span>
+            <div class="contact-method">
+              <div class="method-icon">
+                <i class="fas fa-clock"></i>
+              </div>
+              <div class="method-content">
+                <h4>Horarios</h4>
+                <p>{{businessHours}}</p>
+              </div>
             </div>
             {{/if}}
           </div>
+          
+          <div class="creative-stats">
+            <div class="creative-stat">
+              <span class="stat-number">24h</span>
+              <span class="stat-label">Respuesta</span>
+            </div>
+            <div class="creative-stat">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">Satisfacción</span>
+            </div>
+          </div>
         </div>
-        <div class="contact-form">
-          <form class="form">
-            <div class="form-group">
-              <input type="text" placeholder="Nombre" required>
+        
+        <div class="contact-form-wrapper">
+          <div class="form-decoration"></div>
+          <form class="contact-form" id="contactForm">
+            <div class="form-header">
+              <h3>Cuéntanos tu Proyecto</h3>
+              <p>Cada gran proyecto comienza con una conversación</p>
             </div>
-            <div class="form-group">
-              <input type="email" placeholder="Email" required>
+            
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="name">Nombre Completo</label>
+                <input type="text" id="name" name="name" required>
+                <div class="form-line"></div>
+              </div>
+              
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <div class="form-line"></div>
+              </div>
             </div>
+            
             <div class="form-group">
-              <input type="tel" placeholder="Teléfono">
+              <label for="phone">Teléfono</label>
+              <input type="tel" id="phone" name="phone">
+              <div class="form-line"></div>
             </div>
+            
             <div class="form-group">
-              <textarea placeholder="Mensaje" rows="4" required></textarea>
+              <label for="service">Tipo de Proyecto</label>
+              <select id="service" name="service">
+                <option value="">Selecciona un servicio</option>
+                <option value="branding">Branding & Identidad</option>
+                <option value="web">Desarrollo Web</option>
+                <option value="video">Contenido Visual</option>
+                <option value="consulting">Consultoría Creativa</option>
+              </select>
+              <div class="form-line"></div>
             </div>
-            <button type="submit" class="btn btn-primary btn-full">Enviar Mensaje</button>
+            
+            <div class="form-group">
+              <label for="message">Cuéntanos tu Visión</label>
+              <textarea id="message" name="message" rows="4" placeholder="Describe tu proyecto, objetivos y cualquier idea que tengas en mente..." required></textarea>
+              <div class="form-line"></div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-full">
+              <span>Enviar Proyecto</span>
+              <i class="fas fa-paper-plane"></i>
+            </button>
           </form>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Social Media Section -->
+  <!-- Redes Sociales -->
   {{#if socialMedia}}
-  <section class="section social">
+  <section class="social-section">
     <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Síguenos</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="social-grid">
-        {{#each socialMedia}}
-        <a href="{{this}}" target="_blank" class="social-link">
-          <span class="social-icon">{{getSocialIcon @key}}</span>
-          <span class="social-name">{{@key}}</span>
-        </a>
-        {{/each}}
+      <div class="social-content">
+        <h3>Síguenos en Nuestro Viaje Creativo</h3>
+        <p>Descubre nuestros últimos proyectos y fuentes de inspiración</p>
+        <div class="social-links">
+          {{#each socialMedia}}
+          <a href="{{this}}" target="_blank" class="social-link" data-platform="{{@key}}">
+            <div class="social-icon">
+              <i class="fab fa-{{@key}}"></i>
+            </div>
+            <span class="social-name">{{@key}}</span>
+          </a>
+          {{/each}}
+        </div>
       </div>
     </div>
   </section>
   {{/if}}
 
-  <!-- Footer -->
+  <!-- Footer Creativo -->
   <footer class="footer">
+    <div class="footer-pattern"></div>
     <div class="container">
       <div class="footer-content">
         <div class="footer-brand">
-          <h3>{{businessName}}</h3>
-          <p>Simplicidad y elegancia en cada proyecto</p>
-        </div>
-        <div class="footer-contact">
-          <p>📞 {{contactPhone}}</p>
-          {{#if businessAddress}}
-          <p>📍 {{businessAddress}}</p>
+          {{#if logoUrl}}
+          <img src="{{logoUrl}}" alt="{{businessName}} Logo" class="footer-logo">
           {{/if}}
+          <h3>{{businessName}}</h3>
+          <p>Donde la creatividad encuentra su propósito</p>
+          <div class="footer-social">
+            <a href="#" class="footer-social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="footer-social-link"><i class="fab fa-behance"></i></a>
+            <a href="#" class="footer-social-link"><i class="fab fa-dribbble"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-links">
+          <div class="footer-section">
+            <h4>Servicios</h4>
+            <ul>
+              <li><a href="#servicios">Diseño Gráfico</a></li>
+              <li><a href="#servicios">Desarrollo Web</a></li>
+              <li><a href="#servicios">Contenido Visual</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-section">
+            <h4>Contacto</h4>
+            <ul>
+              <li><i class="fas fa-phone"></i> {{contactPhone}}</li>
+              {{#if businessAddress}}
+              <li><i class="fas fa-map-marker-alt"></i> {{businessAddress}}</li>
+              {{/if}}
+            </ul>
+          </div>
         </div>
       </div>
+      
       <div class="footer-bottom">
-        <p>&copy; 2024 {{businessName}}. Creado con <strong>Tempath</strong>.</p>
+        <p>&copy; 2024 {{businessName}}. Todos los derechos reservados.</p>
+        <p>Creado con <i class="fas fa-heart"></i> y mucha creatividad por <strong>Tempath</strong></p>
       </div>
     </div>
   </footer>
 
-  <!-- Lightbox Modal -->
+  <!-- Lightbox para galería -->
   <div id="lightbox" class="lightbox">
     <div class="lightbox-content">
       <span class="lightbox-close">&times;</span>
-      <img src="" alt="" id="lightbox-img">
+      <img id="lightbox-img" src="" alt="">
       <div class="lightbox-nav">
-        <button class="lightbox-prev">‹</button>
-        <button class="lightbox-next">›</button>
+        <button class="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+        <button class="lightbox-next"><i class="fas fa-chevron-right"></i></button>
       </div>
     </div>
   </div>
 
   <!-- JavaScript -->
   <script>
-    // Mobile Navigation
-    const navToggle = document.querySelector('.nav-toggle');
-    const navMenu = document.querySelector('.nav-menu');
+    // Cursor personalizado
+    const cursor = document.querySelector('.cursor');
+    const cursorFollower = document.querySelector('.cursor-follower');
     
-    navToggle.addEventListener('click', () => {
-      navToggle.classList.toggle('active');
-      navMenu.classList.toggle('active');
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+      
+      setTimeout(() => {
+        cursorFollower.style.left = e.clientX + 'px';
+        cursorFollower.style.top = e.clientY + 'px';
+      }, 100);
+    });
+    
+    // Efectos de hover para el cursor
+    document.querySelectorAll('a, button, .service-card, .portfolio-item').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.classList.add('cursor-hover');
+        cursorFollower.classList.add('cursor-hover');
+      });
+      
+      el.addEventListener('mouseleave', () => {
+        cursor.classList.remove('cursor-hover');
+        cursorFollower.classList.remove('cursor-hover');
+      });
     });
 
-    // Smooth Scrolling
+    // Navegación suave
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -294,69 +612,88 @@
       });
     });
 
-    // Navigation Scroll Effect
-    window.addEventListener('scroll', () => {
-      const nav = document.querySelector('.nav');
-      if (window.scrollY > 50) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
-      }
+    // Menú hamburguesa
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navMenu.classList.toggle('active');
     });
 
-    // Gallery Lightbox
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const lightboxClose = document.querySelector('.lightbox-close');
-    const lightboxPrev = document.querySelector('.lightbox-prev');
-    const lightboxNext = document.querySelector('.lightbox-next');
-    let currentImageIndex = 0;
-    const images = Array.from(galleryItems).map(item => item.querySelector('img'));
-
-    galleryItems.forEach((item, index) => {
-      item.addEventListener('click', () => {
-        currentImageIndex = index;
-        showLightbox();
+    // Cerrar menú al hacer clic en un enlace
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
       });
     });
 
-    function showLightbox() {
-      const img = images[currentImageIndex];
-      lightboxImg.src = img.src;
-      lightboxImg.alt = img.alt;
-      lightbox.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    }
-
-    function hideLightbox() {
-      lightbox.style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
-
-    lightboxClose.addEventListener('click', hideLightbox);
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) hideLightbox();
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 100) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
     });
 
-    lightboxPrev.addEventListener('click', () => {
-      currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-      showLightbox();
-    });
-
-    lightboxNext.addEventListener('click', () => {
-      currentImageIndex = (currentImageIndex + 1) % images.length;
-      showLightbox();
-    });
-
-    // Form Submission
-    document.querySelector('.form').addEventListener('submit', function(e) {
+    // Formulario de contacto
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      alert('¡Mensaje enviado! Te contactaremos pronto.');
+      
+      // Aquí puedes agregar la lógica para enviar el formulario
+      const formData = new FormData(this);
+      
+      // Simulación de envío exitoso
+      alert('¡Gracias por contactarnos! Tu proyecto nos emociona y te responderemos pronto.');
       this.reset();
     });
 
-    // Intersection Observer for Animations
+    // Lightbox para galería
+    function openLightbox(src) {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      lightboxImg.src = src;
+      lightbox.style.display = 'flex';
+    }
+
+    // Cerrar lightbox
+    document.querySelector('.lightbox-close').addEventListener('click', () => {
+      document.getElementById('lightbox').style.display = 'none';
+    });
+
+    document.getElementById('lightbox').addEventListener('click', (e) => {
+      if (e.target.id === 'lightbox') {
+        document.getElementById('lightbox').style.display = 'none';
+      }
+    });
+
+    // Filtros de portfolio
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+    
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remover clase active de todos los botones
+        filterBtns.forEach(b => b.classList.remove('active'));
+        // Agregar clase active al botón clickeado
+        btn.classList.add('active');
+        
+        const filter = btn.getAttribute('data-filter');
+        
+        portfolioItems.forEach(item => {
+          if (filter === 'all' || item.getAttribute('data-category') === filter) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Animaciones de scroll
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
@@ -370,9 +707,27 @@
       });
     }, observerOptions);
 
-    document.querySelectorAll('.service-card, .value-item, .stat-item, .gallery-item').forEach(el => {
+    // Observar elementos para animación
+    document.querySelectorAll('.service-card, .portfolio-item, .testimonial-card, .contact-method, .feature-item').forEach(el => {
       observer.observe(el);
     });
+
+    // Partículas flotantes
+    function createParticles() {
+      const particlesContainer = document.querySelector('.floating-particles');
+      const particleCount = 20;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 10 + 's';
+        particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+        particlesContainer.appendChild(particle);
+      }
+    }
+    
+    createParticles();
   </script>
 </body>
 </html>

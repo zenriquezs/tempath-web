@@ -1,0 +1,183 @@
+/* Plantilla Corporativa - Estilo profesional y confiable */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header Corporativo */
+.corporate-header {
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.corporate-top-bar {
+  background: #f8f9fa;
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.corporate-contact-info {
+  display: flex;
+  gap: 30px;
+}
+
+.corporate-contact-info span {
+  font-size: 0.9rem;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.corporate-contact-info i {
+  color: var(--primary-color);
+}
+
+.corporate-social {
+  display: flex;
+  gap: 15px;
+}
+
+.corporate-social a {
+  width: 30px;
+  height: 30px;
+  background: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.corporate-social a:hover {
+  background: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+/* Navegación */
+.corporate-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.corporate-brand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.corporate-logo {
+  height: 50px;
+  width: auto;
+}
+
+.corporate-name {
+  font-family: 'Roboto Slab', serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.corporate-menu {
+  display: flex;
+  list-style: none;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+.corporate-menu a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.corporate-menu a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.corporate-menu a:hover {
+  color: var(--primary-color);
+}
+
+.corporate-menu a:hover::after {
+  width: 100%;
+}
+
+/* Botones Corporativos */
+.corporate-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: 2px solid var(--primary-color);
+  text-align: center;
+}
+
+.corporate-btn:hover {
+  background: var(--secondary-color);
+  border-color: var(--secondary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.corporate-btn-primary {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.corporate-btn-secondary {
+  background: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+
+.corporate-btn-outline {
+  background: transparent;
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.corporate-btn-outline:hover {
+  background: var(--primary-color);
+  color: white;
+}
+

@@ -1,0 +1,124 @@
+{
+  "templates": [
+    {
+      "id": "moderna",
+      "name": "Plantilla Moderna",
+      "description": "Diseño limpio y minimalista, perfecto para negocios tecnológicos y servicios profesionales.",
+      "fileName": "modern",
+      "category": "business",
+      "colors": {
+        "primary": "#8B5CF6",
+        "secondary": "#A855F7"
+      },
+      "icon": "💼",
+      "preview": {
+        "headerClass": "modern",
+        "contentClass": "modern",
+        "buttonClass": "template-btn-modern",
+        "buttonText": "Contáctanos"
+      },
+      "features": ["responsive", "animations", "modern-design"],
+      "industries": ["technology", "consulting", "services"]
+    },
+    {
+      "id": "clasica",
+      "name": "Plantilla Clásica",
+      "description": "Diseño tradicional y elegante, ideal para negocios establecidos y servicios locales.",
+      "fileName": "classic",
+      "category": "traditional",
+      "colors": {
+        "primary": "#EC4899",
+        "secondary": "#F97316"
+      },
+      "icon": "🏪",
+      "preview": {
+        "headerClass": "classic",
+        "contentClass": "classic",
+        "buttonClass": "template-btn-classic",
+        "buttonText": "Visítanos"
+      },
+      "features": ["responsive", "classic-design", "professional"],
+      "industries": ["retail", "local-business", "traditional"]
+    },
+    {
+      "id": "creativa",
+      "name": "Plantilla Creativa",
+      "description": "Diseño vibrante y dinámico, perfecto para negocios creativos, restaurantes y entretenimiento.",
+      "fileName": "minimal",
+      "category": "creative",
+      "colors": {
+        "primary": "#06B6D4",
+        "secondary": "#8B5CF6"
+      },
+      "icon": "🎨",
+      "preview": {
+        "headerClass": "creative",
+        "contentClass": "creative",
+        "buttonClass": "template-btn-creative",
+        "buttonText": "¡Conecta!"
+      },
+      "features": ["responsive", "creative-design", "vibrant"],
+      "industries": ["creative", "restaurant", "entertainment"]
+    },
+    {
+      "id": "elegante",
+      "name": "Plantilla Elegante",
+      "description": "Diseño sofisticado y premium, ideal para servicios de lujo y negocios exclusivos.",
+      "fileName": "elegant",
+      "category": "luxury",
+      "colors": {
+        "primary": "#1F2937",
+        "secondary": "#D97706"
+      },
+      "icon": "💎",
+      "preview": {
+        "headerClass": "elegant",
+        "contentClass": "elegant",
+        "buttonClass": "template-btn-elegant",
+        "buttonText": "Descubre Más"
+      },
+      "features": ["responsive", "luxury-design", "premium"],
+      "industries": ["luxury", "jewelry", "high-end-services"]
+    },
+    {
+      "id": "deportiva",
+      "name": "Plantilla Deportiva",
+      "description": "Diseño dinámico y energético, perfecto para gimnasios, equipos deportivos y actividades físicas.",
+      "fileName": "sport",
+      "category": "sports",
+      "colors": {
+        "primary": "#EF4444",
+        "secondary": "#F59E0B"
+      },
+      "icon": "⚽",
+      "preview": {
+        "headerClass": "sports",
+        "contentClass": "sports",
+        "buttonClass": "template-btn-sports",
+        "buttonText": "¡Únete Ya!"
+      },
+      "features": ["responsive", "dynamic-design", "energetic"],
+      "industries": ["sports", "fitness", "gym"]
+    },
+    {
+      "id": "corporativa",
+      "name": "Plantilla Corporativa",
+      "description": "Diseño profesional y formal, ideal para empresas grandes, consultorías y servicios financieros.",
+      "fileName": "corporate",
+      "category": "corporate",
+      "colors": {
+        "primary": "#1E40AF",
+        "secondary": "#059669"
+      },
+      "icon": "🏢",
+      "preview": {
+        "headerClass": "corporate",
+        "contentClass": "corporate",
+        "buttonClass": "template-btn-corporate",
+        "buttonText": "Consultar"
+      },
+      "features": ["responsive", "corporate-design", "professional"],
+      "industries": ["finance", "consulting", "corporate"]
+    }
+  ]
+}
