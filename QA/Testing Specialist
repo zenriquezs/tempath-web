@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Matriz de Pruebas – Chatbot & Login (QA)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root{
+      --brand:#0a3d62; --brand-2:#08304d; --ok:#1f9d55; --warn:#f59e0b; --err:#e02424;
+      --bg:#f5f7fb; --card:#ffffff; --muted:#6b7280; --text:#111827; --line:#e5e7eb;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    header{background:var(--brand);color:#fff;padding:18px 20px}
+    header h1{margin:0;font-size:1.25rem;letter-spacing:.2px}
+    header small{opacity:.9}
+    main{max-width:1200px;margin:24px auto;padding:0 16px 40px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:0 6px 16px rgba(0,0,0,.04);padding:16px}
+    .grid{display:grid;gap:16px}
+    @media (min-width:980px){.grid-2{grid-template-columns:2fr 1fr}}
+    .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;align-items:center}
+    .toolbar .spacer{flex:1}
+    button, select, input, textarea{
+      border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--text);
+      padding:10px 12px;font:inherit
+    }
+    button.primary{background:var(--brand);color:#fff;border-color:var(--brand);font-weight:600}
+    button.primary:hover{background:var(--brand-2)}
+    button.ghost{background:#fff}
+    .kpi{display:flex;gap:10px;flex-wrap:wrap}
+    .kpi .pill{
+      background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 12px;font-weight:600
+    }
+    .pill.ok{color:var(--ok)}
+    .pill.err{color:var(--err)}
+    .pill.total{color:var(--brand)}
+    table{width:100%;border-collapse:separate;border-spacing:0}
+    thead th{
+      position:sticky;top:0;background:#f9fafb;border-bottom:1px solid var(--line);
+      text-align:left;padding:10px;font-size:.9rem
+    }
+    tbody td{border-bottom:1px solid var(--line);padding:10px;vertical-align:top}
+    tbody tr:hover{background:#fcfcff}
+    .small{font-size:.85rem;color:var(--muted)}
+    .stack{display:flex;flex-direction:column;gap:6px}
+    .mono{font-family:ui-monospace,SFMono-Regular,Consolas,Menlo,monospace}
+    .right{display:flex;gap:8px;justify-content:flex-end}
+    .section-title{margin:0 0 8px;font-size:1.05rem}
+    .badge{display:inline-block;background:#eef2ff;color:#3730a3;border:1px solid #e0e7ff;border-radius:999px;padding:4px 8px;font-size:.75rem;font-weight:700}
+    .muted{color:var(--muted)}
+    textarea{min-height:72px;resize:vertical}
+    /* Tabla de bugs */
+    .sev{font-weight:700}
+    .sev.low{color:#2563eb}
+    .sev.med{color:var(--warn)}
+    .sev.high{color:var(--err)}
+    .footer-note{margin-top:14px;color:var(--muted);font-size:.85rem}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Matriz de Pruebas – Chatbot & Login <small class="small">QA / Testing Specialist</small></h1>
+  </header>
+
+  <main class="grid grid-2">
+    <section class="card">
+      <div class="toolbar">
+        <span class="badge">Plan Diario</span>
+        <div class="spacer"></div>
+        <label class="small">Filtrar por estado:
+          <select id="filterEstado">
+            <option value="ALL">Todos</option>
+            <option value="OK">Aprobado</option>
+            <option value="FAIL">Fallido</option>
+            <option value="NA">N/A</option>
+          </select>
+        </label>
+        <label class="small">Buscar:
+          <input id="searchBox" type="search" placeholder="ID, funcionalidad, descripción..." />
+        </label>
+        <button id="exportCSV" class="ghost">Exportar CSV</button>
+        <button id="exportJSON" class="ghost">Exportar JSON</button>
+      </div>
+
+      <div class="kpi" id="kpi">
+        <span class="pill total">Total: <b id="kTotal">0</b></span>
+        <span class="pill ok">Aprobadas: <b id="kOK">0</b></span>
+        <span class="pill err">Fallidas: <b id="kFAIL">0</b></span>
+        <span class="pill">N/A: <b id="kNA">0</b></span>
+      </div>
+
+      <table id="tabla">
+        <thead>
+          <tr>
+            <th style="width:90px">ID</th>
+            <th>Funcionalidad</th>
+            <th>Descripción</th>
+            <th>Pasos</th>
+            <th>Resultado Esperado</th>
+            <th style="width:120px">Estado</th>
+            <th>Evidencia (URL)</th>
+            <th>Observaciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Casos base ligados al código guardado (login + chatbot) -->
+          <tr data-id="CB-01">
+            <td class="mono">CB-01</td>
+            <td>Apertura del chatbot</td>
+            <td>El botón flotante abre la ventana del chatbot.</td>
+            <td class="small">
+              1) Abrir <code class="mono">login.html</code> ·
+              2) Click en el botón flotante (Asistente IA)
+            </td>
+            <td>Se muestra la ventana del chatbot en primer plano, sin errores.</td>
+            <td>
+              <select class="estado">
+                <option value="OK">Aprobado</option>
+                <option value="FAIL">Fallido</option>
+                <option value="NA" selected>N/A</option>
+              </select>
+            </td>
+            <td><input type="url" placeholder="https://..." /></td>
+            <td><textarea placeholder="Notas / hallazgos"></textarea></td>
+          </tr>
+
+          <tr data-id="CB-02">
+            <td class="mono">CB-02</td>
+            <td>Cierre del chatbot</td>
+            <td>La “X” cierra la ventana del chatbot.</td>
+            <td class="small">1) Abrir chatbot · 2) Click en botón de cierre</td>
+            <td>La ventana se oculta y no quedan artefactos visuales.</td>
+            <td>
+              <select class="estado">
+                <option value="OK">Aprobado</option>
+                <option value="FAIL">Fallido</option>
+                <option value="NA" selected>N/A</option>
+              </select>
+            </td>
+            <td><input type="url" placeholder="https://..." /></td>
+            <td><textarea></textarea></td>
+          </tr>
+
+          <tr data-id="CB-03">
+            <td class="mono">CB-03</td>
+            <td>Respuestas rápidas</td>
+            <td>Las quick options envían el mensaje predefinido.</td>
+            <td class="small">1) Click en “Servicios/Horarios/Contacto/Ubicación”</td>
+            <td>El chat agrega el mensaje y la respuesta del bot.</td>
+            <td>
+              <select class="estado">
+                <option value="OK">Aprobado</option>
+                <option value="FAIL">Fallido</option>
+                <option value="NA" selected>N/A</option>
+              </select>
+            </td>
+            <td><input type="url" placeholder="https://..." /></td>
+            <td><textarea></textarea></td>
+          </tr>
+
+          <tr data-id="CB-04">
+            <td class="mono">CB-04</td>
+            <td>Envío manual</td>
+            <td>Enviar texto desde el textarea y botón “enviar”.</td>
+            <td class="small">1) Escribir · 2) Click enviar</td>
+            <td>Mensaje visible y respuesta del bot tras indicador de escritura.</td>
+            <td>
+              <select class="estado">
+                <option value="OK">Aprobado</option>
+                <option value="FAIL">Fallido</option>
+                <option value="NA" selected>N/A</option>
+              </select>
+            </td>
+            <td><input type="url" placeholder="https://..." /></td>
+            <td><textarea></textarea></td>
+          </tr>
+
+          <tr data-id="CB-05">
+            <td class="mono">CB-05</td>
+            <td>Indicador de escritura</td>
+            <td>Animación y texto “Escribiendo…” antes de la respuesta.</td>
+            <td class="small">1) Enviar un mensaje · 2) Observar</td>
+            <td>Se ven los tres puntos y texto previo a la respuesta.</td>
+            <td>
+              <select class="estado">
+                <option value="OK">Aprobado</option>
+                <option value="FAIL">Fallido</option>
+                <option value="NA" selected>N/A</option>
+              </select>
+            </td>
+            <td><input type="url" placeholder="https://..." /></td>
+            <td><textarea></textarea></td>
+          </tr>
+
+          <tr data-id="CB-06">
+            <td class="mono">CB-06</td>
+            <td>Responsive</td>
+            <td>Correcto en móvil, tablet y desktop.</td>
+            <td class="small">DevTools → dispositivos (375×667, 768×1024, 1920×1080)</td>
+            <td>Sin desbordes ni solapamientos.</td>
+            <td>
+              <select class="estado">
+                <option value="OK">Aprobado</option>
+                <option value="FAIL">Fallido</option>
+                <option value="NA" selected>N/A</option>
+              </select>
+            </td>
+            <td><input type="url" placeholder="https://..." /></td>
+            <td><textarea></textarea></td>
+          </tr>
+
+          <tr data-id="CB-07">
+            <td class="mono">CB-07</td>
+            <td>Integración con login</td>
+            <td>El chatbot no interfiere con el flujo de inicio de sesión.</td>
+            <td class="small">1) Interactuar con chatbot · 2) Iniciar sesión</td>
+            <td>Login sin errores ni bloqueos del chat.</td>
+            <td>
+              <select class="estado">
+                <option value="OK">Aprobado</option>
+                <option value="FAIL">Fallido</option>
+                <option value="NA" selected>N/A</option>
+              </select>
+            </td>
+            <td><input type="url" placeholder="https://..." /></td>
+            <td><textarea></textarea></td>
+          </tr>
+
+          <tr data-id="CB-08">
+            <td class="mono">CB-08</td>
+            <td>Persistencia visual</td>
+            <td>Estado del widget al navegar entre páginas.</td>
+            <td class="small">1) Abrir chat · 2) Navegar a otra página</td>
+            <td>Se conserva o reinicia según diseño previsto.</td>
+            <td>
+              <select class="estado">
+                <option value="OK">Aprobado</option>
+                <option value="FAIL">Fallido</option>
+                <option value="NA" selected>N/A</option>
+              </select>
+            </td>
+            <td><input type="url" placeholder="https://..." /></td>
+            <td><textarea></textarea></td>
+          </tr>
+
+          <tr data-id="CB-09">
+            <td class="mono">CB-09</td>
+            <td>Errores en consola</td>
+            <td>Validar ausencia de errores JS/CSS en interacción.</td>
+            <td class="small">Consola DevTools durante pruebas</td>
+            <td>Sin errores ni warnings críticos.</td>
+            <td>
+              <select class="estado">
+                <option value="OK">Aprobado</option>
+                <option value="FAIL">Fallido</option>
+                <option value="NA" selected>N/A</option>
+              </select>
+            </td>
+            <td><input type="url" placeholder="https://..." /></td>
+            <td><textarea></textarea></td>
+          </tr>
+
+          <tr data-id="CB-10">
+            <td class="mono">CB-10</td>
+            <td>Accesibilidad (teclado)</td>
+            <td>Recorrido con TAB y activación con Enter/Espacio.</td>
+            <td class="small">TAB sobre controles del chat + enviar mensaje</td>
+            <td>Todos los elementos son alcanzables y operables.</td>
+            <td>
+              <select class="estado">
+                <option value="OK">Aprobado</option>
+                <option value="FAIL">Fallido</option>
+                <option value="NA" selected>N/A</option>
+              </select>
+            </td>
+            <td><input type="url" placeholder="https://..." /></td>
+            <td><textarea></textarea></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="footer-note">
+        Nota: Esta matriz está alineada con la página de Login y el widget del chatbot referenciados en el proyecto
+        (auth.css, chatBot.css, js/login.js, assets/js/auth.js, assets/js/chatBot.js).
+      </p>
+    </section>
+
+    <!-- Registro de bugs / mejoras -->
+    <aside class="card">
+      <h3 class="section-title">Registro de Bugs y Mejoras</h3>
+      <div class="stack" id="bugForm">
+        <input id="bugTitulo" placeholder="Título / Resumen" />
+        <select id="bugSeveridad" title="Severidad">
+          <option value="LOW">LOW</option>
+          <option value="MED">MED</option>
+          <option value="HIGH">HIGH</option>
+        </select>
+        <textarea id="bugDescripcion" placeholder="Descripción y pasos para reproducir"></textarea>
+        <input id="bugEvidencia" type="url" placeholder="Evidencia (URL a captura/video)" />
+        <div class="right">
+          <button id="addBug" class="primary">Añadir</button>
+          <button id="exportBugsCSV" class="ghost">Exportar CSV</button>
+          <button id="exportBugsJSON" class="ghost">Exportar JSON</button>
+        </div>
+      </div>
+
+      <table id="bugsTabla" style="margin-top:12px">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Título</th>
+            <th>Sev.</th>
+            <th>Descripción</th>
+            <th>Evidencia</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </aside>
+  </main>
+
+  <script>
+    // --------------------------
+    // Utilidades
+    // --------------------------
+    const $ = (q,ctx=document)=>ctx.querySelector(q);
+    const $$ = (q,ctx=document)=>[...ctx.querySelectorAll(q)];
+
+    // --------------------------
+    // KPI / Filtro / Búsqueda
+    // --------------------------
+    const updateKPI = ()=>{
+      const rows = $$("#tabla tbody tr");
+      const counts = {OK:0, FAIL:0, NA:0};
+      rows.forEach(r=>{
+        const v = $("select.estado",r).value;
+        counts[v] = (counts[v]||0)+1;
+      });
+      $("#kTotal").textContent = rows.length;
+      $("#kOK").textContent = counts.OK||0;
+      $("#kFAIL").textContent = counts.FAIL||0;
+      $("#kNA").textContent = counts.NA||0;
+    };
+
+    const applyFilters = ()=>{
+      const f = $("#filterEstado").value;
+      const q = $("#searchBox").value.trim().toLowerCase();
+      $$("#tabla tbody tr").forEach(tr=>{
+        const estado = $("select.estado",tr).value;
+        const text = tr.innerText.toLowerCase();
+        const passEstado = (f==="ALL" || f===estado);
+        const passSearch = (q==="" || text.includes(q));
+        tr.style.display = (passEstado && passSearch) ? "" : "none";
+      });
+    };
+
+    $("#filterEstado").addEventListener("change", applyFilters);
+    $("#searchBox").addEventListener("input", applyFilters);
+    $$("#tabla select.estado").forEach(s=>s.addEventListener("change",()=>{updateKPI();applyFilters();}));
+    updateKPI();
+
+    // --------------------------
+    // Exportadores matriz
+    // --------------------------
+    const serializeTable = ()=>{
+      const out=[];
+      $$("#tabla tbody tr").forEach(tr=>{
+        out.push({
+          id: tr.dataset.id,
+          funcionalidad: tr.children[1].innerText.trim(),
+          descripcion: tr.children[2].innerText.trim(),
+          pasos: tr.children[3].innerText.trim(),
+          esperado: tr.children[4].innerText.trim(),
+          estado: $("select.estado",tr).value,
+          evidencia: $("input[type=url]",tr).value,
+          observaciones: $("textarea",tr).value
+        });
+      });
+      return out;
+    };
+
+    const download = (filename, content, type="text/plain")=>{
+      const blob = new Blob([content], {type});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url; a.download = filename; a.click();
+      URL.revokeObjectURL(url);
+    };
+
+    const toCSV = (arr)=>{
+      const esc = s => `"${String(s??"").replace(/"/g,'""')}"`;
+      const headers = ["id","funcionalidad","descripcion","pasos","esperado","estado","evidencia","observaciones"];
+      const rows = arr.map(o=>headers.map(h=>esc(o[h])).join(","));
+      return headers.join(",")+"\n"+rows.join("\n");
+    };
+
+    $("#exportCSV").addEventListener("click", ()=>{
+      const data = serializeTable();
+      download("matriz_pruebas_chatbot.csv", toCSV(data), "text/csv");
+    });
+
+    $("#exportJSON").addEventListener("click", ()=>{
+      const data = serializeTable();
+      download("matriz_pruebas_chatbot.json", JSON.stringify(data, null, 2), "application/json");
+    });
+
+    // --------------------------
+    // Registro de Bugs
+    // --------------------------
+    const bugs=[];
+    const renderBugs=()=>{
+      const tbody = $("#bugsTabla tbody");
+      tbody.innerHTML = "";
+      bugs.forEach((b,i)=>{
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td class="mono">${i+1}</td>
+          <td>${b.titulo}</td>
+          <td class="sev ${b.sevClass}">${b.severidad}</td>
+          <td class="small">${b.descripcion}</td>
+          <td>${b.evidencia ? `<a href="${b.evidencia}" target="_blank" rel="noopener">ver</a>` : "-"}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    };
+
+    $("#addBug").addEventListener("click", ()=>{
+      const titulo = $("#bugTitulo").value.trim();
+      const severidad = $("#bugSeveridad").value;
+      const descripcion = $("#bugDescripcion").value.trim();
+      const evidencia = $("#bugEvidencia").value.trim();
+      if(!titulo || !descripcion){
+        alert("Título y descripción son obligatorios.");
+        return;
+      }
+      const sevClass = severidad==="HIGH"?"high":(severidad==="MED"?"med":"low");
+      bugs.push({titulo,severidad,sevClass,descripcion,evidencia,createdAt:new Date().toISOString()});
+      $("#bugTitulo").value=""; $("#bugDescripcion").value=""; $("#bugEvidencia").value="";
+      renderBugs();
+    });
+
+    const bugsCSV = ()=>{
+      const esc = s => `"${String(s??"").replace(/"/g,'""')}"`;
+      const headers = ["titulo","severidad","descripcion","evidencia","createdAt"];
+      const rows = bugs.map(b=>headers.map(h=>esc(b[h])).join(","));
+      return headers.join(",")+"\n"+rows.join("\n");
+    };
+
+    $("#exportBugsCSV").addEventListener("click", ()=>{
+      download("bugs_chatbot.csv", bugsCSV(), "text/csv");
+    });
+
+    $("#exportBugsJSON").addEventListener("click", ()=>{
+      download("bugs_chatbot.json", JSON.stringify(bugs, null, 2), "application/json");
+    });
+  </script>
+</body>
+</html>
