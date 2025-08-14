@@ -61,17 +61,9 @@ class TemplateEditor {
 
   async loadSelectedTemplate() {
     try {
-      const templateMap = {
-        'moderna': 'modern',
-        'clasica': 'classic',
-        'creativa': 'minimal'
-      };
-      
-      const templateName = templateMap[this.currentTemplate] || this.currentTemplate;
-      const templateHtml = await generateTemplate(templateName, this.businessData);
-      
+      const templateHtml = await generateTemplate(this.currentTemplate, this.businessData);
       if (templateHtml) {
-        await this.renderTemplate(templateHtml, templateName);
+        await this.renderTemplate(templateHtml, this.currentTemplate);
         this.updateSidePanel();
       } else {
         console.error('No se pudo cargar la plantilla');
