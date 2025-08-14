@@ -1,6 +1,7 @@
 import { getUserBusinessData, generateTemplate, loadTemplate, getAvailableTemplates } from './template-generator.js';
-import { auth } from '../../auth/js/firebaseConfig.js';
+import { auth, db } from '../../auth/js/firebaseConfig.js';
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+import { ref, get, update } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
 import { generateTemplatesGrid } from './template-ui-generator.js';
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -639,23 +640,45 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Proceder con la selección y mostrar loading
-  function proceedWithSelection(templateType) {
+  async function proceedWithSelection(templateType) {
     localStorage.setItem('selectedTemplate', templateType);
     localStorage.setItem('businessData', JSON.stringify(businessData));
     
     closeModal();
-    
-    // Mostrar animación de carga
     showLoadingAnimation(templateType);
-    
-    // Redirigir después de la animación
-    setTimeout(() => {
-      const params = new URLSearchParams({
-        template: templateType,
-        user: currentUserId || 'demo'
-      });
-      
-      window.location.href = `template-editor.html?${params.toString()}`;
+
+    setTimeout(async () => {
+      // 1. Obtener userId y el último businessKey
+      const userId = currentUserId;
+      const userRef = ref(db, `Informacion-Usuarios/${userId}`);
+      const snapshot = await get(userRef);
+      if (!snapshot.exists()) {
+        alert("No se encontró información del usuario.");
+        return;
+      }
+      const userData = snapshot.val();
+      const businessKeys = Object.keys(userData);
+      const lastBusinessKey = businessKeys[businessKeys.length - 1];
+
+      // 2. Generar subdominio
+      const businessName = businessData.businessName || "negocio";
+      const subdomain = (
+        businessName
+          .toLowerCase()
+          .replace(/\s+/g, "-")
+          .replace(/[^a-z0-9\-]/g, "") +
+        "-tempath"
+      );
+
+      // 3. Guardar plantilla y subdominio en la base de datos
+      const updates = {};
+      updates[`Informacion-Usuarios/${userId}/${lastBusinessKey}/selectedTemplate`] = templateType;
+      updates[`Informacion-Usuarios/${userId}/${lastBusinessKey}/subdomain`] = subdomain;
+
+      await update(ref(db), updates);
+
+      // 4. Redirigir al editor
+      window.location.href = `template-editor.html?template=${templateType}`;
     }, 2500);
   }
   
@@ -956,26 +979,56 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   // Proceder con la selección y mostrar loading
-  function proceedWithSelection(templateType) {
+  async function proceedWithSelection(templateType) {
     localStorage.setItem('selectedTemplate', templateType);
     localStorage.setItem('businessData', JSON.stringify(businessData));
-    
+
     closeModal();
-    
-    // Mostrar animación de carga
     showLoadingAnimation(templateType);
-    
-    // Redirigir después de la animación
-    setTimeout(() => {
+
+    setTimeout(async () => {
+      // 1. Obtener userId y el último businessKey
+      const userId = currentUserId;
+      const userRef = ref(db, `Informacion-Usuarios/${userId}`);
+      const snapshot = await get(userRef);
+      if (!snapshot.exists()) {
+        alert("No se encontró información del usuario.");
+        return;
+      }
+      const userData = snapshot.val();
+      const businessKeys = Object.keys(userData);
+      const lastBusinessKey = businessKeys[businessKeys.length - 1];
+
+      // 2. Generar subdominio
+      const businessName = businessData.businessName || "negocio";
+      const subdomain = (
+        businessName
+          .toLowerCase()
+          .replace(/\s+/g, "-")
+          .replace(/[^a-z0-9\-]/g, "") +
+        "-tempath"
+      );
+
+      // 3. Guardar plantilla y subdominio en la base de datos
+      const updates = {};
+      updates[`Informacion-Usuarios/${userId}/${lastBusinessKey}/selectedTemplate`] = templateType;
+      updates[`Informacion-Usuarios/${userId}/${lastBusinessKey}/subdomain`] = subdomain;
+
+      await update(ref(db), updates);
+
+      // 4. Mapear el id al fileName real para la redirección
+      const config = await getAvailableTemplates();
+      const templateObj = config.find(t => t.id === templateType);
+      const fileName = templateObj ? templateObj.fileName : templateType;
+
       const params = new URLSearchParams({
-        template: templateType,
-        user: currentUserId || 'demo'
+        template: fileName,
+        user: userId || 'demo'
       });
-      
       window.location.href = `template-editor.html?${params.toString()}`;
     }, 2500);
   }
-  
+
   function showLoadingAnimation(templateType) {
     const loadingModal = document.createElement('div');
     loadingModal.className = 'loading-modal';
