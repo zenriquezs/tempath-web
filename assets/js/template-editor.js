@@ -405,7 +405,13 @@ class TemplateEditor {
         this.updateGalleryPreview(urls);
       });
     }
-    
+
+    const saveBtn = document.getElementById('save-btn');
+    if (saveBtn) {
+      saveBtn.addEventListener('click', () => {
+        window.location.href = 'index.html'; 
+      });
+    }
   
   }
 
