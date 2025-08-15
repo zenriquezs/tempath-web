@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Publicación - Tempath</title>
+  <link rel="shortcut icon" href="assets/img/Tempath_icon.png" type="image/x-icon">
+  <link rel="stylesheet" href="assets/css/template-editor.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9fafb;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #2563eb;
+      color: white;
+      padding: 15px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .main-container {
+      max-width: 1000px;
+      margin: 30px auto;
+      background: white;
+      border-radius: 8px;
+      padding: 25px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      color: #111827;
+    }
+
+    p {
+      color: #4b5563;
+      margin-bottom: 20px;
+    }
+
+    .publish-options button {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      color: white;
+    }
+
+    .netlify { background-color: #0e7c86; }
+    .vercel { background-color: #000; }
+    .github { background-color: #333; }
+    .firebase { background-color: #f57c00; }
+
+    .publish-btn {
+      background-color: #2563eb;
+      color: white;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .progress-container {
+      margin-top: 20px;
+      background-color: #f3f4f6;
+      border-radius: 6px;
+      overflow: hidden;
+      height: 12px;
+      display: none;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background-color: #2563eb;
+      transition: width 0.3s ease;
+    }
+
+    .publish-status {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #4b5563;
+      display: none;
+    }
+
+    .link-section {
+      margin-top: 30px;
+      padding: 15px;
+      background-color: #f3f4f6;
+      border-radius: 6px;
+      text-align: center;
+    }
+
+    .link-section button {
+      background-color: orange;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .link-section button:hover {
+      background-color: #e69500;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h2>Panel de Publicación</h2>
+    <a href="index.html" style="color:white; text-decoration:none;">Salir</a>
+  </header>
+
+  <div class="main-container">
+    <h1>Publicar tu Sitio</h1>
+    <p>Selecciona una plataforma para publicar tu sitio web y haz clic en "Publicar Ahora".</p>
+
+    <div class="publish-options">
+      <button class="netlify">🌐 Publicar en Netlify</button>
+      <button class="vercel">🚀 Publicar en Vercel</button>
+      <button class="github">🐱 Publicar en GitHub Pages</button>
+      <button class="firebase">🔥 Publicar en Firebase</button>
+    </div>
+
+    <button id="publish-confirm-btn" class="publish-btn">
+      <i class="fas fa-cloud-upload-alt"></i> Publicar Ahora
+    </button>
+
+    <div class="progress-container" id="progress-container">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+    <div class="publish-status" id="publish-status"></div>
+
+    <!-- Sección para ir a templates-selection.html -->
+    <div class="link-section">
+      <p>¿Quieres cambiar la plantilla antes de publicar?</p>
+      <button onclick="window.location.href='templates-selection.html'">
+        Ir a selección de plantillas
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const publishBtn = document.getElementById("publish-confirm-btn");
+    const progressContainer = document.getElementById("progress-container");
+    const progressBar = document.getElementById("progress-bar");
+    const statusText = document.getElementById("publish-status");
+
+    publishBtn.addEventListener("click", () => {
+      progressContainer.style.display = "block";
+      statusText.style.display = "block";
+      statusText.innerText = "Publicando...";
+      progressBar.style.width = "0%";
+
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += 10;
+        progressBar.style.width = progress + "%";
+        if (progress >= 100) {
+          clearInterval(interval);
+          statusText.innerText = "✅ Publicación completada con éxito";
+        }
+      }, 300);
+    });
+  </script>
+
+</body>
+</html>
