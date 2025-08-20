@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Dominios - Tempath</title>
+    <link rel="shortcut icon" href="assets/img/Tempath_icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/domain-manager.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="domain-header">
+        <div class="header-content">
+            <div class="header-left">
+                <button id="back-btn" class="btn-back">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Volver al Editor</span>
+                </button>
+                <h1 class="page-title">Gestión de Dominios</h1>
+            </div>
+            <div class="header-right">
+                <div class="user-info">
+                    <span id="user-email" class="user-email"></span>
+                    <span id="membership-badge" class="membership-badge">Gratis</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="domain-main">        
+        <section id="new-publication" class="publication-section">
+            <div class="section-header">
+                <h2><i class="fas fa-globe"></i> Publicar Nueva Plantilla</h2>
+                <p>Tu plantilla está lista para ser publicada en línea</p>
+            </div>
+            
+            <div class="publication-card">
+                <div class="template-preview">
+                    <div class="preview-thumbnail">
+                        <i class="fas fa-file-code"></i>
+                        <span id="template-name">Plantilla Moderna</span>
+                    </div>
+                </div>
+                
+                <div class="url-generation">
+                    <div class="generated-url">
+                        <label>URL Generada Automáticamente:</label>
+                        <div class="url-display">
+                            <input type="text" id="generated-url" readonly>
+                            <button id="copy-url-btn" class="btn-copy" title="Copiar URL">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="custom-url-section" class="custom-url" style="display: none;">
+                        <label>URL Personalizada (Solo Premium):</label>
+                        <div class="custom-url-input">
+                            <span class="url-prefix">https://misitio.com/</span>
+                            <input type="text" id="custom-url" placeholder="mi-negocio" maxlength="50">
+                        </div>
+                        <small class="url-help">Solo letras, números y guiones. Mínimo 3 caracteres.</small>
+                    </div>
+                    
+                    <div id="premium-upgrade" class="premium-notice">
+                        <div class="premium-content">
+                            <i class="fas fa-crown"></i>
+                            <div>
+                                <h4>¿Quieres una URL personalizada?</h4>
+                                <p>Actualiza a Premium para crear URLs personalizadas como <strong>misitio.com/tu-negocio</strong></p>
+                            </div>
+                            <button class="btn-upgrade">Actualizar a Premium</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="publication-actions">
+                    <button id="publish-btn" class="btn-publish">
+                        <i class="fas fa-rocket"></i>
+                        Publicar Sitio Web
+                    </button>
+                    <button id="save-draft-btn" class="btn-secondary">
+                        <i class="fas fa-save"></i>
+                        Guardar como Borrador
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <section id="existing-domains" class="domains-section" style="display: none;">
+            <div class="section-header">
+                <h2><i class="fas fa-list"></i> Mis Dominios Publicados</h2>
+                <p>Gestiona tus sitios web publicados</p>
+            </div>
+            
+            <div id="domains-list" class="domains-grid">                
+            </div>
+            
+            <div id="no-domains" class="no-domains">
+                <i class="fas fa-globe-americas"></i>
+                <h3>No tienes dominios publicados</h3>
+                <p>Publica tu primera plantilla para comenzar</p>
+            </div>
+        </section>
+    </main>
+
+    <div id="publish-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Confirmar Publicación</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro de que quieres publicar tu sitio web?</p>
+                <div class="final-url">
+                    <strong>URL final: </strong>
+                    <span id="final-url-display"></span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="confirm-publish" class="btn-publish">Confirmar Publicación</button>
+                <button id="cancel-publish" class="btn-secondary">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p>Publicando tu sitio web...</p>
+        </div>
+    </div>
+
+    <script type="module" src="assets/js/domain-manager.js"></script>
+</body>
+</html>
