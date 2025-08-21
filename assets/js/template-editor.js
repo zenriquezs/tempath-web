@@ -1,4 +1,3 @@
- 
 import { getUserBusinessData, generateTemplate, loadTemplate } from './template-generator.js';
 import { auth, db } from '../../auth/js/firebaseConfig.js';
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
@@ -13,7 +12,8 @@ class TemplateEditor {
     this.currentZoom = 100;
     this.isUpdating = false;
     this.frameLoaded = false;
-    
+    this.selectedTemplate = null; // NUEVO
+
     this.init();
   }
 
@@ -44,13 +44,14 @@ class TemplateEditor {
   loadFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
     this.currentTemplate = urlParams.get('template');
-    
+    this.selectedTemplate = this.currentTemplate; // NUEVO
+
     if (!this.currentTemplate) {
       console.warn('No se especificó una plantilla, redirigiendo a selección.');
       window.location.href = 'templates-selection.html';
       return false;
     }
-    
+
     console.log('Plantilla seleccionada:', this.currentTemplate);
     return true;
   }
@@ -59,7 +60,7 @@ class TemplateEditor {
     try {
       this.businessData = await getUserBusinessData(this.currentUserId);
       console.log('Datos del negocio cargados:', this.businessData);
-      
+
       if (!this.businessData) {
         alert('No se encontraron datos del negocio.');
         window.location.href = 'business-setup.html';
@@ -85,31 +86,24 @@ class TemplateEditor {
     }
   }
 
-  
   async renderTemplate(templateHtml, templateName) {
     const previewFrame = document.getElementById('preview-frame');
-    
     if (previewFrame) {
-  
       const newFrame = document.createElement('iframe');
       newFrame.id = 'preview-frame';
       newFrame.style.cssText = previewFrame.style.cssText;
       newFrame.className = previewFrame.className;
-      
-  
+
       previewFrame.parentNode.replaceChild(newFrame, previewFrame);
-      
-  
+
       const frameDoc = newFrame.contentDocument || newFrame.contentWindow.document;
       frameDoc.open();
       frameDoc.write(templateHtml);
       frameDoc.close();
-      
- 
+
       newFrame.style.transform = `scale(${this.currentZoom / 100})`;
       newFrame.style.transformOrigin = 'top left';
-      
- 
+
       newFrame.onload = () => {
         this.enableFrameInteractivity(frameDoc);
         console.log('Plantilla renderizada:', templateName);
@@ -118,10 +112,8 @@ class TemplateEditor {
     }
   }
 
-  
   enableFrameInteractivity(frameDoc) {
     try {
-  
       setTimeout(() => {
         this.initializeFrameEvents(frameDoc);
       }, 500);
@@ -130,10 +122,8 @@ class TemplateEditor {
     }
   }
 
-  
   initializeFrameEvents(frameDoc) {
     try {
-  
       const navToggle = frameDoc.querySelector('.nav-toggle');
       const navMenu = frameDoc.querySelector('.nav-menu');
       if (navToggle && navMenu) {
@@ -142,7 +132,6 @@ class TemplateEditor {
           navMenu.classList.toggle('active');
         });
       }
-
 
       frameDoc.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -158,7 +147,6 @@ class TemplateEditor {
         });
       });
 
- 
       const forms = frameDoc.querySelectorAll('.form, #contactForm');
       forms.forEach(form => {
         form.addEventListener('submit', function(e) {
@@ -168,7 +156,6 @@ class TemplateEditor {
         });
       });
 
- 
       frameDoc.querySelectorAll('.gallery-item').forEach(item => {
         item.addEventListener('click', function() {
           const img = this.querySelector('img');
@@ -179,14 +166,14 @@ class TemplateEditor {
               background: rgba(0,0,0,0.9); display: flex; align-items: center;
               justify-content: center; z-index: 9999; cursor: pointer;
             `;
-            
+
             const imgElement = frameDoc.createElement('img');
             imgElement.src = img.src;
             imgElement.style.cssText = 'max-width: 90%; max-height: 90%; border-radius: 8px;';
-            
+
             lightbox.appendChild(imgElement);
             frameDoc.body.appendChild(lightbox);
-            
+
             lightbox.addEventListener('click', () => {
               frameDoc.body.removeChild(lightbox);
             });
@@ -199,7 +186,6 @@ class TemplateEditor {
     }
   }
 
-  
   initializeTestimonialSlider(frameDoc) {
     let currentSlide = 0;
     const slides = frameDoc.querySelectorAll('.testimonial-card');
@@ -232,10 +218,8 @@ class TemplateEditor {
     });
   }
 
- 
   initializeGalleryLightbox(frameDoc) {
     const galleryItems = frameDoc.querySelectorAll('.gallery-item');
-    
     galleryItems.forEach(item => {
       item.addEventListener('click', function() {
         const img = this.querySelector('img');
@@ -254,16 +238,16 @@ class TemplateEditor {
             justify-content: center;
             z-index: 9999;
           `;
-          
+
           lightbox.innerHTML = `
             <div class="lightbox-content" style="position: relative; max-width: 90%; max-height: 90%;">
               <img src="${img.src}" alt="${img.alt}" style="width: 100%; height: auto; border-radius: 8px;">
               <span class="lightbox-close" style="position: absolute; top: -40px; right: 0; color: white; font-size: 30px; cursor: pointer;">&times;</span>
             </div>
           `;
-          
+
           frameDoc.body.appendChild(lightbox);
-          
+
           lightbox.addEventListener('click', function(e) {
             if (e.target === lightbox || e.target.className === 'lightbox-close') {
               frameDoc.body.removeChild(lightbox);
@@ -276,60 +260,49 @@ class TemplateEditor {
 
   updateSidePanel() {
     if (!this.businessData) return;
-    
- 
+
     const siteNameInput = document.getElementById('site-name');
     const siteDescriptionInput = document.getElementById('site-description');
     const sitePhoneInput = document.getElementById('site-phone');
- 
     const siteAddressInput = document.getElementById('site-address');
     const businessHoursInput = document.getElementById('business-hours');
     const googleMapsInput = document.getElementById('google-maps');
-    
+
     if (siteNameInput) siteNameInput.value = this.businessData.businessName || '';
     if (siteDescriptionInput) siteDescriptionInput.value = this.businessData.businessDescription || '';
     if (sitePhoneInput) sitePhoneInput.value = this.businessData.contactPhone || '';
-   
     if (siteAddressInput) siteAddressInput.value = this.businessData.businessAddress || '';
     if (businessHoursInput) businessHoursInput.value = this.businessData.businessHours || '';
     if (googleMapsInput) googleMapsInput.value = this.businessData.googleMaps || '';
-    
-  
+
     const logoUrlInput = document.getElementById('logo-url');
     if (logoUrlInput) {
       logoUrlInput.value = this.businessData.logoUrl || '';
       this.updateLogoPreview(this.businessData.logoUrl);
     }
-    
- 
+
     const socialMedia = this.businessData.socialMedia || {};
     const facebookInput = document.getElementById('facebook-url');
     const instagramInput = document.getElementById('instagram-url');
     const tiktokInput = document.getElementById('tiktok-url');
     const linkedinInput = document.getElementById('linkedin-url');
-    
+    const whatsappInput = document.getElementById('whatsapp-url');
+
     if (facebookInput) facebookInput.value = socialMedia.facebook || '';
-    if (instagramInput) instagramInput.value = socialMedia.instagram || '';    
+    if (instagramInput) instagramInput.value = socialMedia.instagram || '';
     if (tiktokInput) tiktokInput.value = socialMedia.tiktok || '';
     if (linkedinInput) linkedinInput.value = socialMedia.linkedin || '';
-    const whatsappInput = document.getElementById('whatsapp-url');
-    
-    if (facebookInput) facebookInput.value = socialMedia.facebook || '';
-    if (instagramInput) instagramInput.value = socialMedia.instagram || '';    
-    if (linkedinInput) linkedinInput.value = socialMedia.linkedin || '';
     if (whatsappInput) whatsappInput.value = socialMedia.whatsapp || '';
-    
-    
+
     const galleryUrlsInput = document.getElementById('gallery-urls');
     if (galleryUrlsInput && this.businessData.galleryUrls) {
       galleryUrlsInput.value = this.businessData.galleryUrls.join('\n');
       this.updateGalleryPreview(this.businessData.galleryUrls);
     }
-    
- 
+
     const primaryColorInput = document.getElementById('primary-color');
     const secondaryColorInput = document.getElementById('secondary-color');
-    
+
     if (primaryColorInput) primaryColorInput.value = this.businessData.primaryColor || '#2563eb';
     if (secondaryColorInput) secondaryColorInput.value = this.businessData.secondaryColor || '#1e40af';
   }
@@ -341,8 +314,7 @@ class TemplateEditor {
         window.location.href = 'templates-selection.html';
       });
     }
-    
-   
+
     const deviceBtns = document.querySelectorAll('.device-btn');
     deviceBtns.forEach(btn => {
       btn.addEventListener('click', (e) => {
@@ -350,15 +322,14 @@ class TemplateEditor {
         this.changeDevice(device);
       });
     });
-    
+
     const zoomSlider = document.getElementById('zoom-slider');
     if (zoomSlider) {
       zoomSlider.addEventListener('input', (e) => {
         this.changeZoom(e.target.value);
       });
     }
-    
-  
+
     const siteInputs = document.querySelectorAll('#site-info input, #site-info textarea');
     siteInputs.forEach(input => {
       let timeout;
@@ -366,48 +337,46 @@ class TemplateEditor {
         clearTimeout(timeout);
         timeout = setTimeout(() => {
           this.updatePreview();
-        }, 500); 
+        }, 500);
       });
     });
-    
+
     const colorInputs = document.querySelectorAll('#colors input[type="color"]');
     colorInputs.forEach(input => {
       input.addEventListener('change', () => {
         this.updateColors();
       });
     });
-    
- 
+
     const updateBtn = document.getElementById('update-site-btn');
     if (updateBtn) {
       updateBtn.addEventListener('click', () => {
         this.updateBusinessData();
       });
     }
-    
+
     const publishBtns = document.querySelectorAll('.publish-btn');
     publishBtns.forEach(btn => {
       btn.addEventListener('click', (e) => {
         this.handlePublish(e.target.dataset.platform);
       });
     });
-    
+
+    // MODIFICACIÓN: Ahora el botón "Publicar" genera el sitio estático
     const shareBtn = document.getElementById('share-btn');
     if (shareBtn) {
       shareBtn.addEventListener('click', () => {
-        this.openShareModal();
+        this.handlePublishSite();
       });
     }
-    
- 
+
     const logoUrlInput = document.getElementById('logo-url');
     if (logoUrlInput) {
       logoUrlInput.addEventListener('input', (e) => {
         this.updateLogoPreview(e.target.value);
       });
     }
-    
- 
+
     const galleryUrlsInput = document.getElementById('gallery-urls');
     if (galleryUrlsInput) {
       galleryUrlsInput.addEventListener('input', (e) => {
@@ -419,16 +388,84 @@ class TemplateEditor {
     const saveBtn = document.getElementById('save-btn');
     if (saveBtn) {
       saveBtn.addEventListener('click', () => {
-        window.location.href = 'index.html'; 
+        window.location.href = 'index.html';
       });
     }
-  
+  }
+
+  // NUEVO: Recopila todos los datos del panel de edición
+  collectEditorData() {
+    const socialMedia = {
+      facebook: document.getElementById('facebook-url')?.value || '',
+      instagram: document.getElementById('instagram-url')?.value || '',
+      tiktok: document.getElementById('tiktok-url')?.value || '',
+      linkedin: document.getElementById('linkedin-url')?.value || '',
+      whatsapp: document.getElementById('whatsapp-url')?.value || ''
+    };
+    Object.keys(socialMedia).forEach(key => {
+      if (!socialMedia[key]) delete socialMedia[key];
+    });
+
+    const galleryUrlsText = document.getElementById('gallery-urls')?.value || '';
+    const galleryUrls = galleryUrlsText.split('\n')
+      .map(url => url.trim())
+      .filter(url => url);
+
+    return {
+      businessName: document.getElementById('site-name')?.value || this.businessData.businessName || '',
+      businessDescription: document.getElementById('site-description')?.value || this.businessData.businessDescription || '',
+      contactPhone: document.getElementById('site-phone')?.value || this.businessData.contactPhone || '',
+      businessAddress: document.getElementById('site-address')?.value || this.businessData.businessAddress || '',
+      businessHours: document.getElementById('business-hours')?.value || this.businessData.businessHours || '',
+      googleMaps: document.getElementById('google-maps')?.value || this.businessData.googleMaps || '',
+      logoUrl: document.getElementById('logo-url')?.value || this.businessData.logoUrl || '',
+      socialMedia: Object.keys(socialMedia).length > 0 ? socialMedia : (this.businessData.socialMedia || {}),
+      galleryUrls: galleryUrls.length > 0 ? galleryUrls : (this.businessData.galleryUrls || []),
+      primaryColor: document.getElementById('primary-color')?.value || this.businessData.primaryColor || '#2563eb',
+      secondaryColor: document.getElementById('secondary-color')?.value || this.businessData.secondaryColor || '#1e40af'
+    };
+  }
+
+  mapTemplateName(name) {
+    // Mapea los nombres en español a los nombres de archivo en inglés
+    const map = {
+      'clasica': 'classic',
+      'moderna': 'modern',
+      'corporativa': 'corporate',
+      'elegante': 'elegant',
+      'minimal': 'minimal',
+      'deportiva': 'sport'
+    };
+    return map[name] || name;
+  }
+
+
+  // NUEVO: Maneja la publicación (envía los datos al backend)
+  async handlePublishSite() {
+    const data = this.collectEditorData();
+    let template = this.selectedTemplate || this.currentTemplate || "classic";
+    template = this.mapTemplateName(template); // <-- Traduce aquí
+    try {
+      const response = await fetch("http://localhost:3000/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ template, data }),
+      });
+      const result = await response.json();
+      if (result.success) {
+        alert("¡Sitio generado exitosamente!\n\nCarpeta: " + result.outputDir + "\n\nAhora puedes publicarlo en Firebase Hosting.");
+      } else {
+        alert("Error al generar el sitio.");
+      }
+    } catch (err) {
+      alert("Error de red o servidor.");
+    }
   }
 
   updateLogoPreview(logoUrl) {
     const logoPreview = document.getElementById('logo-preview');
     const logoPreviewImg = document.getElementById('logo-preview-img');
-    
+
     if (logoUrl && logoUrl.trim()) {
       logoPreviewImg.src = logoUrl;
       logoPreview.style.display = 'block';
@@ -440,9 +477,9 @@ class TemplateEditor {
   updateGalleryPreview(urls) {
     const galleryPreview = document.getElementById('gallery-preview');
     if (!galleryPreview) return;
-    
+
     galleryPreview.innerHTML = '';
-    
+
     urls.forEach(url => {
       if (url.trim()) {
         const img = document.createElement('img');
@@ -456,7 +493,6 @@ class TemplateEditor {
   async updatePreview() {
     try {
       if (this.businessData && this.selectedTemplate) {
- 
         const templateHtml = await generateTemplate(this.selectedTemplate, this.businessData);
         if (templateHtml) {
           await this.renderTemplate(templateHtml, this.selectedTemplate);
@@ -470,107 +506,94 @@ class TemplateEditor {
   updateColors() {
     const primaryColor = document.getElementById('primary-color')?.value;
     const secondaryColor = document.getElementById('secondary-color')?.value;
-    
- 
+
     const primaryValue = document.querySelector('#primary-color + .color-value');
     const secondaryValue = document.querySelector('#secondary-color + .color-value');
-    
+
     if (primaryValue) primaryValue.textContent = primaryColor;
     if (secondaryValue) secondaryValue.textContent = secondaryColor;
-    
- 
+
     this.updatePreview();
   }
 
   changeDevice(device) {
     this.currentDevice = device;
-    
- 
+
     document.querySelectorAll('.device-btn').forEach(btn => {
       btn.classList.remove('active');
     });
-    
+
     const activeBtn = document.querySelector(`[data-device="${device}"]`);
     if (activeBtn) {
       activeBtn.classList.add('active');
     }
-    
- 
+
     const previewContainer = document.getElementById('preview-container');
     if (previewContainer) {
       previewContainer.className = `preview-container ${device}`;
     }
-    
+
     console.log(`Dispositivo cambiado a: ${device}`);
   }
 
- 
   changeZoom(zoom) {
     this.currentZoom = zoom;
-    
- 
+
     const zoomValue = document.getElementById('zoom-value');
     if (zoomValue) {
       zoomValue.textContent = `${zoom}%`;
     }
-    
- 
+
     const previewFrame = document.getElementById('preview-frame');
     if (previewFrame) {
       previewFrame.style.transform = `scale(${zoom / 100})`;
       previewFrame.style.transformOrigin = 'top left';
-      
- 
+
       const previewContainer = document.getElementById('preview-container');
       if (previewContainer && zoom !== 100) {
         const scale = zoom / 100;
         previewContainer.style.overflow = 'auto';
       }
     }
-    
+
     console.log(`Zoom cambiado a: ${zoom}%`);
   }
 
   async updateBusinessData() {
     if (this.isUpdating) return;
-    
+
     this.isUpdating = true;
     const updateBtn = document.getElementById('update-site-btn');
-    
+
     try {
       updateBtn.disabled = true;
       updateBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Actualizando...';
       this.showStatus('Guardando cambios...', 'loading');
-      
-     
+
       const socialMedia = {
         facebook: document.getElementById('facebook-url')?.value || '',
         instagram: document.getElementById('instagram-url')?.value || '',
         tiktok: document.getElementById('tiktok-url')?.value || '',
         linkedin: document.getElementById('linkedin-url')?.value || ''
       };
-      
-      
+
       Object.keys(socialMedia).forEach(key => {
         if (!socialMedia[key]) delete socialMedia[key];
       });
-      
- 
+
       const galleryUrlsText = document.getElementById('gallery-urls')?.value || '';
       const galleryUrls = galleryUrlsText.split('\n')
         .map(url => url.trim())
         .filter(url => url);
-      
-  
+
       const cleanValue = (value, fallback = '') => {
         return (value !== undefined && value !== null && value !== '') ? value : fallback;
       };
 
-     
-      const emailValue = document.getElementById('site-email')?.value || 
-                        this.businessData.email || 
-                        this.businessData.contactEmail || 
-                        this.businessData.businessEmail || 
+      const emailValue = document.getElementById('site-email')?.value ||
+                        this.businessData.email ||
+                        this.businessData.contactEmail ||
+                        this.businessData.businessEmail ||
                         '';
 
       const updatedData = {
@@ -578,7 +601,6 @@ class TemplateEditor {
         businessName: cleanValue(document.getElementById('site-name')?.value, this.businessData.businessName),
         businessDescription: cleanValue(document.getElementById('site-description')?.value, this.businessData.businessDescription),
         contactPhone: cleanValue(document.getElementById('site-phone')?.value, this.businessData.contactPhone),
-   
         businessAddress: cleanValue(document.getElementById('site-address')?.value, this.businessData.businessAddress),
         businessHours: cleanValue(document.getElementById('business-hours')?.value, this.businessData.businessHours),
         googleMaps: cleanValue(document.getElementById('google-maps')?.value, this.businessData.googleMaps),
@@ -590,26 +612,25 @@ class TemplateEditor {
         updatedAt: new Date().toISOString()
       };
 
-
       Object.keys(updatedData).forEach(key => {
         if (updatedData[key] === undefined || updatedData[key] === null) {
           if (key === 'email') {
-            updatedData[key] = ''; 
+            updatedData[key] = '';
           } else {
             delete updatedData[key];
           }
         }
       });
-      
+
       const userRef = ref(db, `Informacion-Usuarios/${this.currentUserId}`);
       const newEntryRef = push(userRef);
       await set(newEntryRef, updatedData);
-      
+
       this.businessData = updatedData;
       await this.updatePreview();
-      
+
       this.showStatus('¡Cambios guardados exitosamente!', 'success');
-      
+
     } catch (error) {
       console.error('Error al actualizar datos:', error);
       this.showStatus('Error al guardar cambios', 'error');
@@ -625,17 +646,17 @@ class TemplateEditor {
     if (existingStatus) {
       existingStatus.remove();
     }
-    
+
     const statusDiv = document.createElement('div');
     statusDiv.className = `save-status ${type}`;
     statusDiv.textContent = message;
-    
+
     document.body.appendChild(statusDiv);
-    
+
     setTimeout(() => {
       statusDiv.classList.add('show');
     }, 100);
-    
+
     setTimeout(() => {
       statusDiv.classList.remove('show');
       setTimeout(() => {
