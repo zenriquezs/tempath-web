@@ -21,10 +21,19 @@ class TemplateEditor {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         this.currentUserId = user.uid;
-        await this.loadFromURL();
-        await this.loadBusinessData();
-        await this.loadSelectedTemplate();
-        this.setupEventListeners();
+                
+        if (!this.loadFromURL()) {
+          return; 
+        }
+        
+        try {
+          await this.loadBusinessData();
+          await this.loadSelectedTemplate();
+          this.setupEventListeners();
+        } catch (error) {
+          console.error('Error durante la inicialización:', error);
+          this.showStatus('Error al cargar la plantilla. Por favor, intenta de nuevo.', 'error');
+        }
       } else {
         alert("Debes iniciar sesión para usar el editor.");
         window.location.href = "auth/login.html";
@@ -38,12 +47,13 @@ class TemplateEditor {
     this.selectedTemplate = this.currentTemplate; // NUEVO
 
     if (!this.currentTemplate) {
-      alert('No se especificó una plantilla.');
+      console.warn('No se especificó una plantilla, redirigiendo a selección.');
       window.location.href = 'templates-selection.html';
-      return;
+      return false;
     }
 
     console.log('Plantilla seleccionada:', this.currentTemplate);
+    return true;
   }
 
   async loadBusinessData() {
@@ -659,9 +669,9 @@ class TemplateEditor {
     console.log('Publicando en:', platform);
     alert(`Funcionalidad de ${platform} en desarrollo`);
   }
-
-  openShareModal() {
-    alert('Modal de compartir en desarrollo');
+  openShareModal() {   
+    const templateParam = this.currentTemplate ? `?template=${this.currentTemplate}` : '';
+    window.location.href = `domain-manager.html${templateParam}`;
   }
 }
 
